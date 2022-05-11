@@ -1,7 +1,8 @@
 -- From https://raw.githubusercontent.com/alpha2phi/neovim-for-beginner/11-lsp/lua/config/cmp.lua
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+	return col ~= 0
+		and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
 local luasnip = require "luasnip"
@@ -16,18 +17,18 @@ cmp.setup {
 		end,
 	},
 	formatting = {
-      format = require("lspkind").cmp_format({
-        with_text = true,
-        maxwidth = 50,
-        menu = {
-					nvim_lsp = "[LSP]",
-					buffer = "[Buffer]",
-					luasnip = "[Snip]",
-					nvim_lua = "[Lua]",
-					treesitter = "[Treesitter]",
-					path = "[Path]",
-        },
-      }),
+		format = require("lspkind").cmp_format {
+			with_text = true,
+			maxwidth = 50,
+			menu = {
+				nvim_lsp = "[LSP]",
+				buffer = "[Buffer]",
+				luasnip = "[Snip]",
+				nvim_lua = "[Lua]",
+				treesitter = "[Treesitter]",
+				path = "[Path]",
+			},
+		},
 	},
 	mapping = {
 		["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
@@ -36,10 +37,10 @@ cmp.setup {
 		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
 		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
 		["<Esc>"] = cmp.mapping { i = cmp.mapping.close(), c = cmp.mapping.close() },
-		["<CR>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      }),
+		["<CR>"] = cmp.mapping.confirm {
+			behavior = cmp.ConfirmBehavior.Replace,
+			select = true,
+		},
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_next_item()
@@ -85,7 +86,7 @@ cmp.setup {
 			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
 			winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
 		},
-	}
+	},
 }
 
 -- Use buffer source for `/`

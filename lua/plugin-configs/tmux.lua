@@ -1,4 +1,4 @@
-require("tmux").setup({
+require("tmux").setup {
 	copy_sync = {
 		enable = true,
 	},
@@ -7,6 +7,5 @@ require("tmux").setup({
 	},
 	resize = {
 		enable_default_keybindings = true,
-	}
-})
-
+	},
+}

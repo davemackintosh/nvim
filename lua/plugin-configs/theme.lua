@@ -1,3 +1,2 @@
-require "material".setup {}
+require("material").setup {}
 vim.cmd [[colorscheme material]]
-

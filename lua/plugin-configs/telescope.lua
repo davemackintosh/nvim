@@ -1,11 +1,10 @@
-require "telescope".setup {
+require("telescope").setup {
 	pickers = {
-    find_files = {
-      theme = "dropdown",
-    }
-  },
+		find_files = {
+			theme = "dropdown",
+		},
+	},
 }
-require "telescope".load_extension "packer"
-require "telescope".load_extension "dap"
+require("telescope").load_extension "packer"
+require("telescope").load_extension "dap"
 -- require "telescope".extensions.packer.packer()
-
