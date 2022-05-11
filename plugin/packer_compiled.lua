@@ -135,8 +135,13 @@ _G.packer_plugins = {
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
     url = "https://github.com/onsails/lspkind-nvim"
   },
+  ["lspkind.nvim"] = {
+    loaded = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
+    url = "https://github.com/onsails/lspkind.nvim"
+  },
   ["lspsaga.nvim"] = {
-    config = { "\27LJ\2\n�\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\5\17border_style\nround\15infor_sign\b\14hint_sign\b\14warn_sign\b\15error_sign\b\18init_lsp_saga\flspsaga\frequire\0" },
+    config = { "\27LJ\2\n�\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\5\15infor_sign\b\14hint_sign\b\14warn_sign\b\15error_sign\b\17border_style\nround\18init_lsp_saga\flspsaga\frequire\0" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
@@ -331,14 +336,6 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require "plugin-configs/autopairs"
-time([[Config for nvim-autopairs]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require "plugin-configs/cmp"
-time([[Config for nvim-cmp]], false)
 -- Config for: nvim-notify
 time([[Config for nvim-notify]], true)
 try_loadstring("\27LJ\2\n2\0\0\4\0\3\0\0066\0\0\0006\1\2\0'\3\1\0B\1\2\2=\1\1\0K\0\1\0\frequire\vnotify\bvim\0", "config", "nvim-notify")
@@ -355,32 +352,40 @@ time([[Config for mapx.nvim]], false)
 time([[Config for nvim-tree.lua]], true)
 require "plugin-configs/nvim-tree"
 time([[Config for nvim-tree.lua]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require "plugin-configs/telescope"
-time([[Config for telescope.nvim]], false)
--- Config for: tmux.nvim
-time([[Config for tmux.nvim]], true)
-require "plugin-configs/tmux"
-time([[Config for tmux.nvim]], false)
 -- Config for: material.nvim
 time([[Config for material.nvim]], true)
 require "plugin-configs/theme"
 time([[Config for material.nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require "plugin-configs/lualine"
-time([[Config for lualine.nvim]], false)
+-- Config for: tmux.nvim
+time([[Config for tmux.nvim]], true)
+require "plugin-configs/tmux"
+time([[Config for tmux.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require "plugin-configs/lsp"
 time([[Config for nvim-lspconfig]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require "plugin-configs/telescope"
+time([[Config for telescope.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require "plugin-configs/lualine"
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require "plugin-configs/autopairs"
+time([[Config for nvim-autopairs]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require "plugin-configs/cmp"
+time([[Config for nvim-cmp]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd lspsaga.nvim ]]
 
 -- Config for: lspsaga.nvim
-try_loadstring("\27LJ\2\n�\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\5\17border_style\nround\15infor_sign\b\14hint_sign\b\14warn_sign\b\15error_sign\b\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
+try_loadstring("\27LJ\2\n�\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\5\15infor_sign\b\14hint_sign\b\14warn_sign\b\15error_sign\b\17border_style\nround\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
 
 time([[Sequenced loading]], false)
 if should_profile then save_profiles() end
