@@ -74,6 +74,12 @@ _G.packer_plugins = {
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["alpha-nvim"] = {
+    config = { "\27LJ\2\nF\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin-configs/dashboard\frequire\0" },
+    loaded = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/alpha-nvim",
+    url = "https://github.com/goolord/alpha-nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -119,16 +125,21 @@ _G.packer_plugins = {
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
   },
+  ["git-blame.nvim"] = {
+    loaded = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/git-blame.nvim",
+    url = "https://github.com/f-person/git-blame.nvim"
+  },
   ["go.nvim"] = {
     config = { 'require "plugin-configs/go"' },
     loaded = true,
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/go.nvim",
     url = "https://github.com/ray-x/go.nvim"
   },
-  ["lsp_signature.nvim"] = {
+  ["guihua.lua"] = {
     loaded = true,
-    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
-    url = "https://github.com/ray-x/lsp_signature.nvim"
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/guihua.lua",
+    url = "https://github.com/ray-x/guihua.lua"
   },
   ["lspkind-nvim"] = {
     loaded = true,
@@ -141,12 +152,9 @@ _G.packer_plugins = {
     url = "https://github.com/onsails/lspkind.nvim"
   },
   ["lspsaga.nvim"] = {
-    config = { "\27LJ\2\n�\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\5\15infor_sign\b\14hint_sign\b\14warn_sign\b\15error_sign\b\17border_style\nround\18init_lsp_saga\flspsaga\frequire\0" },
-    load_after = {},
     loaded = true,
-    needs_bufread = false,
-    path = "/Users/dave/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim",
-    url = "https://github.com/glepnir/lspsaga.nvim"
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    url = "https://github.com/tami5/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
     config = { 'require "plugin-configs/lualine"' },
@@ -155,7 +163,7 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["mapx.nvim"] = {
-    config = { "\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22keyboard-mappings\frequire\0" },
+    config = { ' require "keyboard-mappings" ' },
     loaded = true,
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/mapx.nvim",
     url = "https://github.com/b0o/mapx.nvim"
@@ -207,14 +215,22 @@ _G.packer_plugins = {
     url = "https://github.com/theHamsta/nvim-dap-virtual-text"
   },
   ["nvim-lsp-installer"] = {
+    config = { ' require "plugin-configs/lsp-installer" ' },
+    load_after = {},
     loaded = true,
-    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",
+    needs_bufread = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/opt/nvim-lsp-installer",
     url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
-    after = { "lspsaga.nvim" },
+    after = { "nvim-lsp-installer" },
     loaded = true,
     only_config = true
+  },
+  ["nvim-lspupdate"] = {
+    loaded = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/nvim-lspupdate",
+    url = "https://github.com/alexaandru/nvim-lspupdate"
   },
   ["nvim-notify"] = {
     config = { "\27LJ\2\n2\0\0\4\0\3\0\0066\0\0\0006\1\2\0'\3\1\0B\1\2\2=\1\1\0K\0\1\0\frequire\vnotify\bvim\0" },
@@ -275,6 +291,12 @@ _G.packer_plugins = {
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/tmux.nvim",
     url = "https://github.com/aserowy/tmux.nvim"
   },
+  ["trouble.nvim"] = {
+    config = { ' require "plugin-configs/trouble" ' },
+    loaded = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
   ["vim-endwise"] = {
     loaded = true,
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/vim-endwise",
@@ -289,11 +311,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/vim-multiple-cursors",
     url = "https://github.com/terryma/vim-multiple-cursors"
-  },
-  ["vim-startify"] = {
-    loaded = true,
-    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/vim-startify",
-    url = "https://github.com/mhinz/vim-startify"
   },
   ["vim-surround"] = {
     loaded = true,
@@ -336,30 +353,42 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: nvim-notify
-time([[Config for nvim-notify]], true)
-try_loadstring("\27LJ\2\n2\0\0\4\0\3\0\0066\0\0\0006\1\2\0'\3\1\0B\1\2\2=\1\1\0K\0\1\0\frequire\vnotify\bvim\0", "config", "nvim-notify")
-time([[Config for nvim-notify]], false)
 -- Config for: go.nvim
 time([[Config for go.nvim]], true)
 require "plugin-configs/go"
 time([[Config for go.nvim]], false)
 -- Config for: mapx.nvim
 time([[Config for mapx.nvim]], true)
-try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\22keyboard-mappings\frequire\0", "config", "mapx.nvim")
+ require "keyboard-mappings" 
 time([[Config for mapx.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-require "plugin-configs/nvim-tree"
-time([[Config for nvim-tree.lua]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+ require "plugin-configs/trouble" 
+time([[Config for trouble.nvim]], false)
 -- Config for: material.nvim
 time([[Config for material.nvim]], true)
 require "plugin-configs/theme"
 time([[Config for material.nvim]], false)
--- Config for: tmux.nvim
-time([[Config for tmux.nvim]], true)
-require "plugin-configs/tmux"
-time([[Config for tmux.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+require "plugin-configs/nvim-tree"
+time([[Config for nvim-tree.lua]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require "plugin-configs/autopairs"
+time([[Config for nvim-autopairs]], false)
+-- Config for: alpha-nvim
+time([[Config for alpha-nvim]], true)
+try_loadstring("\27LJ\2\nF\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin-configs/dashboard\frequire\0", "config", "alpha-nvim")
+time([[Config for alpha-nvim]], false)
+-- Config for: nvim-notify
+time([[Config for nvim-notify]], true)
+try_loadstring("\27LJ\2\n2\0\0\4\0\3\0\0066\0\0\0006\1\2\0'\3\1\0B\1\2\2=\1\1\0K\0\1\0\frequire\vnotify\bvim\0", "config", "nvim-notify")
+time([[Config for nvim-notify]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require "plugin-configs/cmp"
+time([[Config for nvim-cmp]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require "plugin-configs/lsp"
@@ -368,24 +397,20 @@ time([[Config for nvim-lspconfig]], false)
 time([[Config for telescope.nvim]], true)
 require "plugin-configs/telescope"
 time([[Config for telescope.nvim]], false)
+-- Config for: tmux.nvim
+time([[Config for tmux.nvim]], true)
+require "plugin-configs/tmux"
+time([[Config for tmux.nvim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require "plugin-configs/lualine"
 time([[Config for lualine.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require "plugin-configs/autopairs"
-time([[Config for nvim-autopairs]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require "plugin-configs/cmp"
-time([[Config for nvim-cmp]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd lspsaga.nvim ]]
+vim.cmd [[ packadd nvim-lsp-installer ]]
 
--- Config for: lspsaga.nvim
-try_loadstring("\27LJ\2\n�\1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\5\15infor_sign\b\14hint_sign\b\14warn_sign\b\15error_sign\b\17border_style\nround\18init_lsp_saga\flspsaga\frequire\0", "config", "lspsaga.nvim")
+-- Config for: nvim-lsp-installer
+ require "plugin-configs/lsp-installer" 
 
 time([[Sequenced loading]], false)
 if should_profile then save_profiles() end

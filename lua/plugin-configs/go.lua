@@ -10,10 +10,6 @@ require("go").setup {
 	lsp_diag_update_in_insert = true,
 	max_line_length = 100,
 }
-require("lspconfig").gopls.setup {}
 
 -- Run gofmt + goimport on save
-vim.api.nvim_exec(
-	[[ autocmd BufWritePre *.go :silent! lua require('go.format').goimport() ]],
-	false
-)
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :lua require('go.format').goimport() ]], false)

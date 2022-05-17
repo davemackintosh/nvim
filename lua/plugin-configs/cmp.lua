@@ -2,14 +2,14 @@
 local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0
-		and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
+			and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
 end
 
 local luasnip = require "luasnip"
 local cmp = require "cmp"
 
 cmp.setup {
-	completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
+	completion = { completeopt = "menu,menuone,noinsert", keyword_length = 3 },
 	experimental = { native_menu = false, ghost_text = false },
 	snippet = {
 		expand = function(args)
@@ -39,7 +39,7 @@ cmp.setup {
 		["<Esc>"] = cmp.mapping { i = cmp.mapping.close(), c = cmp.mapping.close() },
 		["<CR>"] = cmp.mapping.confirm {
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = true,
+			select = false,
 		},
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
@@ -77,15 +77,14 @@ cmp.setup {
 		{ name = "luasnip" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
+		{ name = "nvim_lsp_signature_help" },
 		-- { name = "spell" },
 		-- { name = "emoji" },
 		-- { name = "calc" },
 	},
 	window = {
-		documentation = {
-			border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-			winhighlight = "NormalFloat:NormalFloat,FloatBorder:TelescopeBorder",
-		},
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
 	},
 }
 
