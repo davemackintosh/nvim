@@ -23,22 +23,27 @@ return require("packer").startup(function(use)
 	}
 	use {
 		"neovim/nvim-lspconfig",
-		config = [[require "plugin-configs/lsp"]],
+		config = [[require "plugin-configs.lsp"]],
 		requires = {
-			-- "ray-x/lsp_signature.nvim",
+			"ray-x/lsp_signature.nvim",
 			"onsails/lspkind.nvim",
 			"tami5/lspsaga.nvim",
 			"alexaandru/nvim-lspupdate",
 		},
 	}
 	use {
+			"creativenull/diagnosticls-configs-nvim",
+			after = "nvim-lsp-installer",
+			config = [[ require "plugin-configs.diagnosticls" ]]
+	}
+	use {
 		"williamboman/nvim-lsp-installer",
 		after = "nvim-lspconfig",
-		config = [[ require "plugin-configs/lsp-installer" ]],
+		config = [[ require "plugin-configs.lsp-installer" ]],
 	}
 	use {
 		"hrsh7th/nvim-cmp",
-		config = [[require "plugin-configs/cmp"]],
+		config = [[require "plugin-configs.cmp"]],
 		requires = {
 			"nvim-treesitter/nvim-treesitter",
 			"hrsh7th/cmp-nvim-lsp",
@@ -60,13 +65,13 @@ return require("packer").startup(function(use)
 	use { "f-person/git-blame.nvim" }
 	use {
 		"folke/trouble.nvim",
-		config = [[ require "plugin-configs/trouble" ]],
+		config = [[ require "plugin-configs.trouble" ]],
 	}
 
 	-- Window management
 	use {
 		"aserowy/tmux.nvim",
-		config = [[require "plugin-configs/tmux"]],
+		config = [[require "plugin-configs.tmux"]],
 	}
 	use { "ray-x/guihua.lua", run = "cd lua/fzy && make" }
 
@@ -76,14 +81,14 @@ return require("packer").startup(function(use)
 		requires = {
 			"kyazdani42/nvim-web-devicons",
 		},
-		config = [[require "plugin-configs/nvim-tree"]],
+		config = [[require "plugin-configs.nvim-tree"]],
 	}
 
 	-- Code helpers.
 	use "github/copilot.vim"
 	use {
 		"windwp/nvim-autopairs",
-		config = [[require "plugin-configs/autopairs"]],
+		config = [[require "plugin-configs.autopairs"]],
 	}
 	use "tpope/vim-endwise"
 	use "tpope/vim-fugitive"
@@ -92,7 +97,7 @@ return require("packer").startup(function(use)
 	use "tpope/vim-surround"
 	use {
 		"ray-x/go.nvim",
-		config = [[require "plugin-configs/go"]],
+		config = [[require "plugin-configs.go"]],
 		requires = {
 			"nvim-treesitter/nvim-treesitter",
 		},
@@ -105,7 +110,7 @@ return require("packer").startup(function(use)
 			"kyazdani42/nvim-web-devicons",
 			opt = true,
 		},
-		config = [[require "plugin-configs/lualine"]],
+		config = [[require "plugin-configs.lualine"]],
 	}
 	use {
 		"nvim-telescope/telescope.nvim",
@@ -114,16 +119,16 @@ return require("packer").startup(function(use)
 			"nvim-telescope/telescope-packer.nvim",
 			"nvim-telescope/telescope-dap.nvim",
 		},
-		config = [[require "plugin-configs/telescope"]],
+		config = [[require "plugin-configs.telescope"]],
 	}
 	use {
 		"marko-cerovac/material.nvim",
-		config = [[require "plugin-configs/theme"]],
+		config = [[require "plugin-configs.theme"]],
 	}
 	use {
 		"goolord/alpha-nvim",
 		config = function()
-			require("plugin-configs/dashboard").setup()
+			require("plugin-configs.dashboard").setup()
 		end,
 	}
 	use {
@@ -136,7 +141,7 @@ return require("packer").startup(function(use)
 	-- Debugging
 	use {
 		"mfussenegger/nvim-dap",
-		config = [[require "plugin-configs/nvim-dap"]],
+		config = [[require "plugin-configs.nvim-dap"]],
 		module = "dap",
 		requires = {
 			"theHamsta/nvim-dap-virtual-text",

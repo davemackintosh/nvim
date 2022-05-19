@@ -39,7 +39,7 @@ cmp.setup {
 		["<Esc>"] = cmp.mapping { i = cmp.mapping.close(), c = cmp.mapping.close() },
 		["<CR>"] = cmp.mapping.confirm {
 			behavior = cmp.ConfirmBehavior.Replace,
-			select = false,
+			select = true,
 		},
 		["<Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then

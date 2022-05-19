@@ -19,10 +19,13 @@ local servers = {
 			buildFlags = {},
 		},
 	},
+	diagnosticls = {},
+	sumneko_lua = {},
 	html = {},
 	ccls = {},
 	vimls = {},
 	tsserver = {},
+	sourcekit = {},
 	yamlls = {
 		yaml = {
 			schemas = {
@@ -34,6 +37,9 @@ local servers = {
 		},
 	},
 }
+local function on_attach(client)
+	vim.notify("A server attached " .. client.name)
+end
 local options = {
 	on_attach = on_attach,
 	capabilities = capabilities,
