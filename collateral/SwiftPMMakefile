@@ -1,0 +1,28 @@
+.PHONY: open-sim \
+	build-iphone-debug \
+	install-iphone-debug \
+	run-iphone-debug
+
+XCODE_PROJECT:=./.swiftpm/xcode/package.xcworkspace
+
+open-sim:
+	open -a simulator 
+	xcrun simctl boot "iPhone 13 mini" || true
+
+build-iphone-debug: open-sim
+	xcrun xcodebuild \
+		-scheme "$(XCODE_SCHEME)" \
+		-workspace "${XCODE_PROJECT}" \
+		-configuration Debug \
+		-allowProvisioningUpdates \
+		-destination "platform=iOS Simulator,name=iPhone 13 mini" \
+		-derivedDataPath \
+		./build
+
+install-iphone-debug: build-iphone-debug
+	xcrun simctl install booted ./build/Build/Products/Debug-iphonesimulator/$(BUNDLE_NAME).app
+
+run-iphone-debug: install-iphone-debug
+	xcrun simctl launch booted $(BUNDLE_IDENTIFIER) -MyDefaultKey YES
+
+

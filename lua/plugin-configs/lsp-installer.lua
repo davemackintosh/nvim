@@ -19,6 +19,7 @@ local servers = {
 			buildFlags = {},
 		},
 	},
+	bashls = {},
 	diagnosticls = {},
 	sumneko_lua = {},
 	html = {},

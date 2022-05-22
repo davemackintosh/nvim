@@ -1,6 +1,8 @@
 local swiftlint = require 'diagnosticls-configs.linters.swiftlint'
 
 local function on_attach(client)
+	local swiftformat = require "plugin-configs.swiftformat"
+	swiftformat.on_attach()
   vim.notify('Attached to ' .. client.name)
 end
 
@@ -17,4 +19,3 @@ dlsconfig.setup {
   },
 }
 
-require "plugin-configs.swiftformat"
