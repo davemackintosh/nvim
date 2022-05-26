@@ -32,9 +32,9 @@ return require("packer").startup(function(use)
 		},
 	}
 	use {
-			"creativenull/diagnosticls-configs-nvim",
-			after = "nvim-lsp-installer",
-			config = [[ require "plugin-configs.diagnosticls" ]]
+		"creativenull/diagnosticls-configs-nvim",
+		after = "nvim-lsp-installer",
+		config = [[ require "plugin-configs.diagnosticls" ]]
 	}
 	use {
 		"williamboman/nvim-lsp-installer",
@@ -146,13 +146,19 @@ return require("packer").startup(function(use)
 		requires = {
 			"theHamsta/nvim-dap-virtual-text",
 			"jbyuki/one-small-step-for-vimkind",
-			"leoluz/nvim-dap-go",
 		},
 	}
 
 	use {
 		"rcarriga/nvim-dap-ui",
 		after = "nvim-dap",
+		config = [[ require "plugin-configs.nvim-dap-gui" ]]
+	}
+
+	use {
+		"leoluz/nvim-dap-go",
+		after = "nvim-dap-ui",
+		config = [[ require "plugin-configs.nvim-dap-go" ]]
 	}
 
 	if packer_bootstrap then
