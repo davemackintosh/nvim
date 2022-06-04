@@ -1,2 +1,1 @@
-require("material").setup {}
-vim.cmd [[colorscheme material]]
+vim.cmd [[ colorscheme nord ]]

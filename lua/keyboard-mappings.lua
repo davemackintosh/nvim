@@ -7,11 +7,12 @@ mapx.nnoremap("<C-k>", "<C-w>k")
 mapx.nnoremap("<C-l>", "<C-w>l")
 
 -- Utils
-mapx.nnoremap("<C-u>", ":source $MYVIMRC<Cr>:PackerSync<Cr>")
 mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")
 mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>")
 mapx.nnoremap("<C-s>", ":Vista!!<Cr>")
 
+mapx.inoremap("<C-t>", "<cmd>:TestNearest<Cr>")
+mapx.nnoremap("<C-t>", "<cmd>:TestNearest<Cr>")
 mapx.nnoremap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
 mapx.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 mapx.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
@@ -24,9 +25,8 @@ mapx.nnoremap(
 	"<cmd>lua vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR})<CR>"
 )
 
-mapx.nnoremap("gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
 mapx.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-mapx.nnoremap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+mapx.inoremap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 mapx.nnoremap("gr", "<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename")
 mapx.nnoremap("do", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Code Action")
-mapx.nnoremap("<leader>de", "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics")
+mapx.nnoremap("se", "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics")

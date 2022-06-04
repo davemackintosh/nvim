@@ -3,10 +3,10 @@ require("nvim-tree").setup {
 	hijack_netrw = true,
 	open_on_setup = true,
 	hijack_unnamed_buffer_when_opening = true,
-	ignore_buffer_on_setup = true,
+	ignore_buffer_on_setup = false,
 	update_focused_file = {
 		enable = true,
 		update_cwd = false,
-		ignore_list = {},
+		ignore_list = { ".git/*" },
 	},
 }

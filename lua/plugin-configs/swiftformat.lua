@@ -95,13 +95,25 @@ M.check_and_run_simulator = function()
 		end)
 	})
 
-	makeJob:sync(50000)
+	makeJob:sync()
 end
 
-M.on_attach = function()
+M.on_attach = function(_, bufnr)
 	local mapx = require("mapx").setup()
-	cmd("autocmd BufWritePost <buffer> :lua require 'plugin-configs.swiftformat'.run()", false)
-	mapx.nnoremap("<C-e>", ":lua require 'plugin-configs.swiftformat'.check_and_run_simulator()<Cr>")
+	-- if you want to set up formatting on save, you can use this as a callback
+	local augroup = vim.api.nvim_create_augroup("SwiftFormat", {})
+	vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		group = augroup,
+		pattern = "*.swift",
+		callback = function()
+			require 'plugin-configs.swiftformat'.run()
+		end,
+	})
+
+	mapx.nnoremap("<C-e>", function()
+		require 'plugin-configs.swiftformat'.check_and_run_simulator()
+	end)
 	-- cmd("autocmd BufWritePost *.swift :lua require 'plugin-configs.swiftformat'.check_and_run_simulator()", false)
 end
 return M

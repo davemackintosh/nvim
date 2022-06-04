@@ -11,5 +11,17 @@ require("go").setup {
 	max_line_length = 100,
 }
 
+local mapx = require "mapx".setup {}
+mapx.inoremap("<C-c>", "<cmd>:GoCoverage<Cr>")
+mapx.nnoremap("<C-c>", "<cmd>:GoCoverage<Cr>")
+
 -- Run gofmt + goimport on save
-vim.api.nvim_exec([[ autocmd BufWritePre *.go :lua require('go.format').goimport() ]], false)
+local augroup = vim.api.nvim_create_augroup("GoFormatting", {})
+-- vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+vim.api.nvim_create_autocmd("BufWritePre", {
+	group = augroup,
+	pattern = "*.go",
+	callback = function()
+		require('go.format').goimport()
+	end,
+})

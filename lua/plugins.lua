@@ -33,13 +33,8 @@ return require("packer").startup(function(use)
 	}
 	use {
 		"creativenull/diagnosticls-configs-nvim",
-		after = "nvim-lsp-installer",
-		config = [[ require "plugin-configs.diagnosticls" ]]
-	}
-	use {
-		"williamboman/nvim-lsp-installer",
 		after = "nvim-lspconfig",
-		config = [[ require "plugin-configs.lsp-installer" ]],
+		config = [[ require "plugin-configs.diagnosticls" ]]
 	}
 	use {
 		"hrsh7th/nvim-cmp",
@@ -73,7 +68,6 @@ return require("packer").startup(function(use)
 		"aserowy/tmux.nvim",
 		config = [[require "plugin-configs.tmux"]],
 	}
-	use { "ray-x/guihua.lua", run = "cd lua/fzy && make" }
 
 	-- File management.
 	use {
@@ -86,6 +80,7 @@ return require("packer").startup(function(use)
 
 	-- Code helpers.
 	use "github/copilot.vim"
+	use "sebdah/vim-delve"
 	use {
 		"windwp/nvim-autopairs",
 		config = [[require "plugin-configs.autopairs"]],
@@ -95,13 +90,17 @@ return require("packer").startup(function(use)
 	use "terryma/vim-multiple-cursors"
 	use "liuchengxu/vista.vim"
 	use "tpope/vim-surround"
+	use "vim-test/vim-test"
+	use "voldikss/vim-floaterm"
 	use {
 		"ray-x/go.nvim",
 		config = [[require "plugin-configs.go"]],
 		requires = {
+			"ray-x/guihua.lua",
 			"nvim-treesitter/nvim-treesitter",
 		},
 	}
+	use "b0o/schemastore.nvim"
 
 	-- Visual.
 	use {
@@ -122,7 +121,7 @@ return require("packer").startup(function(use)
 		config = [[require "plugin-configs.telescope"]],
 	}
 	use {
-		"marko-cerovac/material.nvim",
+		"shaunsingh/nord.nvim",
 		config = [[require "plugin-configs.theme"]],
 	}
 	use {
