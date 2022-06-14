@@ -5,7 +5,7 @@ require("go").setup {
 	linter = "golangci-lint",
 	formatter = "gofumpt",
 	test_popup = true,
-	-- lint_prompt_style = "vt",
+	lint_prompt_style = "vt",
 	lsp_gofumpt = true,
 	lsp_diag_update_in_insert = true,
 	max_line_length = 100,

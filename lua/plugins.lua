@@ -68,6 +68,12 @@ return require("packer").startup(function(use)
 		"aserowy/tmux.nvim",
 		config = [[require "plugin-configs.tmux"]],
 	}
+	use {
+		"akinsho/bufferline.nvim", 
+		tag = "v2.*", 
+		requires = "kyazdani42/nvim-web-devicons",
+		config = [[ require "plugin-configs.bufferline" ]],
+	}
 
 	-- File management.
 	use {
@@ -149,15 +155,15 @@ return require("packer").startup(function(use)
 	}
 
 	use {
-		"rcarriga/nvim-dap-ui",
+		"leoluz/nvim-dap-go",
 		after = "nvim-dap",
-		config = [[ require "plugin-configs.nvim-dap-gui" ]]
+		config = [[ require "plugin-configs.nvim-dap-go" ]]
 	}
 
 	use {
-		"leoluz/nvim-dap-go",
-		after = "nvim-dap-ui",
-		config = [[ require "plugin-configs.nvim-dap-go" ]]
+		"rcarriga/nvim-dap-ui",
+		after = "nvim-dap",
+		config = [[ require "plugin-configs.nvim-dap-gui" ]]
 	}
 
 	if packer_bootstrap then
