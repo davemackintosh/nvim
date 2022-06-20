@@ -62,6 +62,12 @@ return require("packer").startup(function(use)
 		"folke/trouble.nvim",
 		config = [[ require "plugin-configs.trouble" ]],
 	}
+	use {
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup {}
+		end
+	}
 
 	-- Window management
 	use {
@@ -69,8 +75,8 @@ return require("packer").startup(function(use)
 		config = [[require "plugin-configs.tmux"]],
 	}
 	use {
-		"akinsho/bufferline.nvim", 
-		tag = "v2.*", 
+		"akinsho/bufferline.nvim",
+		tag = "v2.*",
 		requires = "kyazdani42/nvim-web-devicons",
 		config = [[ require "plugin-configs.bufferline" ]],
 	}
@@ -127,7 +133,8 @@ return require("packer").startup(function(use)
 		config = [[require "plugin-configs.telescope"]],
 	}
 	use {
-		"shaunsingh/nord.nvim",
+		-- "shaunsingh/nord.nvim",
+		"marko-cerovac/material.nvim",
 		config = [[require "plugin-configs.theme"]],
 	}
 	use {
