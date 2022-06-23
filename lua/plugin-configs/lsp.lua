@@ -28,7 +28,8 @@ local servers = {
 		settings = {
 			yaml = {
 				schemas = {
-					["https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json"] = { "*.yaml", "*.yml" },
+					["https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json"] = { "*.yaml",
+						"*.yml" },
 					["https://raw.githubusercontent.com/awslabs/goformation/master/schema/sam.schema.json"] = { "*.yaml", "*.yml" },
 					["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
 
@@ -52,8 +53,6 @@ local function on_attach(client, bufnr)
 				"install",
 				"github.com/nametake/golangci-lint-langserver@latest"
 			}
-		else
-			vim.notify "golangci-lint-langserver installed already"
 		end
 
 		if vim.fn.executable "golangci-lint" ~= 1 then
