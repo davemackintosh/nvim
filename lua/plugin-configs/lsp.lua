@@ -62,8 +62,6 @@ local function on_attach(client, bufnr)
 				"install",
 				"github.com/nametake/golangci-lint@latest"
 			}
-		else
-			vim.notify "golangci-lint installed already"
 		end
 	end
 	-- if you want to set up formatting on save, you can use this as a callback
