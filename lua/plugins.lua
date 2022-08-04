@@ -17,6 +17,7 @@ return require("packer").startup(function(use)
 	use "wbthomason/packer.nvim"
 
 	-- Editor support.
+	use 'gpanders/editorconfig.nvim'
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -36,6 +37,7 @@ return require("packer").startup(function(use)
 		after = "nvim-lspconfig",
 		config = [[ require "plugin-configs.diagnosticls" ]]
 	}
+	use "burner/vim-svelte"
 	use {
 		"hrsh7th/nvim-cmp",
 		config = [[require "plugin-configs.cmp"]],
@@ -62,6 +64,10 @@ return require("packer").startup(function(use)
 		"folke/trouble.nvim",
 		config = [[ require "plugin-configs.trouble" ]],
 	}
+	use {
+		"sbdchd/neoformat"
+	}
+	use "jparise/vim-graphql"
 	use {
 		"folke/which-key.nvim",
 		config = function()

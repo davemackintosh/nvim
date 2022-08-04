@@ -139,6 +139,11 @@ _G.packer_plugins = {
     path = "/Users/dave/.local/share/nvim/site/pack/packer/opt/diagnosticls-configs-nvim",
     url = "https://github.com/creativenull/diagnosticls-configs-nvim"
   },
+  ["editorconfig.nvim"] = {
+    loaded = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/editorconfig.nvim",
+    url = "https://github.com/gpanders/editorconfig.nvim"
+  },
   ["git-blame.nvim"] = {
     loaded = true,
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/git-blame.nvim",
@@ -193,6 +198,11 @@ _G.packer_plugins = {
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/material.nvim",
     url = "https://github.com/marko-cerovac/material.nvim"
   },
+  neoformat = {
+    loaded = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/neoformat",
+    url = "https://github.com/sbdchd/neoformat"
+  },
   ["nvim-autopairs"] = {
     config = { 'require "plugin-configs.autopairs"' },
     loaded = true,
@@ -206,7 +216,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-dap"] = {
-    after = { "nvim-dap-ui", "nvim-dap-go" },
+    after = { "nvim-dap-go", "nvim-dap-ui" },
     config = { 'require "plugin-configs.nvim-dap"' },
     loaded = false,
     needs_bufread = false,
@@ -241,8 +251,11 @@ _G.packer_plugins = {
   },
   ["nvim-lspconfig"] = {
     after = { "diagnosticls-configs-nvim" },
+    config = { 'require "plugin-configs.lsp"' },
     loaded = true,
-    only_config = true
+    only_config = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-lspupdate"] = {
     loaded = true,
@@ -339,6 +352,11 @@ _G.packer_plugins = {
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
+  ["vim-graphql"] = {
+    loaded = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/vim-graphql",
+    url = "https://github.com/jparise/vim-graphql"
+  },
   ["vim-multiple-cursors"] = {
     loaded = true,
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/vim-multiple-cursors",
@@ -348,6 +366,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/dave/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
+  },
+  ["vim-svelte"] = {
+    loaded = true,
+    path = "/Users/dave/.local/share/nvim/site/pack/packer/start/vim-svelte",
+    url = "https://github.com/burner/vim-svelte"
   },
   ["vim-test"] = {
     loaded = true,
@@ -396,42 +419,46 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
-time([[Config for which-key.nvim]], false)
--- Config for: go.nvim
-time([[Config for go.nvim]], true)
-require "plugin-configs.go"
-time([[Config for go.nvim]], false)
--- Config for: nvim-notify
-time([[Config for nvim-notify]], true)
-try_loadstring("\27LJ\2\n2\0\0\4\0\3\0\0066\0\0\0006\1\2\0'\3\1\0B\1\2\2=\1\1\0K\0\1\0\frequire\vnotify\bvim\0", "config", "nvim-notify")
-time([[Config for nvim-notify]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require "plugin-configs.lualine"
-time([[Config for lualine.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require "plugin-configs.lsp"
-time([[Config for nvim-lspconfig]], false)
--- Config for: trouble.nvim
-time([[Config for trouble.nvim]], true)
- require "plugin-configs.trouble" 
-time([[Config for trouble.nvim]], false)
 -- Config for: nvim-tree.lua
 time([[Config for nvim-tree.lua]], true)
 require "plugin-configs.nvim-tree"
 time([[Config for nvim-tree.lua]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require "plugin-configs.telescope"
+time([[Config for telescope.nvim]], false)
+-- Config for: go.nvim
+time([[Config for go.nvim]], true)
+require "plugin-configs.go"
+time([[Config for go.nvim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require "plugin-configs.cmp"
 time([[Config for nvim-cmp]], false)
--- Config for: material.nvim
-time([[Config for material.nvim]], true)
-require "plugin-configs.theme"
-time([[Config for material.nvim]], false)
+-- Config for: tmux.nvim
+time([[Config for tmux.nvim]], true)
+require "plugin-configs.tmux"
+time([[Config for tmux.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require "plugin-configs.lsp"
+time([[Config for nvim-lspconfig]], false)
+-- Config for: alpha-nvim
+time([[Config for alpha-nvim]], true)
+try_loadstring("\27LJ\2\nF\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin-configs.dashboard\frequire\0", "config", "alpha-nvim")
+time([[Config for alpha-nvim]], false)
+-- Config for: trouble.nvim
+time([[Config for trouble.nvim]], true)
+ require "plugin-configs.trouble" 
+time([[Config for trouble.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require "plugin-configs.lualine"
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+require "plugin-configs.autopairs"
+time([[Config for nvim-autopairs]], false)
 -- Config for: bufferline.nvim
 time([[Config for bufferline.nvim]], true)
  require "plugin-configs.bufferline" 
@@ -440,22 +467,18 @@ time([[Config for bufferline.nvim]], false)
 time([[Config for mapx.nvim]], true)
  require "keyboard-mappings" 
 time([[Config for mapx.nvim]], false)
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-require "plugin-configs.autopairs"
-time([[Config for nvim-autopairs]], false)
--- Config for: tmux.nvim
-time([[Config for tmux.nvim]], true)
-require "plugin-configs.tmux"
-time([[Config for tmux.nvim]], false)
--- Config for: alpha-nvim
-time([[Config for alpha-nvim]], true)
-try_loadstring("\27LJ\2\nF\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\29plugin-configs.dashboard\frequire\0", "config", "alpha-nvim")
-time([[Config for alpha-nvim]], false)
--- Config for: telescope.nvim
-time([[Config for telescope.nvim]], true)
-require "plugin-configs.telescope"
-time([[Config for telescope.nvim]], false)
+-- Config for: nvim-notify
+time([[Config for nvim-notify]], true)
+try_loadstring("\27LJ\2\n2\0\0\4\0\3\0\0066\0\0\0006\1\2\0'\3\1\0B\1\2\2=\1\1\0K\0\1\0\frequire\vnotify\bvim\0", "config", "nvim-notify")
+time([[Config for nvim-notify]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
+time([[Config for which-key.nvim]], false)
+-- Config for: material.nvim
+time([[Config for material.nvim]], true)
+require "plugin-configs.theme"
+time([[Config for material.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd diagnosticls-configs-nvim ]]

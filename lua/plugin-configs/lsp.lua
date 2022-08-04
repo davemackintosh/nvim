@@ -15,6 +15,9 @@ local servers = {
 	ccls = {},
 	vimls = {},
 	tsserver = {},
+	graphql = {},
+	eslint = require "plugin-configs.eslint",
+	jedi_language_server = {},
 	sourcekit = {},
 	jsonls = {
 		settings = {
@@ -67,16 +70,13 @@ local function on_attach(client, bufnr)
 	-- if you want to set up formatting on save, you can use this as a callback
 	local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-	if client.supports_method "textDocument/formatting" then
-		vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = augroup,
-			pattern = "*",
-			callback = function()
-				vim.lsp.buf.format()
-			end,
-		})
-	end
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		group = augroup,
+		pattern = "*",
+		callback = function()
+			vim.lsp.buf.format()
+		end,
+	})
 
 	-- Server capabilities spec:
 	-- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
