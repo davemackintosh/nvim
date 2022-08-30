@@ -3,22 +3,35 @@ local capabilities = require("cmp_nvim_lsp").update_capabilities(
 	vim.lsp.protocol.make_client_capabilities()
 )
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.offsetEncoding = { "utf-16" }
 
 local schemas = require "schemastore".json.schemas()
 local servers = {
 	golangci_lint_ls = {},
 	gopls = {},
 	bashls = {},
+	clangd = {},
 	diagnosticls = {},
-	sumneko_lua = {},
+	sumneko_lua = {
+		settings = {
+			Lua = {
+				runtime = {
+					version = 'Lua5.1',
+				},
+				diagnostics = {
+					globals = { 'vim' },
+				},
+			},
+		},
+	},
 	html = {},
-	ccls = {},
 	vimls = {},
 	tsserver = {},
+	pyright = {},
 	graphql = {},
 	eslint = require "plugin-configs.eslint",
 	jedi_language_server = {},
-	sourcekit = {},
+	-- sourcekit = {},
 	jsonls = {
 		settings = {
 			json = {
