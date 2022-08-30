@@ -1,6 +1,6 @@
 # nvim
 
-A very opinionated, zero-config neovim setup for writing GoLang and Swift/SwiftUI.
+A very opinionated, zero-config neovim setup for writing GoLang, C/C++, Lua, ReactJS/Frontend web and Swift/SwiftUI.
 
 ## Goals
 
@@ -13,17 +13,19 @@ A familiar editor that enables:
 * Good support for
 	* Golang
 	* Swift
-	* Svelt (todo)
-	* React (todo)
-	* CSS (todo)
-	* HTML (todo)
+	* Lua
+	* C/C++
+	* React
+	* CSS
+	* HTML
 * Autoformatting
 	* Go
 	* Swift
-	* Svelt (todo)
-	* React (todo)
-	* CSS (todo)
-	* HTML (todo)
+	* Lua
+	* C/C++
+	* React
+	* CSS
+	* HTML
 
 ## Mappings
 
