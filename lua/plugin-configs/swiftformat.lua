@@ -1,6 +1,6 @@
-local M = {};
-local Job = require 'plenary.job';
-local cmd = vim.api.nvim_exec;
+local M = {}
+local Job = require "plenary.job"
+local cmd = vim.api.nvim_exec
 
 local get_buf_info = function()
 	local pos = vim.fn.winsaveview()
@@ -28,29 +28,30 @@ M.run = function()
 		vim.api.nvim_buf_get_name(0),
 	}
 
-	local formatJob = Job:new({
+	local formatJob = Job:new {
 		writer = table.concat(buflines, "\n"),
 		command = "swiftformat",
 		args = args,
 		on_exit = vim.schedule_wrap(function(j, result)
-
 			--- swiftformat return non-0 and that seems the only way to check for errors
-			local stderr = j:stderr_result();
+			local stderr = j:stderr_result()
 			vim.notify(table.concat(stderr, "\n"))
-		end)
-	})
+		end),
+	}
 
-	formatJob:sync();
+	formatJob:sync()
 
-	local new = formatJob:result();
-	local bufnr = vim.api.nvim_get_current_buf();
+	local new = formatJob:result()
+	local bufnr = vim.api.nvim_get_current_buf()
 	set_buf_lines(bufnr, new)
 end
 
 M.check_and_run_simulator = function()
 	local function readfile(path)
 		local file = io.open(path, "rb")
-		if not file then return nil end
+		if not file then
+			return nil
+		end
 		local content = file:read "*a"
 		file:close()
 		return content
@@ -61,7 +62,7 @@ M.check_and_run_simulator = function()
 	local scheme = string.match(package, [[name: "(%a+)"]])
 	local bundleIdentifier = string.match(package, [[bundleIdentifier: "([%a.]+)"]])
 	local bundleName = string.lower(scheme)
-	local nvimBaseDir = string.gsub(os.getenv("MYVIMRC"), "(.*/)(.*)", "%1")
+	local nvimBaseDir = string.gsub(os.getenv "MYVIMRC", "(.*/)(.*)", "%1")
 
 	if scheme == nil then
 		vim.notify("Couldn't work out the right schema.", "error")
@@ -70,19 +71,21 @@ M.check_and_run_simulator = function()
 			vim.notify("Couldn't work out the bundle identifier", "error")
 		else
 			if bundleName == nil then
-				vim.notify("Couldn't work out the bundle name")
+				vim.notify "Couldn't work out the bundle name"
 			else
-				vim.notify("running " .. scheme .. ":" .. bundleIdentifier .. ":Debug to " .. bundleName .. ".app")
+				vim.notify(
+					"running " .. scheme .. ":" .. bundleIdentifier .. ":Debug to " .. bundleName .. ".app"
+				)
 			end
 		end
 	end
 
-	local makeJob = Job:new({
+	local makeJob = Job:new {
 		command = "make",
 		args = {
 			"-f",
 			nvimBaseDir .. "collateral/SwiftPMMakefile",
-			"run-iphone-debug"
+			"run-iphone-debug",
 		},
 		env = {
 			BUNDLE_NAME = bundleName,
@@ -90,10 +93,10 @@ M.check_and_run_simulator = function()
 			XCODE_SCHEME = scheme,
 		},
 		on_exit = vim.schedule_wrap(function(j)
-			local stderr = j:stderr_result();
+			local stderr = j:stderr_result()
 			vim.notify(table.concat(stderr, "\n"))
-		end)
-	})
+		end),
+	}
 
 	makeJob:sync()
 end
@@ -107,12 +110,12 @@ M.on_attach = function(_, bufnr)
 		group = augroup,
 		pattern = "*.swift",
 		callback = function()
-			require 'plugin-configs.swiftformat'.run()
+			require("plugin-configs.swiftformat").run()
 		end,
 	})
 
 	mapx.nnoremap("<C-e>", function()
-		require 'plugin-configs.swiftformat'.check_and_run_simulator()
+		require("plugin-configs.swiftformat").check_and_run_simulator()
 	end)
 	-- cmd("autocmd BufWritePost *.swift :lua require 'plugin-configs.swiftformat'.check_and_run_simulator()", false)
 end

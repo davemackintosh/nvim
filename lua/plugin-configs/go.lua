@@ -11,7 +11,7 @@ require("go").setup {
 	max_line_length = 100,
 }
 
-local mapx = require "mapx".setup {}
+local mapx = require("mapx").setup {}
 mapx.inoremap("<C-c>", "<cmd>:GoCoverage<Cr>")
 mapx.nnoremap("<C-c>", "<cmd>:GoCoverage<Cr>")
 
@@ -22,6 +22,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	group = augroup,
 	pattern = "*.go",
 	callback = function()
-		require('go.format').goimport()
+		require("go.format").goimport()
 	end,
 })

@@ -17,7 +17,7 @@ return require("packer").startup(function(use)
 	use "wbthomason/packer.nvim"
 
 	-- Editor support.
-	use 'gpanders/editorconfig.nvim'
+	use "gpanders/editorconfig.nvim"
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -35,7 +35,7 @@ return require("packer").startup(function(use)
 	use {
 		"creativenull/diagnosticls-configs-nvim",
 		after = "nvim-lspconfig",
-		config = [[ require "plugin-configs.diagnosticls" ]]
+		config = [[ require "plugin-configs.diagnosticls" ]],
 	}
 	use "burner/vim-svelte"
 	use {
@@ -65,14 +65,14 @@ return require("packer").startup(function(use)
 		config = [[ require "plugin-configs.trouble" ]],
 	}
 	use {
-		"sbdchd/neoformat"
+		"sbdchd/neoformat",
 	}
 	use "jparise/vim-graphql"
 	use {
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup {}
-		end
+		end,
 	}
 
 	-- Window management
@@ -170,13 +170,13 @@ return require("packer").startup(function(use)
 	use {
 		"leoluz/nvim-dap-go",
 		after = "nvim-dap",
-		config = [[ require "plugin-configs.nvim-dap-go" ]]
+		config = [[ require "plugin-configs.nvim-dap-go" ]],
 	}
 
 	use {
 		"rcarriga/nvim-dap-ui",
 		after = "nvim-dap",
-		config = [[ require "plugin-configs.nvim-dap-gui" ]]
+		config = [[ require "plugin-configs.nvim-dap-gui" ]],
 	}
 
 	if packer_bootstrap then

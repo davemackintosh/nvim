@@ -1,4 +1,4 @@
-local ts = require("telescope")
+local ts = require "telescope"
 ts.load_extension "packer"
 ts.load_extension "dap"
 
@@ -12,9 +12,9 @@ ts.setup {
 		packer = {
 			theme = "ivy",
 			layout_config = {
-				height = .5
-			}
-		}
+				height = 0.5,
+			},
+		},
 	},
-	dap = {}
+	dap = {},
 }

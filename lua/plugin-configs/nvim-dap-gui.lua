@@ -1,4 +1,4 @@
-require("dapui").setup({
+require("dapui").setup {
 	icons = { expanded = "▾", collapsed = "▸" },
 	mappings = {
 		-- Use a table to apply multiple mappings
@@ -11,25 +11,25 @@ require("dapui").setup({
 	},
 	-- Expand lines larger than the window
 	-- Requires >= 0.7
-	expand_lines = vim.fn.has("nvim-0.7"),
+	expand_lines = vim.fn.has "nvim-0.7",
 	layouts = {
 		{
 			elements = {
-				'scopes',
-				'breakpoints',
-				'stacks',
-				'watches',
+				"scopes",
+				"breakpoints",
+				"stacks",
+				"watches",
 			},
 			size = 40,
-			position = 'left',
+			position = "left",
 		},
 		{
 			elements = {
-				'repl',
-				'console',
+				"repl",
+				"console",
 			},
 			size = 10,
-			position = 'bottom',
+			position = "bottom",
 		},
 	},
 	floating = {
@@ -43,10 +43,10 @@ require("dapui").setup({
 	windows = { indent = 1 },
 	render = {
 		max_type_length = nil, -- Can be integer or nil.
-	}
-})
+	},
+}
 
-local dap, dapui = require("dap"), require("dapui")
+local dap, dapui = require "dap", require "dapui"
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()
 end

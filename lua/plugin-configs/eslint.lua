@@ -1,10 +1,10 @@
-local util = require 'lspconfig.util'
+local util = require "lspconfig.util"
 local lsp = vim.lsp
 
 local function fix_all(opts)
 	opts = opts or {}
 
-	local eslint_lsp_client = util.get_active_client_by_name(opts.bufnr, 'eslint')
+	local eslint_lsp_client = util.get_active_client_by_name(opts.bufnr, "eslint")
 	if eslint_lsp_client == nil then
 		return
 	end
@@ -21,8 +21,8 @@ local function fix_all(opts)
 	end
 
 	local bufnr = util.validate_bufnr(opts.bufnr or 0)
-	request(0, 'workspace/executeCommand', {
-		command = 'eslint.applyAllFixes',
+	request(0, "workspace/executeCommand", {
+		command = "eslint.applyAllFixes",
 		arguments = {
 			{
 				uri = vim.uri_from_bufnr(bufnr),
@@ -32,11 +32,11 @@ local function fix_all(opts)
 	})
 end
 
-local bin_name = 'vscode-eslint-language-server'
-local cmd = { bin_name, '--stdio' }
+local bin_name = "vscode-eslint-language-server"
+local cmd = { bin_name, "--stdio" }
 
-if vim.fn.has 'win32' == 1 then
-	cmd = { 'cmd.exe', '/C', bin_name, '--stdio' }
+if vim.fn.has "win32" == 1 then
+	cmd = { "cmd.exe", "/C", bin_name, "--stdio" }
 end
 
 vim.cmd [[ autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll ]]
@@ -45,47 +45,47 @@ return {
 	default_config = {
 		cmd = cmd,
 		filetypes = {
-			'javascript',
-			'javascriptreact',
-			'javascript.jsx',
-			'typescript',
-			'typescriptreact',
-			'typescript.tsx',
-			'vue',
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
+			"vue",
 		},
 		-- https://eslint.org/docs/user-guide/configuring/configuration-files#configuration-file-formats
 		root_dir = util.root_pattern(
-			'.eslintrc',
-			'.eslintrc.js',
-			'.eslintrc.cjs',
-			'.eslintrc.yaml',
-			'.eslintrc.yml',
-			'.eslintrc.json',
-			'package.json'
+			".eslintrc",
+			".eslintrc.js",
+			".eslintrc.cjs",
+			".eslintrc.yaml",
+			".eslintrc.yml",
+			".eslintrc.json",
+			"package.json"
 		),
 		-- Refer to https://github.com/Microsoft/vscode-eslint#settings-options for documentation.
 		settings = {
-			validate = 'on',
-			packageManager = 'npm',
+			validate = "on",
+			packageManager = "npm",
 			useESLintClass = false,
 			codeActionOnSave = {
 				enable = false,
-				mode = 'all',
+				mode = "all",
 			},
 			format = true,
 			quiet = false,
-			onIgnoredFiles = 'off',
+			onIgnoredFiles = "off",
 			rulesCustomizations = {},
-			run = 'onType',
+			run = "onType",
 			-- nodePath configures the directory in which the eslint server should start its node_modules resolution.
 			-- This path is relative to the workspace folder (root dir) of the server instance.
-			nodePath = '',
+			nodePath = "",
 			-- use the workspace folder location or the file location (if no workspace folder is open) as the working directory
-			workingDirectory = { mode = 'location' },
+			workingDirectory = { mode = "location" },
 			codeAction = {
 				disableRuleComment = {
 					enable = true,
-					location = 'separateLine',
+					location = "separateLine",
 				},
 				showDocumentation = {
 					enable = true,
@@ -98,43 +98,43 @@ return {
 			-- file (e.g., .eslintrc).
 			config.settings.workspaceFolder = {
 				uri = new_root_dir,
-				name = vim.fn.fnamemodify(new_root_dir, ':t'),
+				name = vim.fn.fnamemodify(new_root_dir, ":t"),
 			}
 
 			-- Support Yarn2 (PnP) projects
-			local pnp_cjs = util.path.join(new_root_dir, '.pnp.cjs')
-			local pnp_js = util.path.join(new_root_dir, '.pnp.js')
+			local pnp_cjs = util.path.join(new_root_dir, ".pnp.cjs")
+			local pnp_js = util.path.join(new_root_dir, ".pnp.js")
 			if util.path.exists(pnp_cjs) or util.path.exists(pnp_js) then
-				config.cmd = vim.list_extend({ 'yarn', 'exec' }, cmd)
+				config.cmd = vim.list_extend({ "yarn", "exec" }, cmd)
 			end
 		end,
 		handlers = {
-			['eslint/openDoc'] = function(_, result)
+			["eslint/openDoc"] = function(_, result)
 				if not result then
 					return
 				end
 				local sysname = vim.loop.os_uname().sysname
-				if sysname:match 'Windows' then
-					os.execute(string.format('start %q', result.url))
-				elseif sysname:match 'Linux' then
-					os.execute(string.format('xdg-open %q', result.url))
+				if sysname:match "Windows" then
+					os.execute(string.format("start %q", result.url))
+				elseif sysname:match "Linux" then
+					os.execute(string.format("xdg-open %q", result.url))
 				else
-					os.execute(string.format('open %q', result.url))
+					os.execute(string.format("open %q", result.url))
 				end
 				return {}
 			end,
-			['eslint/confirmESLintExecution'] = function(_, result)
+			["eslint/confirmESLintExecution"] = function(_, result)
 				if not result then
 					return
 				end
 				return 4 -- approved
 			end,
-			['eslint/probeFailed'] = function()
-				vim.notify('[lspconfig] ESLint probe failed.', vim.log.levels.WARN)
+			["eslint/probeFailed"] = function()
+				vim.notify("[lspconfig] ESLint probe failed.", vim.log.levels.WARN)
 				return {}
 			end,
-			['eslint/noLibrary'] = function()
-				vim.notify('[lspconfig] Unable to find ESLint library.', vim.log.levels.WARN)
+			["eslint/noLibrary"] = function()
+				vim.notify("[lspconfig] Unable to find ESLint library.", vim.log.levels.WARN)
 				return {}
 			end,
 		},
@@ -144,7 +144,7 @@ return {
 			function()
 				fix_all { sync = true, bufnr = 0 }
 			end,
-			description = 'Fix all eslint problems for this buffer',
+			description = "Fix all eslint problems for this buffer",
 		},
 	},
 	docs = {

@@ -1,11 +1,10 @@
-require "lspsaga".init_lsp_saga()
-local capabilities = require("cmp_nvim_lsp").update_capabilities(
-	vim.lsp.protocol.make_client_capabilities()
-)
+require("lspsaga").init_lsp_saga()
+local capabilities =
+	require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.offsetEncoding = { "utf-16" }
 
-local schemas = require "schemastore".json.schemas()
+local schemas = require("schemastore").json.schemas()
 local servers = {
 	golangci_lint_ls = {},
 	gopls = {},
@@ -16,10 +15,10 @@ local servers = {
 		settings = {
 			Lua = {
 				runtime = {
-					version = 'Lua5.1',
+					version = "Lua5.1",
 				},
 				diagnostics = {
-					globals = { 'vim' },
+					globals = { "vim" },
 				},
 			},
 		},
@@ -44,11 +43,15 @@ local servers = {
 		settings = {
 			yaml = {
 				schemas = {
-					["https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json"] = { "*.yaml",
-						"*.yml" },
-					["https://raw.githubusercontent.com/awslabs/goformation/master/schema/sam.schema.json"] = { "*.yaml", "*.yml" },
-					["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*"
-
+					["https://raw.githubusercontent.com/awslabs/goformation/v4.18.2/schema/cloudformation.schema.json"] = {
+						"*.yaml",
+						"*.yml",
+					},
+					["https://raw.githubusercontent.com/awslabs/goformation/master/schema/sam.schema.json"] = {
+						"*.yaml",
+						"*.yml",
+					},
+					["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
 				},
 			},
 			schemaStore = {
@@ -59,7 +62,7 @@ local servers = {
 }
 local function on_attach(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	if client.name == "golangci_lint_ls" then
 		if vim.fn.executable "golangci-lint-langserver" ~= 1 then
@@ -67,7 +70,7 @@ local function on_attach(client, bufnr)
 			vim.fn.system {
 				"go",
 				"install",
-				"github.com/nametake/golangci-lint-langserver@latest"
+				"github.com/nametake/golangci-lint-langserver@latest",
 			}
 		end
 
@@ -76,7 +79,7 @@ local function on_attach(client, bufnr)
 			vim.fn.system {
 				"go",
 				"install",
-				"github.com/nametake/golangci-lint@latest"
+				"github.com/nametake/golangci-lint@latest",
 			}
 		end
 	end

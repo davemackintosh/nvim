@@ -5,8 +5,8 @@ local fn = vim.fn
 local map = vim.api.nvim_set_keymap
 
 -- map the leader key
-map('n', ',', '', {})
-vim.g.mapleader = ','
+map("n", ",", "", {})
+vim.g.mapleader = ","
 vim.cmd "set inccommand=split"
 o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50" -- block in normal and beam cursor in insert mode
 o.updatetime = 300 -- faster completion
