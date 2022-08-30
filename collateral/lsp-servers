@@ -9,5 +9,6 @@ go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 go install golang.org/x/tools/gopls@latest
 
 npm install -g \
+	pyright \
 	graphql-language-service-cli \
 	dockerfile-language-server-nodejs
