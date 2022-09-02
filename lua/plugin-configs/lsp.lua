@@ -45,15 +45,10 @@ require("null-ls").setup {
 		builtins.diagnostics.staticcheck,
 		builtins.diagnostics.revive,
 		builtins.diagnostics.jsonlint,
-		builtins.diagnostics.luacheck,
-		builtins.diagnostics.selene,
-
-		-- Code actions.
+		builtins.diagnostics.selene, -- Code actions.
 		builtins.code_actions.eslint,
 		builtins.code_actions.gitsigns,
-		builtins.code_actions.refactoring,
-
-		-- Completions.
+		builtins.code_actions.refactoring, -- Completions.
 		builtins.completion.spell,
 	},
 	on_attach = function()

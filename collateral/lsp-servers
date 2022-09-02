@@ -6,6 +6,7 @@ set -e
 brew install lua-language-server
 brew tap incu6us/homebrew-tap
 brew install incu6us/homebrew-tap/goimports-reviser
+brew install selene
 
 # Go
 go install github.com/nametake/golangci-lint-langserver@latest
