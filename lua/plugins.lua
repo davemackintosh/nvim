@@ -24,7 +24,7 @@ return require("packer").startup(function(use)
 	}
 	use {
 		"neovim/nvim-lspconfig",
-		config = [[require "plugin-configs.lsp"]],
+		config = [[ require "plugin-configs.lsp" ]],
 		requires = {
 			"ray-x/lsp_signature.nvim",
 			"onsails/lspkind.nvim",
@@ -32,15 +32,16 @@ return require("packer").startup(function(use)
 			"alexaandru/nvim-lspupdate",
 		},
 	}
+	use "jose-elias-alvarez/null-ls.nvim"
+	use "MunifTanjim/prettier.nvim"
 	use {
 		"creativenull/diagnosticls-configs-nvim",
 		after = "nvim-lspconfig",
-		config = [[ require "plugin-configs.diagnosticls" ]],
 	}
 	use "burner/vim-svelte"
 	use {
 		"hrsh7th/nvim-cmp",
-		config = [[require "plugin-configs.cmp"]],
+		config = [[ require "plugin-configs.cmp" ]],
 		requires = {
 			"nvim-treesitter/nvim-treesitter",
 			"hrsh7th/cmp-nvim-lsp",
@@ -64,9 +65,8 @@ return require("packer").startup(function(use)
 		"folke/trouble.nvim",
 		config = [[ require "plugin-configs.trouble" ]],
 	}
-	use {
-		"sbdchd/neoformat",
-	}
+	use "sbdchd/neoformat"
+	use "lewis6991/gitsigns.nvim"
 	use "jparise/vim-graphql"
 	use {
 		"folke/which-key.nvim",
@@ -74,11 +74,18 @@ return require("packer").startup(function(use)
 			require("which-key").setup {}
 		end,
 	}
+	use {
+		"ThePrimeagen/refactoring.nvim",
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+	}
 
 	-- Window management
 	use {
 		"aserowy/tmux.nvim",
-		config = [[require "plugin-configs.tmux"]],
+		config = [[ require "plugin-configs.tmux" ]],
 	}
 	use {
 		"akinsho/bufferline.nvim",
@@ -93,7 +100,7 @@ return require("packer").startup(function(use)
 		requires = {
 			"kyazdani42/nvim-web-devicons",
 		},
-		config = [[require "plugin-configs.nvim-tree"]],
+		config = [[ require "plugin-configs.nvim-tree" ]],
 	}
 
 	-- Code helpers.
@@ -101,7 +108,7 @@ return require("packer").startup(function(use)
 	use "sebdah/vim-delve"
 	use {
 		"windwp/nvim-autopairs",
-		config = [[require "plugin-configs.autopairs"]],
+		config = [[ require "plugin-configs.autopairs" ]],
 	}
 	use "tpope/vim-endwise"
 	use "tpope/vim-fugitive"
@@ -112,13 +119,13 @@ return require("packer").startup(function(use)
 	use "voldikss/vim-floaterm"
 	use {
 		"ray-x/go.nvim",
-		config = [[require "plugin-configs.go"]],
 		requires = {
 			"ray-x/guihua.lua",
 			"nvim-treesitter/nvim-treesitter",
 		},
 	}
 	use "b0o/schemastore.nvim"
+	use "ckipp01/stylua-nvim"
 
 	-- Visual.
 	use {
@@ -127,7 +134,7 @@ return require("packer").startup(function(use)
 			"kyazdani42/nvim-web-devicons",
 			opt = true,
 		},
-		config = [[require "plugin-configs.lualine"]],
+		config = [[ require "plugin-configs.lualine" ]],
 	}
 	use {
 		"nvim-telescope/telescope.nvim",
@@ -136,12 +143,12 @@ return require("packer").startup(function(use)
 			"nvim-telescope/telescope-packer.nvim",
 			"nvim-telescope/telescope-dap.nvim",
 		},
-		config = [[require "plugin-configs.telescope"]],
+		config = [[ require "plugin-configs.telescope" ]],
 	}
 	use {
 		-- "shaunsingh/nord.nvim",
 		"marko-cerovac/material.nvim",
-		config = [[require "plugin-configs.theme"]],
+		config = [[ require "plugin-configs.theme" ]],
 	}
 	use {
 		"goolord/alpha-nvim",
@@ -159,7 +166,7 @@ return require("packer").startup(function(use)
 	-- Debugging
 	use {
 		"mfussenegger/nvim-dap",
-		config = [[require "plugin-configs.nvim-dap"]],
+		config = [[ require "plugin-configs.nvim-dap" ]],
 		module = "dap",
 		requires = {
 			"theHamsta/nvim-dap-virtual-text",

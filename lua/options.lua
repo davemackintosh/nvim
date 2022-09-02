@@ -1,5 +1,4 @@
 local o = vim.opt
-local wo = vim.wo
 local fn = vim.fn
 
 local map = vim.api.nvim_set_keymap
@@ -23,6 +22,7 @@ o.history = 500 -- Use the 'history' option to set the number of lines from comm
 o.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 o.fileencoding = "utf-8" -- the encoding written to a file
 o.conceallevel = 0 -- so that `` is visible in markdown files
+o.cursorline = false -- hide the cursor line
 o.number = true
 o.relativenumber = false
 o.cmdheight = 1 -- space for displaying messages/commands
@@ -37,7 +37,6 @@ o.expandtab = false -- convert tabs to spaces
 o.shiftwidth = 4 -- the number of spaces inserted for each indentation
 o.tabstop = 4 -- how many columns a tab counts for
 o.termguicolors = true -- set term gui colors (most terminals support this)
-o.cursorline = true -- highlight the current line
 o.scrolloff = 3 -- Minimal number of screen lines to keep above and below the cursor
 o.sidescrolloff = 5 -- The minimal number of columns to scroll horizontally
 o.hlsearch = true -- highlight all matches on previous search pattern

@@ -9,4 +9,8 @@ require("nvim-tree").setup {
 		update_cwd = false,
 		ignore_list = { ".git/*" },
 	},
+	filters = {
+		custom = { ".git" },
+		exclude = { ".gitignore" },
+	},
 }
