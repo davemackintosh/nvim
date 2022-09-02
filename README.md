@@ -6,28 +6,28 @@ A very opinionated, zero-config neovim setup for writing GoLang, C/C++, Lua, Rea
 
 A familiar editor that enables:
 
-* Coding with
-	* Autocomplete
-	* Smart suggestions
-	* Github CoPilot
-* Good support for
-	* Golang
-	* Swift
-	* Lua
-	* C/C++
-	* React
-	* CSS
-	* HTML
-* Autoformatting
-	* Go
-	* Swift
-	* Lua
-	* C/C++
-	* React
-	* CSS
-	* HTML
+- Coding with
+  - Autocomplete
+  - Smart suggestions
+  - Github CoPilot
+- Good support for
+  - Golang
+  - Swift
+  - Lua
+  - C/C++
+  - React
+  - CSS
+  - HTML
+- Autoformatting
+  - Go
+  - Swift
+  - Lua
+  - C/C++
+  - React
+  - CSS
+  - HTML
 
-## Mappings
+## Mappings
 
 There aren't many, I like to keep it simple but these are basically burned in muscle memory for me now.
 
@@ -36,7 +36,7 @@ There aren't many, I like to keep it simple but these are basically burned in mu
 ```
 N) Ctrl + hjkl -- move between panes.
 N) Ctrl + o    -- Toggle nerd tree (file browser.)
-N) Ctrl + p 	  -- Open file finder.
+N) Ctrl + p    -- Open file finder.
 N) Ctrl + s    -- Toggle the code overview panel.
 N) K           -- Show floating documentation.
 N) [d          -- Go to the previous; any level, diagnostic.
@@ -56,4 +56,3 @@ IN) Ctrl + t   -- Run nearest test function.
 IN) Ctrl + c   -- Run go test coverage.
 I) Ctrl + k    -- Signature help in insert mode.
 ```
-

@@ -22,7 +22,6 @@ require("null-ls").setup {
 		builtins.formatting.ktlint,
 		builtins.formatting.lua_format,
 		builtins.formatting.markdown_toc,
-		builtins.formatting.remark,
 		builtins.formatting.mdformat,
 		builtins.formatting.shellharden,
 		builtins.formatting.swiftformat,
@@ -48,7 +47,6 @@ require("null-ls").setup {
 		builtins.diagnostics.jsonlint,
 		builtins.diagnostics.luacheck,
 		builtins.diagnostics.selene,
-		builtins.diagnostics.markdownlint,
 
 		-- Code actions.
 		builtins.code_actions.eslint,
