@@ -24,6 +24,7 @@ npm install -g \
 	pyright \
 	graphql-language-service-cli \
 	dockerfile-language-server-nodejs \
+	diagnostic-languageserver \
 	@fsouza/prettierd \
 	jsonlint \
 	eslint_d \
@@ -33,7 +34,12 @@ npm install -g \
 	remark-preset-lint-consistent \
 	remark-preset-lint-recommended \
 	markdownlint \
-	fixjson
+	fixjson \
+	typescript \
+	typescript-language-server \
+	vim-language-server \
+	vscode-langservers-extracted \
+	stylelint-lsp
 
 # Ruby
 echo -e "Asking for sudo to install ruby gem ffi"

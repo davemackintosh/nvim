@@ -15,6 +15,13 @@ end
 
 return require("packer").startup(function(use)
 	use "wbthomason/packer.nvim"
+	use "williamboman/mason.nvim"
+	use {
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		config = [[ require "plugin-configs.mason" ]],
+		after = "mason.nvim",
+	}
 
 	-- Editor support.
 	use "gpanders/editorconfig.nvim"
@@ -32,13 +39,6 @@ return require("packer").startup(function(use)
 			"alexaandru/nvim-lspupdate",
 		},
 	}
-	use "jose-elias-alvarez/null-ls.nvim"
-	use "MunifTanjim/prettier.nvim"
-	use {
-		"creativenull/diagnosticls-configs-nvim",
-		after = "nvim-lspconfig",
-	}
-	use "burner/vim-svelte"
 	use { "L3MON4D3/LuaSnip", tag = "v1.*" }
 	use {
 		"hrsh7th/nvim-cmp",
@@ -61,11 +61,11 @@ return require("packer").startup(function(use)
 		"b0o/mapx.nvim",
 		config = [[ require "keyboard-mappings" ]],
 	}
-	use { "f-person/git-blame.nvim" }
 	use {
 		"folke/trouble.nvim",
 		config = [[ require "plugin-configs.trouble" ]],
 	}
+	use { "f-person/git-blame.nvim" }
 	use "lewis6991/gitsigns.nvim"
 	use "jparise/vim-graphql"
 	use {
@@ -145,8 +145,7 @@ return require("packer").startup(function(use)
 		config = [[ require "plugin-configs.telescope" ]],
 	}
 	use {
-		"shaunsingh/nord.nvim",
-		-- "marko-cerovac/material.nvim",
+		"marko-cerovac/material.nvim",
 		config = [[ require "plugin-configs.theme" ]],
 	}
 	use {
