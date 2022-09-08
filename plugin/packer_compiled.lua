@@ -8,6 +8,9 @@ end
 vim.api.nvim_command "packadd packer.nvim"
 
 local no_errors, error_msg = pcall(function()
+	_G._packer = _G._packer or {}
+	_G._packer.inside_compile = true
+
 	local time
 	local profile_info
 	local should_profile = false
@@ -39,8 +42,16 @@ local no_errors, error_msg = pcall(function()
 				results[i] = elem[1] .. " took " .. elem[2] .. "ms"
 			end
 		end
+		if threshold then
+			table.insert(
+				results,
+				"(Only showing plugins that took longer than "
+					.. threshold
+					.. " ms "
+					.. "to load)"
+			)
+		end
 
-		_G._packer = _G._packer or {}
 		_G._packer.profile_output = results
 	end
 
@@ -64,7 +75,12 @@ local no_errors, error_msg = pcall(function()
 		if not success then
 			vim.schedule(function()
 				vim.api.nvim_notify(
-					"packer.nvim: Error running " .. component .. " for " .. name .. ": " .. result,
+					"packer.nvim: Error running "
+						.. component
+						.. " for "
+						.. name
+						.. ": "
+						.. result,
 					vim.log.levels.ERROR,
 					{}
 				)
@@ -204,16 +220,11 @@ local no_errors, error_msg = pcall(function()
 			path = "/Users/dave/.local/share/nvim/site/pack/packer/start/mapx.nvim",
 			url = "https://github.com/b0o/mapx.nvim",
 		},
-		["material.nvim"] = {
+		["nord.nvim"] = {
 			config = { ' require "plugin-configs.theme" ' },
 			loaded = true,
-			path = "/Users/dave/.local/share/nvim/site/pack/packer/start/material.nvim",
-			url = "https://github.com/marko-cerovac/material.nvim",
-		},
-		neoformat = {
-			loaded = true,
-			path = "/Users/dave/.local/share/nvim/site/pack/packer/start/neoformat",
-			url = "https://github.com/sbdchd/neoformat",
+			path = "/Users/dave/.local/share/nvim/site/pack/packer/start/nord.nvim",
+			url = "https://github.com/shaunsingh/nord.nvim",
 		},
 		["null-ls.nvim"] = {
 			loaded = true,
@@ -233,7 +244,7 @@ local no_errors, error_msg = pcall(function()
 			url = "https://github.com/hrsh7th/nvim-cmp",
 		},
 		["nvim-dap"] = {
-			after = { "nvim-dap-go", "nvim-dap-ui" },
+			after = { "nvim-dap-ui", "nvim-dap-go" },
 			config = { ' require "plugin-configs.nvim-dap" ' },
 			loaded = false,
 			needs_bufread = false,
@@ -332,11 +343,6 @@ local no_errors, error_msg = pcall(function()
 			loaded = true,
 			path = "/Users/dave/.local/share/nvim/site/pack/packer/start/schemastore.nvim",
 			url = "https://github.com/b0o/schemastore.nvim",
-		},
-		["stylua-nvim"] = {
-			loaded = true,
-			path = "/Users/dave/.local/share/nvim/site/pack/packer/start/stylua-nvim",
-			url = "https://github.com/ckipp01/stylua-nvim",
 		},
 		["telescope-dap.nvim"] = {
 			loaded = true,
@@ -438,13 +444,20 @@ local no_errors, error_msg = pcall(function()
 		end
 		lazy_load_called[module_name] = true
 		for module_pat, plugin_name in pairs(module_lazy_loads) do
-			if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat) then
+			if
+				not _G.packer_plugins[plugin_name].loaded
+				and string.match(module_name, module_pat)
+			then
 				to_load[#to_load + 1] = plugin_name
 			end
 		end
 
 		if #to_load > 0 then
-			require "packer.load"(to_load, { module = module_name }, _G.packer_plugins)
+			require "packer.load"(
+				to_load,
+				{ module = module_name },
+				_G.packer_plugins
+			)
 			local loaded_mod = package.loaded[module_name]
 			if loaded_mod then
 				return function(modname)
@@ -459,14 +472,10 @@ local no_errors, error_msg = pcall(function()
 		vim.g.packer_custom_loader_enabled = true
 	end
 
-	-- Config for: nvim-autopairs
-	time([[Config for nvim-autopairs]], true)
-	require "plugin-configs.autopairs"
-	time([[Config for nvim-autopairs]], false)
-	-- Config for: lualine.nvim
-	time([[Config for lualine.nvim]], true)
-	require "plugin-configs.lualine"
-	time([[Config for lualine.nvim]], false)
+	-- Config for: mapx.nvim
+	time([[Config for mapx.nvim]], true)
+	require "keyboard-mappings"
+	time([[Config for mapx.nvim]], false)
 	-- Config for: nvim-notify
 	time([[Config for nvim-notify]], true)
 	try_loadstring(
@@ -475,34 +484,34 @@ local no_errors, error_msg = pcall(function()
 		"nvim-notify"
 	)
 	time([[Config for nvim-notify]], false)
-	-- Config for: nvim-cmp
-	time([[Config for nvim-cmp]], true)
-	require "plugin-configs.cmp"
-	time([[Config for nvim-cmp]], false)
-	-- Config for: bufferline.nvim
-	time([[Config for bufferline.nvim]], true)
-	require "plugin-configs.bufferline"
-	time([[Config for bufferline.nvim]], false)
-	-- Config for: trouble.nvim
-	time([[Config for trouble.nvim]], true)
-	require "plugin-configs.trouble"
-	time([[Config for trouble.nvim]], false)
-	-- Config for: tmux.nvim
-	time([[Config for tmux.nvim]], true)
-	require "plugin-configs.tmux"
-	time([[Config for tmux.nvim]], false)
-	-- Config for: material.nvim
-	time([[Config for material.nvim]], true)
+	-- Config for: nord.nvim
+	time([[Config for nord.nvim]], true)
 	require "plugin-configs.theme"
-	time([[Config for material.nvim]], false)
+	time([[Config for nord.nvim]], false)
 	-- Config for: telescope.nvim
 	time([[Config for telescope.nvim]], true)
 	require "plugin-configs.telescope"
 	time([[Config for telescope.nvim]], false)
+	-- Config for: nvim-tree.lua
+	time([[Config for nvim-tree.lua]], true)
+	require "plugin-configs.nvim-tree"
+	time([[Config for nvim-tree.lua]], false)
+	-- Config for: tmux.nvim
+	time([[Config for tmux.nvim]], true)
+	require "plugin-configs.tmux"
+	time([[Config for tmux.nvim]], false)
 	-- Config for: nvim-lspconfig
 	time([[Config for nvim-lspconfig]], true)
 	require "plugin-configs.lsp"
 	time([[Config for nvim-lspconfig]], false)
+	-- Config for: nvim-autopairs
+	time([[Config for nvim-autopairs]], true)
+	require "plugin-configs.autopairs"
+	time([[Config for nvim-autopairs]], false)
+	-- Config for: trouble.nvim
+	time([[Config for trouble.nvim]], true)
+	require "plugin-configs.trouble"
+	time([[Config for trouble.nvim]], false)
 	-- Config for: which-key.nvim
 	time([[Config for which-key.nvim]], true)
 	try_loadstring(
@@ -511,14 +520,14 @@ local no_errors, error_msg = pcall(function()
 		"which-key.nvim"
 	)
 	time([[Config for which-key.nvim]], false)
-	-- Config for: mapx.nvim
-	time([[Config for mapx.nvim]], true)
-	require "keyboard-mappings"
-	time([[Config for mapx.nvim]], false)
-	-- Config for: nvim-tree.lua
-	time([[Config for nvim-tree.lua]], true)
-	require "plugin-configs.nvim-tree"
-	time([[Config for nvim-tree.lua]], false)
+	-- Config for: nvim-cmp
+	time([[Config for nvim-cmp]], true)
+	require "plugin-configs.cmp"
+	time([[Config for nvim-cmp]], false)
+	-- Config for: lualine.nvim
+	time([[Config for lualine.nvim]], true)
+	require "plugin-configs.lualine"
+	time([[Config for lualine.nvim]], false)
 	-- Config for: alpha-nvim
 	time([[Config for alpha-nvim]], true)
 	try_loadstring(
@@ -527,10 +536,21 @@ local no_errors, error_msg = pcall(function()
 		"alpha-nvim"
 	)
 	time([[Config for alpha-nvim]], false)
+	-- Config for: bufferline.nvim
+	time([[Config for bufferline.nvim]], true)
+	require "plugin-configs.bufferline"
+	time([[Config for bufferline.nvim]], false)
 	-- Load plugins in order defined by `after`
 	time([[Sequenced loading]], true)
 	vim.cmd [[ packadd diagnosticls-configs-nvim ]]
 	time([[Sequenced loading]], false)
+
+	_G._packer.inside_compile = false
+	if _G._packer.needs_bufread == true then
+		vim.cmd "doautocmd BufRead"
+	end
+	_G._packer.needs_bufread = false
+
 	if should_profile then
 		save_profiles()
 	end

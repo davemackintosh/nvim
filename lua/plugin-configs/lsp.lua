@@ -2,6 +2,7 @@ require("lspsaga").init_lsp_saga()
 local nullls = require "null-ls"
 local builtins = nullls.builtins
 
+require "plugin-configs.diagnostic-window-styles"
 require("null-ls").setup {
 	debug = true,
 	sources = {
@@ -20,7 +21,6 @@ require("null-ls").setup {
 		builtins.formatting.golines,
 		builtins.formatting.isort,
 		builtins.formatting.ktlint,
-		builtins.formatting.lua_format,
 		builtins.formatting.markdown_toc,
 		builtins.formatting.mdformat,
 		builtins.formatting.shellharden,

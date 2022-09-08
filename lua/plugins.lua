@@ -39,6 +39,7 @@ return require("packer").startup(function(use)
 		after = "nvim-lspconfig",
 	}
 	use "burner/vim-svelte"
+	use { "L3MON4D3/LuaSnip", tag = "v1.*" }
 	use {
 		"hrsh7th/nvim-cmp",
 		config = [[ require "plugin-configs.cmp" ]],
@@ -65,7 +66,6 @@ return require("packer").startup(function(use)
 		"folke/trouble.nvim",
 		config = [[ require "plugin-configs.trouble" ]],
 	}
-	use "sbdchd/neoformat"
 	use "lewis6991/gitsigns.nvim"
 	use "jparise/vim-graphql"
 	use {
@@ -125,7 +125,6 @@ return require("packer").startup(function(use)
 		},
 	}
 	use "b0o/schemastore.nvim"
-	use "ckipp01/stylua-nvim"
 
 	-- Visual.
 	use {
@@ -146,8 +145,8 @@ return require("packer").startup(function(use)
 		config = [[ require "plugin-configs.telescope" ]],
 	}
 	use {
-		-- "shaunsingh/nord.nvim",
-		"marko-cerovac/material.nvim",
+		"shaunsingh/nord.nvim",
+		-- "marko-cerovac/material.nvim",
 		config = [[ require "plugin-configs.theme" ]],
 	}
 	use {
