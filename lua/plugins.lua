@@ -14,15 +14,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require("packer").startup(function(use)
-	use "wbthomason/packer.nvim"
-	use "williamboman/mason.nvim"
-	use {
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		config = [[ require "plugin-configs.mason" ]],
-		after = "mason.nvim",
-	}
-
 	-- Editor support.
 	use "gpanders/editorconfig.nvim"
 	use {
@@ -80,6 +71,14 @@ return require("packer").startup(function(use)
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
+	}
+	use "wbthomason/packer.nvim"
+	use "williamboman/mason.nvim"
+	use {
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		config = [[ require "plugin-configs.mason" ]],
+		after = "mason.nvim",
 	}
 
 	-- Window management

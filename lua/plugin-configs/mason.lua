@@ -1,4 +1,3 @@
-require("mason").setup {}
 require("mason-lspconfig").setup {
 	automatic_installation = true,
 }
@@ -29,3 +28,4 @@ vim.api.nvim_create_autocmd("User", {
 		vim.schedule(vim.notify "mason-tool-installer has finished")
 	end,
 })
+require("mason").setup {}
