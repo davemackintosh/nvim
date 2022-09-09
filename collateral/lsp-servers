@@ -38,8 +38,7 @@ npm install -g \
 	typescript \
 	typescript-language-server \
 	vim-language-server \
-	vscode-langservers-extracted \
-	stylelint-lsp
+	vscode-langservers-extracted
 
 # Ruby
 echo -e "Asking for sudo to install ruby gem ffi"

@@ -80,6 +80,10 @@ return require("packer").startup(function(use)
 		config = [[ require "plugin-configs.mason" ]],
 		after = "mason.nvim",
 	}
+	use {
+		"jose-elias-alvarez/null-ls.nvim",
+		config = [[ require "plugin-configs.null-ls" ]]
+	}
 
 	-- Window management
 	use {
