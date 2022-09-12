@@ -4,8 +4,6 @@ local border_topleft = "╔"
 local border_topright = "╗"
 local border_botleft = "╚"
 local border_botright = "╝"
-local border_juncleft = "╠"
-local border_juncright = "╣"
 
 local if_nil = vim.F.if_nil
 
