@@ -1,7 +1,18 @@
+local capabilities = require("cmp_nvim_lsp").update_capabilities(
+	vim.lsp.protocol.make_client_capabilities()
+)
+
+require("mason").setup {
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
+}
 require("mason-lspconfig").setup {
 	automatic_installation = true,
-}
-require("mason-tool-installer").setup {
 	ensure_installed = {
 		"bash-language-server",
 		"lua-language-server",
@@ -19,13 +30,15 @@ require("mason-tool-installer").setup {
 		"misspell",
 		"revive",
 		"staticcheck",
+		"sumneko_lua",
 	},
 }
 
-vim.api.nvim_create_autocmd("User", {
-	pattern = "MasonToolsUpdateCompleted",
-	callback = function()
-		vim.schedule(vim.notify "mason-tool-installer has finished")
+require("mason-lspconfig").setup_handlers {
+	function(server_name)
+		require("lspconfig")[server_name].setup {
+			on_attach = on_attach,
+			capabilities = capabilities,
+		}
 	end,
-})
-require("mason").setup {}
+}

@@ -15,6 +15,12 @@ end
 
 return require("packer").startup(function(use)
 	-- Editor support.
+	use "wbthomason/packer.nvim"
+	use "williamboman/mason.nvim"
+	use {
+		"williamboman/mason-lspconfig.nvim",
+		config = [[ require "plugin-configs.mason" ]],
+	}
 	use "gpanders/editorconfig.nvim"
 	use {
 		"nvim-treesitter/nvim-treesitter",
@@ -66,24 +72,26 @@ return require("packer").startup(function(use)
 		end,
 	}
 	use {
+		"weilbith/nvim-code-action-menu",
+		cmd = "CodeActionMenu",
+	}
+	use {
 		"ThePrimeagen/refactoring.nvim",
 		requires = {
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
-	}
-	use "wbthomason/packer.nvim"
-	use "williamboman/mason.nvim"
-	use {
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		config = [[ require "plugin-configs.mason" ]],
-		after = "mason.nvim",
+		config = [[ require "plugin-configs.refactoring" ]],
 	}
 	use {
-		"jose-elias-alvarez/null-ls.nvim",
-		config = [[ require "plugin-configs.null-ls" ]]
+		"kosayoda/nvim-lightbulb",
+		requires = "antoinemadec/FixCursorHold.nvim",
+		config = [[ require("nvim-lightbulb").setup({autocmd = {enabled = true}}) ]],
 	}
+	--	use {
+	--		"jose-elias-alvarez/null-ls.nvim",
+	--		config = [[ require "plugin-configs.null-ls" ]],
+	--	}
 
 	-- Window management
 	use {

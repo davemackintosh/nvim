@@ -14,8 +14,18 @@ mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")
 
 mapx.inoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })
 mapx.nnoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })
-mapx.inoremap("<C-t>", "<cmd>:!yarn test %<Cr>", "silent", { ft = "typescript" })
-mapx.nnoremap("<C-t>", "<cmd>:!yarn test %<Cr>", "silent", { ft = "typescript" })
+mapx.inoremap(
+	"<C-t>",
+	"<cmd>:!yarn test %<Cr>",
+	"silent",
+	{ ft = "typescript" }
+)
+mapx.nnoremap(
+	"<C-t>",
+	"<cmd>:!yarn test %<Cr>",
+	"silent",
+	{ ft = "typescript" }
+)
 mapx.nnoremap("<C-wq>", "<cmd>:bd<CR>")
 mapx.nnoremap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
 mapx.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
@@ -31,6 +41,9 @@ mapx.nnoremap(
 
 mapx.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 mapx.inoremap("<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-mapx.nnoremap("gr", "<cmd>lua require('lspsaga.rename').rename()<CR>", "Rename")
-mapx.nnoremap("do", "<cmd>lua require('lspsaga.codeaction').code_action()<CR>", "Code Action")
-mapx.nnoremap("se", "<cmd>lua vim.diagnostic.open_float()<CR>", "Line Diagnostics")
+mapx.nnoremap("do", "<cmd>CodeActionMenu<CR>", "Code Action")
+mapx.nnoremap(
+	"se",
+	"<cmd>lua vim.diagnostic.open_float()<CR>",
+	"Line Diagnostics"
+)
