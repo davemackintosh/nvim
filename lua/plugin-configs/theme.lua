@@ -1,8 +1,8 @@
 require("material").setup {
 	contrast_filetypes = { -- Specify which filetypes get the contrasted (darker) background
-		"terminal", -- Darker terminal background
-		"packer", -- Darker packer background
-		"qf", -- Darker qf list background
+		"terminal",
+		"packer",
+		"OUTLINE",
 	},
 	contrast = {
 		sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )

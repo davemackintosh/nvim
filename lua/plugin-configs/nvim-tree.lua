@@ -14,5 +14,3 @@ require("nvim-tree").setup {
 		exclude = { ".gitignore" },
 	},
 }
-
-vim.cmd "autocmd Colorscheme * highlight NvimTreeNormal bg=#21252B fg=#9da5b3"

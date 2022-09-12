@@ -124,7 +124,10 @@ return require("packer").startup(function(use)
 	use "tpope/vim-endwise"
 	use "tpope/vim-fugitive"
 	use "terryma/vim-multiple-cursors"
-	use "liuchengxu/vista.vim"
+	use {
+		"simrat39/symbols-outline.nvim",
+		config = [[ require("symbols-outline").setup() ]],
+	}
 	use "tpope/vim-surround"
 	use "vim-test/vim-test"
 	use "voldikss/vim-floaterm"

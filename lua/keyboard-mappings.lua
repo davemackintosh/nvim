@@ -9,7 +9,7 @@ mapx.nnoremap("<C-l>", "<C-w>l")
 -- Utils
 mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")
 mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>")
-mapx.nnoremap("<C-s>", ":Vista!!<Cr>")
+mapx.nnoremap("<C-s>", ":SymbolsOutline<Cr>")
 mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")
 
 mapx.inoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })
