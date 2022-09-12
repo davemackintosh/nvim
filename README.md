@@ -26,6 +26,8 @@ A familiar editor that enables:
   - React
   - CSS
   - HTML
+  
+![image](https://user-images.githubusercontent.com/1430657/189747251-6f0dfabc-771c-4aa5-823e-e8da43ca09ad.png)
 
 ## Mappings
 
@@ -56,3 +58,4 @@ IN) Ctrl + t   -- Run nearest test function.
 IN) Ctrl + c   -- Run go test coverage.
 I) Ctrl + k    -- Signature help in insert mode.
 ```
+
