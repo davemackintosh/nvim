@@ -15,11 +15,27 @@ end
 
 return require("packer").startup(function(use)
 	-- Editor support.
+	-- The next few plugins are really the IDE feel.
 	use "wbthomason/packer.nvim"
-	use "williamboman/mason.nvim"
+	use {
+		"williamboman/mason.nvim",
+		after = "packer.nvim",
+	}
 	use {
 		"williamboman/mason-lspconfig.nvim",
 		config = [[ require "plugin-configs.mason" ]],
+		after = "mason.nvim",
+	}
+	use {
+		"neovim/nvim-lspconfig",
+		config = [[ require "plugin-configs.lsp" ]],
+		requires = {
+			"ray-x/lsp_signature.nvim",
+			"onsails/lspkind.nvim",
+			"tami5/lspsaga.nvim",
+			"alexaandru/nvim-lspupdate",
+		},
+		after = "mason-lspconfig.nvim",
 	}
 	use "gpanders/editorconfig.nvim"
 	use {
@@ -33,16 +49,6 @@ return require("packer").startup(function(use)
 			}
 		end,
 	}
-	use {
-		"neovim/nvim-lspconfig",
-		config = [[ require "plugin-configs.lsp" ]],
-		requires = {
-			"ray-x/lsp_signature.nvim",
-			"onsails/lspkind.nvim",
-			"tami5/lspsaga.nvim",
-			"alexaandru/nvim-lspupdate",
-		},
-	}
 	use { "L3MON4D3/LuaSnip", tag = "v1.*" }
 	use {
 		"hrsh7th/nvim-cmp",
@@ -55,7 +61,6 @@ return require("packer").startup(function(use)
 			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",

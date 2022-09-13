@@ -25,7 +25,6 @@ require("mason-lspconfig").setup {
 		"gotests",
 		"luacheck",
 		"lua-language-server",
-		"misspell",
 		"prettierd",
 		"revive",
 		"stylua",
