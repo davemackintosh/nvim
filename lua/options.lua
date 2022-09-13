@@ -41,7 +41,7 @@ o.scrolloff = 3 -- Minimal number of screen lines to keep above and below the cu
 o.sidescrolloff = 5 -- The minimal number of columns to scroll horizontally
 o.hlsearch = true -- highlight all matches on previous search pattern
 o.ignorecase = true -- ignore case in search patterns
-o.foldenable = false -- disable folding; enable with zi
+o.foldenable = true -- disable folding; enable with zi
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.fillchars = {
@@ -69,9 +69,21 @@ o.wildignore = [[
 
 -- Register the AUGroups and autocommands
 local autoCommands = {
-	-- other autocommands
-	open_folds = {
-		{ "BufReadPost,FileReadPost", "*", "normal zR" },
+	folds = {
+		{
+			"BufReadPost,FileReadPost",
+			"*",
+			[[
+		set foldmethod=expr
+		set foldexpr=nvim_treesitter#foldexpr()
+	]],
+		},
+		{ "BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter", "*", "normal zR" },
+		{ "BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter", "*", "normal zx" },
+	},
+	-- format on write.
+	format_on_write = {
+		{ "BufWritePre", "*", "lua vim.lsp.buf.format()" },
 	},
 }
 

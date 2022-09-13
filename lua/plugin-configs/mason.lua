@@ -1,7 +1,3 @@
-local capabilities = require("cmp_nvim_lsp").update_capabilities(
-	vim.lsp.protocol.make_client_capabilities()
-)
-
 require("mason").setup {
 	ui = {
 		icons = {
@@ -31,13 +27,7 @@ require("mason-lspconfig").setup {
 		"revive",
 		"staticcheck",
 		"sumneko_lua",
+		"prettierd",
+		"eslint-lsp",
 	},
-}
-
-require("mason-lspconfig").setup_handlers {
-	function(server_name)
-		require("lspconfig")[server_name].setup {
-			capabilities = capabilities,
-		}
-	end,
 }
