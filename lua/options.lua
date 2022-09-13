@@ -78,8 +78,8 @@ local autoCommands = {
 		set foldexpr=nvim_treesitter#foldexpr()
 	]],
 		},
-		{ "BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter", "*", "normal zR" },
-		{ "BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter", "*", "normal zx" },
+		{ "BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter", "*.*", "normal zR" },
+		{ "BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter", "*.*", "normal zx" },
 	},
 	-- format on write.
 	format_on_write = {
