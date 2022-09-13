@@ -88,11 +88,6 @@ return require("packer").startup(function(use)
 		requires = "antoinemadec/FixCursorHold.nvim",
 		config = [[ require("nvim-lightbulb").setup({autocmd = {enabled = true}}) ]],
 	}
-	--	use {
-	--		"jose-elias-alvarez/null-ls.nvim",
-	--		config = [[ require "plugin-configs.null-ls" ]],
-	--	}
-
 	-- Window management
 	use {
 		"aserowy/tmux.nvim",

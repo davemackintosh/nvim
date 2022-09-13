@@ -1,6 +1,6 @@
+local AUGroups = require "augroups"
 local o = vim.opt
 local fn = vim.fn
-
 local map = vim.api.nvim_set_keymap
 
 -- map the leader key
@@ -44,7 +44,9 @@ o.ignorecase = true -- ignore case in search patterns
 o.foldenable = false -- disable folding; enable with zi
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
--- o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<"
+o.fillchars = {
+	eob = " ", -- End-of-buffer: ~
+}
 o.listchars = "eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣"
 o.shortmess = o.shortmess + "c" -- prevent "pattern not found" messages
 o.wildmode = "full"
@@ -64,3 +66,13 @@ o.wildignore = [[
 *.swp,.lock,.DS_Store,._*
 */tmp/*,*.so,*.swp,*.zip,**/node_modules/**,**/target/**,**.terraform/**"
 ]]
+
+-- Register the AUGroups and autocommands
+local autoCommands = {
+	-- other autocommands
+	open_folds = {
+		{ "BufReadPost,FileReadPost", "*", "normal zR" },
+	},
+}
+
+AUGroups.CreateFrom(autoCommands)
