@@ -85,6 +85,11 @@ local autoCommands = {
 	format_on_write = {
 		{ "BufWritePre", "*", "lua vim.lsp.buf.format()" },
 	},
+
+	-- EslintFixAll on save typescript and javascript files.
+	eslint_fix_all = {
+		{ "BufWritePre", "*.ts,*.js,*.tsx", "EslintFixAll" },
+	},
 }
 
 AUGroups.CreateFrom(autoCommands)

@@ -60,4 +60,3 @@ for _, server in pairs(servers) do
 		flags = lsp_flags,
 	}
 end
-
