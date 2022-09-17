@@ -27,7 +27,6 @@ mapx.nnoremap(
 	{ ft = "typescript" }
 )
 mapx.nnoremap("<C-wq>", "<cmd>:bd<CR>")
-mapx.nnoremap("K", "<cmd>lua require('lspsaga.hover').render_hover_doc()<CR>")
 mapx.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 mapx.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 mapx.nnoremap(

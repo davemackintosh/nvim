@@ -32,12 +32,9 @@ return require("packer").startup(function(use)
 		requires = {
 			"ray-x/lsp_signature.nvim",
 			"onsails/lspkind.nvim",
-			"tami5/lspsaga.nvim",
-			"alexaandru/nvim-lspupdate",
 		},
 		after = "mason-lspconfig.nvim",
 	}
-	use "gpanders/editorconfig.nvim"
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -76,7 +73,6 @@ return require("packer").startup(function(use)
 	}
 	use { "f-person/git-blame.nvim" }
 	use "lewis6991/gitsigns.nvim"
-	use "jparise/vim-graphql"
 	use {
 		"folke/which-key.nvim",
 		config = function()
