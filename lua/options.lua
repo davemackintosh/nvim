@@ -89,6 +89,10 @@ local autoCommands = {
 	-- EslintFixAll on save typescript and javascript files.
 	eslint_fix_all = {
 		{ "BufWritePre", "*.ts,*.js,*.tsx", "EslintFixAll" },
+
+		-- Do go auto imports on save.
+		{ "BufWritePre", "*.go",
+			"lua vim.lsp.buf.code_action({ context = { only = { \"source.organizeImports\" } }, apply = true })" },
 	},
 }
 
