@@ -67,6 +67,7 @@ return require("packer").startup(function(use)
 		"b0o/mapx.nvim",
 		config = [[ require "keyboard-mappings" ]],
 	}
+	use "simrat39/rust-tools.nvim"
 	use {
 		"folke/trouble.nvim",
 		config = [[ require "plugin-configs.trouble" ]],
@@ -96,6 +97,7 @@ return require("packer").startup(function(use)
 		requires = "antoinemadec/FixCursorHold.nvim",
 		config = [[ require("nvim-lightbulb").setup({autocmd = {enabled = true}}) ]],
 	}
+
 	-- Window management
 	use {
 		"aserowy/tmux.nvim",
@@ -165,6 +167,7 @@ return require("packer").startup(function(use)
 		"marko-cerovac/material.nvim",
 		config = [[ require "plugin-configs.theme" ]],
 	}
+	use "xiyaowong/nvim-transparent"
 	use {
 		"goolord/alpha-nvim",
 		config = function()
