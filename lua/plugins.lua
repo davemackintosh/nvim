@@ -167,7 +167,6 @@ return require("packer").startup(function(use)
 		"marko-cerovac/material.nvim",
 		config = [[ require "plugin-configs.theme" ]],
 	}
-	use "xiyaowong/nvim-transparent"
 	use {
 		"goolord/alpha-nvim",
 		config = function()
@@ -177,7 +176,13 @@ return require("packer").startup(function(use)
 	use {
 		"rcarriga/nvim-notify",
 		config = function()
-			vim.notify = require "notify"
+			local notify = require("notify")
+
+			notify.setup({
+				background_colour = "#000000",
+			})
+
+			vim.notify = notify
 		end,
 	}
 
