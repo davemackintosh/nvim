@@ -120,7 +120,36 @@ return require("packer").startup(function(use)
 	}
 
 	-- Code helpers.
-	use "github/copilot.vim"
+	use {
+		"github/copilot.vim",
+		config = function()
+			vim.g.copilot_filetypes = {
+				["*"] = false,
+				["go"] = true,
+				["typescript"] = true,
+				["javascript"] = true,
+				["typescriptreact"] = true,
+				["javascriptreact"] = true,
+				["rust"] = true,
+				["python"] = true,
+				["lua"] = true,
+				["c"] = true,
+				["cpp"] = true,
+				["java"] = true,
+				["scala"] = true,
+				["kotlin"] = true,
+				["dart"] = true,
+				["elixir"] = true,
+				["erlang"] = true,
+				["haskell"] = true,
+				["ocaml"] = true,
+				["php"] = true,
+				["ruby"] = true,
+				["swift"] = true,
+				["vim"] = true,
+			}
+		end,
+	}
 	use "sebdah/vim-delve"
 	use {
 		"windwp/nvim-autopairs",
@@ -136,13 +165,13 @@ return require("packer").startup(function(use)
 	use "tpope/vim-surround"
 	use "vim-test/vim-test"
 	use "voldikss/vim-floaterm"
-	use {
+	--[[use {
 		"ray-x/go.nvim",
 		requires = {
 			"ray-x/guihua.lua",
 			"nvim-treesitter/nvim-treesitter",
 		},
-	}
+	}]] --
 	use "b0o/schemastore.nvim"
 
 	-- Visual.
