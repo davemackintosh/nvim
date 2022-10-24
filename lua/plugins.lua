@@ -165,24 +165,18 @@ return require("packer").startup(function(use)
 	use "tpope/vim-surround"
 	use "vim-test/vim-test"
 	use "voldikss/vim-floaterm"
-	--[[use {
-		"ray-x/go.nvim",
-		requires = {
-			"ray-x/guihua.lua",
-			"nvim-treesitter/nvim-treesitter",
-		},
-	}]] --
 	use "b0o/schemastore.nvim"
 
 	-- Visual.
 	use {
-		"nvim-lualine/lualine.nvim",
-		requires = {
-			"kyazdani42/nvim-web-devicons",
-			opt = true,
-		},
-		config = [[ require "plugin-configs.lualine" ]],
+		'yamatsum/nvim-nonicons',
+		requires = { 'kyazdani42/nvim-web-devicons' }
 	}
+	use({
+		'glepnir/galaxyline.nvim',
+		branch = 'main',
+		config = [[ require "plugin-configs.galaxyline" ]],
+	})
 	use {
 		"nvim-telescope/telescope.nvim",
 		requires = {
