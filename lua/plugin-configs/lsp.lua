@@ -34,3 +34,15 @@ require("mason-lspconfig").setup_handlers {
 		}
 	end,
 }
+
+-- Add the sourcekit lsp for swift.
+local pattern = require("lspconfig.util").root_pattern
+local root_mkr =
+pattern("Package.swift", ".git", "project.yml", "Project.swift")
+lspconfig.sourcekit.setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	cmd = { "xcrun", "sourcekit-lsp", "--log-level", "error" },
+	filetypes = { "swift", "objective-c", "objective-cpp" },
+	root_dir = root_mkr,
+}
