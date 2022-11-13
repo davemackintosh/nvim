@@ -98,6 +98,10 @@ return require("packer").startup(function(use)
 		config = [[ require("nvim-lightbulb").setup({autocmd = {enabled = true}}) ]],
 	}
 
+	if vim.fn.has "macunix" then
+		use "apple/sourcekit-lsp"
+	end
+
 	-- Window management
 	use {
 		"aserowy/tmux.nvim",
