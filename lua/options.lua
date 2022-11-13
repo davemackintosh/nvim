@@ -69,6 +69,16 @@ o.wildignore = [[
 
 -- Register the AUGroups and autocommands
 local autoCommands = {
+	reload_vimrc = {
+		-- Reload vim config automatically
+		{
+			"BufWritePost",
+			[[$VIM_PATH/{*.vim,*.yaml,vimrc,*.lua} nested source $MYVIMRC | redraw]],
+		},
+	},
+	packer = {
+		{ "BufWritePost", "plugins.lua", "PackerSync" },
+	},
 	folds = {
 		{
 			"BufReadPost",
@@ -91,8 +101,11 @@ local autoCommands = {
 		{ "BufWritePre", "*.ts,*.js,*.tsx", "EslintFixAll" },
 
 		-- Do go auto imports on save.
-		{ "BufWritePost", "*.go",
-			"lua vim.lsp.buf.code_action({ context = { only = { \"source.organizeImports\" } }, apply = true })" },
+		{
+			"BufWritePre",
+			"*.go",
+			'lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })',
+		},
 	},
 }
 
