@@ -15,6 +15,7 @@ require("dapui").setup {
 	layouts = {
 		{
 			elements = {
+				"watches",
 				"scopes",
 				"breakpoints",
 			},
