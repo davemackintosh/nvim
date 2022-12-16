@@ -20,6 +20,7 @@ return require("packer").startup(function(use)
 	use {
 		"williamboman/mason.nvim",
 		after = "packer.nvim",
+		requires = "neovim/nvim-lspconfig",
 	}
 	use {
 		"williamboman/mason-lspconfig.nvim",
@@ -63,6 +64,7 @@ return require("packer").startup(function(use)
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
 		},
 	}
+	use "lbrayner/vim-rzip"
 	use {
 		"b0o/mapx.nvim",
 		config = [[ require "keyboard-mappings" ]],
@@ -173,14 +175,15 @@ return require("packer").startup(function(use)
 
 	-- Visual.
 	use {
-		'yamatsum/nvim-nonicons',
-		requires = { 'kyazdani42/nvim-web-devicons' }
+		"yamatsum/nvim-nonicons",
+		requires = { "kyazdani42/nvim-web-devicons" },
 	}
-	use({
-		'glepnir/galaxyline.nvim',
-		branch = 'main',
+	use "ap/vim-css-color"
+	use {
+		"glepnir/galaxyline.nvim",
+		branch = "main",
 		config = [[ require "plugin-configs.galaxyline" ]],
-	})
+	}
 	use {
 		"nvim-telescope/telescope.nvim",
 		requires = {
@@ -209,11 +212,11 @@ return require("packer").startup(function(use)
 	use {
 		"rcarriga/nvim-notify",
 		config = function()
-			local notify = require("notify")
+			local notify = require "notify"
 
-			notify.setup({
+			notify.setup {
 				background_colour = "#000000",
-			})
+			}
 
 			vim.notify = notify
 		end,
