@@ -17,24 +17,19 @@ return require("packer").startup(function(use)
 	-- Editor support.
 	-- The next few plugins are really the IDE feel.
 	use "wbthomason/packer.nvim"
-	use {
-		"williamboman/mason.nvim",
-		after = "packer.nvim",
-		requires = "neovim/nvim-lspconfig",
-	}
-	use {
-		"williamboman/mason-lspconfig.nvim",
-		config = [[ require "plugin-configs.mason" ]],
-		after = "mason.nvim",
-	}
-	use {
+	use "williamboman/mason.nvim"
+	use "williamboman/mason-lspconfig.nvim"
+	use	{
 		"neovim/nvim-lspconfig",
 		config = [[ require "plugin-configs.lsp" ]],
-		requires = {
-			"ray-x/lsp_signature.nvim",
-			"onsails/lspkind.nvim",
-		},
-		after = "mason-lspconfig.nvim",
+	}
+	use {
+		"ray-x/lsp_signature.nvim",
+		"onsails/lspkind.nvim",
+	}
+	use {
+		"jose-elias-alvarez/null-ls.nvim",
+		config = [[ require "plugin-configs.null-ls" ]],
 	}
 	use {
 		"nvim-treesitter/nvim-treesitter",
@@ -47,6 +42,7 @@ return require("packer").startup(function(use)
 			}
 		end,
 	}
+	use "editorconfig/editorconfig-vim"
 	use { "L3MON4D3/LuaSnip", tag = "v1.*" }
 	use {
 		"hrsh7th/nvim-cmp",

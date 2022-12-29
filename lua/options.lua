@@ -107,6 +107,10 @@ local autoCommands = {
 			'lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })',
 		},
 	},
+	cpp_modules = {
+		{ "BufRead,BufNewFile", "*.mpp", "setlocal filetype=cpp" },
+		{ "BufRead,BufNewFile", "*.cppm", "setlocal filetype=cpp" },
+	}
 }
 
 AUGroups.CreateFrom(autoCommands)

@@ -3,7 +3,6 @@
 set -e
 
 # Brews
-brew install lua-language-server
 brew tap incu6us/homebrew-tap
 brew install incu6us/homebrew-tap/goimports-reviser
 brew install selene
@@ -40,10 +39,11 @@ npm install -g \
 	vim-language-server \
 	vscode-langservers-extracted
 
+
+#Python
+pip install mdformat-gfm mdformat-frontmatter mdformat-footnote
+
 # Ruby
 echo -e "Asking for sudo to install ruby gem ffi"
 sudo gem pristine ffi --version 1.15.4
 gem install mdl --user-install
-
-#Python
-pip install mdformat-gfm mdformat-frontmatter mdformat-footnote
