@@ -27,10 +27,17 @@ return require("packer").startup(function(use)
 		"ray-x/lsp_signature.nvim",
 		"onsails/lspkind.nvim",
 	}
-	use {
-		"jose-elias-alvarez/null-ls.nvim",
-		config = [[ require "plugin-configs.null-ls" ]],
-	}
+	  -- Visualize lsp progress
+	use({
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end
+	})
+	--use {
+	--	"jose-elias-alvarez/null-ls.nvim",
+	--	config = [[ require "plugin-configs.null-ls" ]],
+	--}
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
