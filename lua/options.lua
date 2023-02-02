@@ -79,6 +79,13 @@ local autoCommands = {
 	packer = {
 		{ "BufWritePost", "plugins.lua", "PackerSync" },
 	},
+	colorizeMsgArea = {
+		{
+			"BufEnter",
+			"*",
+			[[lua require "plugin-configs.msg-area".colorize_msg_area()]],
+		},
+	},
 	folds = {
 		{
 			"BufReadPost",
@@ -110,7 +117,7 @@ local autoCommands = {
 	cpp_modules = {
 		{ "BufRead,BufNewFile", "*.mpp", "setlocal filetype=cpp" },
 		{ "BufRead,BufNewFile", "*.cppm", "setlocal filetype=cpp" },
-	}
+	},
 }
 
 AUGroups.CreateFrom(autoCommands)
