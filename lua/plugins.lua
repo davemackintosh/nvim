@@ -19,7 +19,7 @@ return require("packer").startup(function(use)
 	use "wbthomason/packer.nvim"
 	use "williamboman/mason.nvim"
 	use "williamboman/mason-lspconfig.nvim"
-	use	{
+	use {
 		"neovim/nvim-lspconfig",
 		config = [[ require "plugin-configs.lsp" ]],
 	}
@@ -27,17 +27,13 @@ return require("packer").startup(function(use)
 		"ray-x/lsp_signature.nvim",
 		"onsails/lspkind.nvim",
 	}
-	  -- Visualize lsp progress
-	use({
+	-- Visualize lsp progress
+	use {
 		"j-hui/fidget.nvim",
 		config = function()
 			require("fidget").setup()
-		end
-	})
-	--use {
-	--	"jose-elias-alvarez/null-ls.nvim",
-	--	config = [[ require "plugin-configs.null-ls" ]],
-	--}
+		end,
+	}
 	use {
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -72,7 +68,6 @@ return require("packer").startup(function(use)
 		"b0o/mapx.nvim",
 		config = [[ require "keyboard-mappings" ]],
 	}
-	use "simrat39/rust-tools.nvim"
 	use {
 		"folke/trouble.nvim",
 		config = [[ require "plugin-configs.trouble" ]],
@@ -88,14 +83,6 @@ return require("packer").startup(function(use)
 	use {
 		"weilbith/nvim-code-action-menu",
 		cmd = "CodeActionMenu",
-	}
-	use {
-		"ThePrimeagen/refactoring.nvim",
-		requires = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-		config = [[ require "plugin-configs.refactoring" ]],
 	}
 	use {
 		"kosayoda/nvim-lightbulb",
@@ -166,15 +153,12 @@ return require("packer").startup(function(use)
 	}
 	use "tpope/vim-endwise"
 	use "tpope/vim-fugitive"
-	use "terryma/vim-multiple-cursors"
 	use {
 		"simrat39/symbols-outline.nvim",
 		config = [[ require("symbols-outline").setup() ]],
 	}
 	use "tpope/vim-surround"
 	use "vim-test/vim-test"
-	use "voldikss/vim-floaterm"
-	use "b0o/schemastore.nvim"
 
 	-- Visual.
 	use {

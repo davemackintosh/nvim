@@ -1,32 +1,14 @@
-require("mason").setup {
-	ui = {
-		icons = {
-			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗",
-		},
-	},
-}
-require("mason-lspconfig").setup {
-	automatic_installation = true,
-	ensure_installed = {
-		"bashls",
-		"cmake",
-		"clangd",
-		"diagnosticls",
-		"dockerls",
-		"efm",
-		"golangci_lint_ls",
-		"gopls",
-		"graphql",
-		"html",
-		"jsonls",
-		"jedi_language_server",
-		"tsserver",
-		"vimls",
-		"yamlls",
-	},
-}
+local lspconfig = require "lspconfig"
+local lsp_defaults = lspconfig.util.default_config
+
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+	"force",
+	lsp_defaults.capabilities,
+	require("cmp_nvim_lsp").default_capabilities()
+)
+
+require("mason").setup {}
+require("mason-lspconfig").setup {}
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -50,16 +32,30 @@ local on_attach = function(_, bufnr)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities(
-	vim.lsp.protocol.make_client_capabilities()
-)
-capabilities.offsetEncoding = { "utf-16" }
+lsp_defaults.capabilities.offsetEncoding = { "utf-16" }
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
-		local lspconfig = require "lspconfig"
 		lspconfig[server_name].setup {
 			on_attach = on_attach,
-			capabilities = capabilities,
 		}
 	end,
 }
+
+-- Setup swiftformat post write hook and sourcekit-lsp.
+if vim.fn.executable "xcrun" == 1 then
+	local swift = require "plugin-configs.swiftformat"
+	local pattern = require("lspconfig.util").root_pattern
+	local root_mkr =
+		pattern("Package.swift", ".git", "project.yml", "Project.swift")
+	lspconfig.sourcekit.setup {
+		on_attach = function(a, b)
+			swift.on_attach()
+			on_attach(a, b)
+		end,
+		capatilities = lsp_defaults.capabilities,
+		filetypes = { "swift", "objective-c", "objective-cpp" },
+		root_dir = root_mkr,
+	}
+
+	swift.run()
+end
