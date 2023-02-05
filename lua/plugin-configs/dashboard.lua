@@ -8,17 +8,23 @@ function M.setup()
 
 	local dashboard = require "alpha.themes.dashboard"
 	dashboard.section.header.val = {
-		[[ ██╗    ██╗ █████╗ ██████╗ ██████╗     ███████╗██████╗ ███████╗███████╗██████╗  ]],
-		[[ ██║    ██║██╔══██╗██╔══██╗██╔══██╗    ██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗ ]],
-		[[ ██║ █╗ ██║███████║██████╔╝██████╔╝    ███████╗██████╔╝█████╗  █████╗  ██║  ██║ ]],
-		[[ ██║███╗██║██╔══██║██╔══██╗██╔═══╝     ╚════██║██╔═══╝ ██╔══╝  ██╔══╝  ██║  ██║ ]],
-		[[ ╚███╔███╔╝██║  ██║██║  ██║██║         ███████║██║     ███████╗███████╗██████╔╝ ]],
-		[[  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝         ╚══════╝╚═╝     ╚══════╝╚══════╝╚═════╝  ]],
+		[[               _____                                     ]],
+		[[              /     \                                    ]],
+		[[              vvvvvvv  /|__/|                            ]],
+		[[                 I   /O,O   |                            ]],
+		[[                 I /_____   |      /|/|                  ]],
+		[[                J|/^ ^ ^ \  |    /00  |    _//|          ]],
+		[[                 |^ ^ ^ ^ |W|   |/^^\ |   /oo |          ]],
+		[[                  \m___m__|_|    \m_m_|   \mm_|          ]],
 	}
 
 	dashboard.section.buttons.val = {
 		dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-		dashboard.button("r", "  Recently used files", ":Telescope oldfiles <CR>"),
+		dashboard.button(
+			"r",
+			"  Recently used files",
+			":Telescope oldfiles <CR>"
+		),
 		dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
 	}
 
