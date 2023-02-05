@@ -42,6 +42,7 @@ require("mason-lspconfig").setup_handlers {
 }
 
 -- Setup swiftformat post write hook and sourcekit-lsp.
+-- using xcrun as a check if we're on macos.
 if vim.fn.executable "xcrun" == 1 then
 	local swift = require "plugin-configs.swiftformat"
 	local pattern = require("lspconfig.util").root_pattern
@@ -56,6 +57,4 @@ if vim.fn.executable "xcrun" == 1 then
 		filetypes = { "swift", "objective-c", "objective-cpp" },
 		root_dir = root_mkr,
 	}
-
-	swift.run()
 end

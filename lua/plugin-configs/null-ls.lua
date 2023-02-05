@@ -9,7 +9,4 @@ require("null-ls").setup {
 		builtins.diagnostics.selene,
 		builtins.diagnostics.editorconfig_checker,
 	},
-	on_attach = function()
-		vim.cmd [[autocmd BufWritePost <buffer> lua vim.lsp.buf.format()]]
-	end,
 }
