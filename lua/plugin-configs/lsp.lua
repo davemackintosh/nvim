@@ -30,6 +30,9 @@ local on_attach = function(_, bufnr)
 	vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, bufopts)
 	vim.keymap.set("n", "rn", vim.lsp.buf.rename, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+
+	-- Run format on save
+	vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 end
 
 lsp_defaults.capabilities.offsetEncoding = { "utf-16" }
@@ -43,6 +46,7 @@ require("mason-lspconfig").setup_handlers {
 
 -- Setup swiftformat post write hook and sourcekit-lsp.
 -- using xcrun as a check if we're on macos.
+local did_attach = false
 if vim.fn.executable "xcrun" == 1 then
 	local swift = require "plugin-configs.swiftformat"
 	local pattern = require("lspconfig.util").root_pattern
@@ -50,8 +54,11 @@ if vim.fn.executable "xcrun" == 1 then
 		pattern("Package.swift", ".git", "project.yml", "Project.swift")
 	lspconfig.sourcekit.setup {
 		on_attach = function(a, b)
-			swift.on_attach()
-			on_attach(a, b)
+			if not did_attach then
+				swift.on_attach()
+				on_attach(a, b)
+				did_attach = true
+			end
 		end,
 		capatilities = lsp_defaults.capabilities,
 		filetypes = { "swift", "objective-c", "objective-cpp" },

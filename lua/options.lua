@@ -24,7 +24,7 @@ o.fileencoding = "utf-8" -- the encoding written to a file
 o.conceallevel = 0 -- so that `` is visible in markdown files
 o.cursorline = false -- hide the cursor line
 o.number = true
-o.relativenumber = false
+o.relativenumber = true
 o.cmdheight = 1 -- space for displaying messages/commands
 o.showmode = false -- we don't need to see things like -- INSERT -- anymore
 o.showtabline = 2 -- always show tabs
@@ -73,12 +73,12 @@ local autoCommands = {
 		-- Reload vim config automatically
 		{
 			"BufWritePost",
-			[[$VIM_PATH/{*.vim,*.yaml,vimrc,*.lua} nested source $MYVIMRC | redraw]],
+			[[$VIM_PATH/*.lua nested source $MYVIMRC | PackerSync | PackerCompile ]],
 		},
 	},
-	packer = {
-		{ "BufWritePost", "plugins.lua", "PackerSync" },
-	},
+	--	packer = {
+	--		{ "BufWritePost", "plugins.lua", "PackerSync" },
+	--	},
 	colorizeMsgArea = {
 		{
 			"BufEnter",
@@ -102,17 +102,16 @@ local autoCommands = {
 	format_on_write = {
 		{ "BufWritePre", "*", "lua vim.lsp.buf.format()" },
 	},
-
 	-- EslintFixAll on save typescript and javascript files.
 	eslint_fix_all = {
 		{ "BufWritePre", "*.ts,*.js,*.tsx", "EslintFixAll" },
 
 		-- Do go auto imports on save.
-		{
-			"BufWritePre",
-			"*.go",
-			'lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })',
-		},
+		--		{
+		--			"BufWritePre",
+		--			"*.go",
+		--			'lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })',
+		--		},
 	},
 	cpp_modules = {
 		{ "BufRead,BufNewFile", "*.mpp", "setlocal filetype=cpp" },

@@ -49,12 +49,10 @@ function M.build()
 		on_exit = vim.schedule_wrap(function(j, exit_code)
 			if exit_code ~= 0 then
 				vim.notify("Build failed", vim.log.levels.ERROR)
-				vim.notify(table.concat(j:result(), "\n"))
-			else
-				vim.notify(table.concat(j:result(), "\n"))
+				vim.notify(j:result(), vim.log.levels.ERROR)
 			end
 		end),
-	}):sync()
+	}):start()
 end
 
 M.on_attach = function()

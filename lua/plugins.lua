@@ -27,6 +27,7 @@ return require("packer").startup(function(use)
 		"ray-x/lsp_signature.nvim",
 		"onsails/lspkind.nvim",
 	}
+	--
 	-- Visualize lsp progress
 	use {
 		"j-hui/fidget.nvim",
@@ -44,6 +45,14 @@ return require("packer").startup(function(use)
 				},
 			}
 		end,
+	}
+	use {
+		"ThePrimeagen/refactoring.nvim",
+		requires = {
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" },
+		},
+		config = [[ require "plugin-configs.refactoring" ]],
 	}
 	use "editorconfig/editorconfig-vim"
 	use { "L3MON4D3/LuaSnip", tag = "v1.*" }
