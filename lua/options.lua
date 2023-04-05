@@ -107,11 +107,11 @@ local autoCommands = {
 		{ "BufWritePre", "*.ts,*.js,*.tsx", "EslintFixAll" },
 
 		-- Do go auto imports on save.
-		--		{
-		--			"BufWritePre",
-		--			"*.go",
-		--			'lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })',
-		--		},
+		{
+			"BufWritePre",
+			"*.go",
+			'lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })',
+		},
 	},
 	cpp_modules = {
 		{ "BufRead,BufNewFile", "*.mpp", "setlocal filetype=cpp" },

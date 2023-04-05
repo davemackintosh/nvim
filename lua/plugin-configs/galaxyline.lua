@@ -163,3 +163,5 @@ gls.short_line_right[1] = {
 		highlight = { colors.bg, colors.bg }
 	}
 }
+
+vim.cmd [[ hi StatusLine bg=NONE ]]

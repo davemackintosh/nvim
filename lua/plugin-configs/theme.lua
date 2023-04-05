@@ -48,3 +48,4 @@ vim.api.nvim_set_keymap(
 	[[<Cmd>lua require("material.functions").toggle_style()<CR>]],
 	{ noremap = true, silent = true }
 )
+

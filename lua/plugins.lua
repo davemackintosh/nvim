@@ -189,16 +189,6 @@ return require("packer").startup(function(use)
 		},
 		config = [[ require "plugin-configs.telescope" ]],
 	}
-	--use {
-	--	"marko-cerovac/material.nvim",
-	--	config = [[ require "plugin-configs.theme" ]],
-	--}
-	use {
-		"catppuccin/vim",
-		config = function()
-			vim.cmd [[colorscheme catppuccin_mocha]]
-		end,
-	}
 	use {
 		"goolord/alpha-nvim",
 		config = function()
@@ -215,6 +205,15 @@ return require("packer").startup(function(use)
 			}
 
 			vim.notify = notify
+		end,
+	}
+	use {
+		"catppuccin/vim",
+		config = function()
+			vim.cmd [[
+				colorscheme catppuccin_mocha
+				hi Normal guibg=NONE ctermbg=NONE
+			]]
 		end,
 	}
 

@@ -35,10 +35,11 @@ local on_attach = function(_, bufnr)
 	vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 end
 
-lsp_defaults.capabilities.offsetEncoding = { "utf-16" }
+lsp_defaults.capabilities.offsetEncoding = "utf-32"
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
 		lspconfig[server_name].setup {
+			capabilities = lsp_defaults.capabilities,
 			on_attach = on_attach,
 		}
 	end,
