@@ -164,4 +164,4 @@ gls.short_line_right[1] = {
 	}
 }
 
-vim.cmd [[ hi StatusLine bg=NONE ]]
+vim.cmd [[ hi StatusLine guibg=NONE ]]
