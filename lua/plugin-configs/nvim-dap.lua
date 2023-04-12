@@ -19,15 +19,36 @@ dap.configurations.cpp = {
 			-- See if there is an xmake.lua file in the current directory.
 			-- If there is, use the xmake helpers.
 			if vim.fn.filereadable("xmake.lua") == 1 then
-				if vim.fn.input("Build before debugging? (y/n)") == "y" then
-					vim.fn.system("xmake build")
+				if vim.fn.input("Build before debugging? (y/N)") == "y" then
+					-- Run xmake build and check for errors.
+					local output = vim.fn.system { "xmake", "build" }
+					if vim.api.nvim_get_vvar("shell_error") ~= 0 then
+						vim.notify(output, vim.log.levels.ERROR, {
+							title = "xmake build failed",
+							on_open = function(win)
+								local buf = vim.api.nvim_win_get_buf(win)
+								vim.api.nvim_buf_set_option(buf, "filetype", "cpp")
+							end,
+						})
+
+						-- Close the dapui window if it is open, waiting for
+						-- a couple of seconds to make sure the notification
+						-- is displayed.
+						vim.defer_fn(function()
+							require "dapui".close()
+						end, 1000)
+
+						return ""
+					end
 				end
 				local xmakeInfo, targets = xmake.getXMakeInfoAsTable()
 				buildPath = string.format("%s/%s/%s/%s/%s", xmakeInfo.workingdir, xmakeInfo.buildir, xmakeInfo.plat,
 					xmakeInfo.arch, xmakeInfo.mode)
-			else -- Otherwise, use the default build path.
+			else
+				-- Otherwise, use the default build path.
 				buildPath = vim.fn.input('Build path: ', vim.fn.getcwd() .. '/build/', 'file')
 			end
+
 			-- return the path to the executable.
 			return vim.fn.input('Path to executable: ', buildPath .. '/', 'file')
 		end,
