@@ -1,5 +1,4 @@
 local ts = require "telescope"
-ts.load_extension "packer"
 ts.load_extension "dap"
 
 ts.setup {

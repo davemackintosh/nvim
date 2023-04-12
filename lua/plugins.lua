@@ -1,41 +1,26 @@
-local fn = vim.fn
-local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-local packer_bootstrap
-
-if fn.empty(fn.glob(install_path)) > 0 then
-	packer_bootstrap = fn.system {
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	}
-end
-
-return require("packer").startup(function(use)
+return {
 	-- Editor support.
 	-- The next few plugins are really the IDE feel.
-	use "wbthomason/packer.nvim"
-	use "williamboman/mason.nvim"
-	use "williamboman/mason-lspconfig.nvim"
-	use {
+	"wbthomason/packer.nvim",
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
+	{
 		"neovim/nvim-lspconfig",
-		config = [[ require "plugin-configs.lsp" ]],
-	}
-	use {
+		config = function() require "plugin-configs.lsp" end,
+	},
+	{
 		"ray-x/lsp_signature.nvim",
 		"onsails/lspkind.nvim",
-	}
+	},
 	--
 	-- Visualize lsp progress
-	use {
+	{
 		"j-hui/fidget.nvim",
 		config = function()
 			require("fidget").setup()
 		end,
-	}
-	use {
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 		config = function()
@@ -45,21 +30,21 @@ return require("packer").startup(function(use)
 				},
 			}
 		end,
-	}
-	use {
+	},
+	{
 		"ThePrimeagen/refactoring.nvim",
-		requires = {
+		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
-		config = [[ require "plugin-configs.refactoring" ]],
-	}
-	use "editorconfig/editorconfig-vim"
-	use { "L3MON4D3/LuaSnip", tag = "v1.*" }
-	use {
+		config = function() require "plugin-configs.refactoring" end,
+	},
+	"editorconfig/editorconfig-vim",
+	"L3MON4D3/LuaSnip",
+	{
 		"hrsh7th/nvim-cmp",
-		config = [[ require "plugin-configs.cmp" ]],
-		requires = {
+		config = function() require "plugin-configs.cmp" end,
+		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"hrsh7th/cmp-nvim-lsp",
 			"onsails/lspkind-nvim",
@@ -71,61 +56,55 @@ return require("packer").startup(function(use)
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
 		},
-	}
-	use "lbrayner/vim-rzip"
-	use {
+	},
+	"lbrayner/vim-rzip",
+	{
 		"b0o/mapx.nvim",
-		config = [[ require "keyboard-mappings" ]],
-	}
-	use {
+		config = function() require "keyboard-mappings" end,
+	},
+	{
 		"folke/trouble.nvim",
-		config = [[ require "plugin-configs.trouble" ]],
-	}
-	use { "f-person/git-blame.nvim" }
-	use "lewis6991/gitsigns.nvim"
-	use {
+		config = function() require "plugin-configs.trouble" end,
+	},
+	{ "f-person/git-blame.nvim" },
+	"lewis6991/gitsigns.nvim",
+	{
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup {}
 		end,
-	}
-	use {
+	},
+	{
 		"weilbith/nvim-code-action-menu",
 		cmd = "CodeActionMenu",
-	}
-	use {
+	},
+	{
 		"kosayoda/nvim-lightbulb",
-		requires = "antoinemadec/FixCursorHold.nvim",
-		config = [[ require("nvim-lightbulb").setup({autocmd = {enabled = true}}) ]],
-	}
-
-	if vim.fn.has "macunix" then
-		use "apple/sourcekit-lsp"
-	end
-
+		dependencies = "antoinemadec/FixCursorHold.nvim",
+		config = function() require("nvim-lightbulb").setup({autocmd = {enabled = true}}) end,
+	},
 	-- Window management
-	use {
+	{
 		"aserowy/tmux.nvim",
-		config = [[ require "plugin-configs.tmux" ]],
-	}
-	use {
+		config = function() require "plugin-configs.tmux" end,
+	},
+	{
 		"akinsho/bufferline.nvim",
-		tag = "v2.*",
-		requires = "kyazdani42/nvim-web-devicons",
-		config = [[ require "plugin-configs.bufferline" ]],
-	}
+		dependencies = "kyazdani42/nvim-web-devicons",
+		config = function() require "plugin-configs.bufferline" end,
+	},
 
 	-- File management.
-	use {
+	{
 		"kyazdani42/nvim-tree.lua",
-		requires = {
+		dependencies = {
 			"kyazdani42/nvim-web-devicons",
 		},
-		config = [[ require "plugin-configs.nvim-tree" ]],
-	}
+		config = function() require "plugin-configs.nvim-tree" end,
+	},
 
 	-- Code helpers.
-	use {
+	{
 		"github/copilot.vim",
 		config = function()
 			vim.g.copilot_filetypes = {
@@ -154,48 +133,49 @@ return require("packer").startup(function(use)
 				["vim"] = true,
 			}
 		end,
-	}
-	use "sebdah/vim-delve"
-	use {
+	},
+	"sebdah/vim-delve",
+	{
 		"windwp/nvim-autopairs",
-		config = [[ require "plugin-configs.autopairs" ]],
-	}
-	use "tpope/vim-endwise"
-	use "tpope/vim-fugitive"
-	use {
+		config = function() require "plugin-configs.autopairs" end,
+	},
+	"tpope/vim-endwise",
+	"tpope/vim-fugitive",
+	{
 		"simrat39/symbols-outline.nvim",
-		config = [[ require("symbols-outline").setup() ]],
-	}
-	use "tpope/vim-surround"
-	use "vim-test/vim-test"
+		config = function() require("symbols-outline").setup() end,
+	},
+	"tpope/vim-surround",
+	"vim-test/vim-test",
 
 	-- Visual.
-	use {
+	{
 		"yamatsum/nvim-nonicons",
-		requires = { "kyazdani42/nvim-web-devicons" },
-	}
-	use "ap/vim-css-color"
-	use {
+		dependencies = { "kyazdani42/nvim-web-devicons" },
+	},
+	"ap/vim-css-color",
+	{
 		"glepnir/galaxyline.nvim",
 		branch = "main",
-		config = [[ require "plugin-configs.galaxyline" ]],
-	}
-	use {
+		config = function() require "plugin-configs.galaxyline" end,
+	},
+	{
 		"nvim-telescope/telescope.nvim",
-		requires = {
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope-packer.nvim",
 			"nvim-telescope/telescope-dap.nvim",
 		},
-		config = [[ require "plugin-configs.telescope" ]],
-	}
-	use {
+		config = function() require "plugin-configs.telescope" end,
+	},
+	{
 		"goolord/alpha-nvim",
+		alpha = false,
 		config = function()
 			require("plugin-configs.dashboard").setup()
 		end,
-	}
-	use {
+	},
+	{
 		"rcarriga/nvim-notify",
 		config = function()
 			local notify = require "notify"
@@ -206,8 +186,8 @@ return require("packer").startup(function(use)
 
 			vim.notify = notify
 		end,
-	}
-	use {
+	},
+	{
 		"catppuccin/vim",
 		config = function()
 			vim.cmd [[
@@ -215,32 +195,29 @@ return require("packer").startup(function(use)
 				hi Normal guibg=NONE ctermbg=NONE
 			]]
 		end,
-	}
+	},
 
 	-- Debugging
-	use {
+	{
 		"mfussenegger/nvim-dap",
-		config = [[ require "plugin-configs.nvim-dap" ]],
+		config = function() require "plugin-configs.nvim-dap" end,
 		module = "dap",
-		requires = {
+		dependencies = {
 			"theHamsta/nvim-dap-virtual-text",
 			"jbyuki/one-small-step-for-vimkind",
 		},
-	}
+	},
 
-	use {
+	{
 		"leoluz/nvim-dap-go",
 		after = "nvim-dap",
-		config = [[ require "plugin-configs.nvim-dap-go" ]],
-	}
+		config = function() require "plugin-configs.nvim-dap-go" end,
+	},
 
-	use {
+	{
 		"rcarriga/nvim-dap-ui",
 		after = "nvim-dap",
-		config = [[ require "plugin-configs.nvim-dap-gui" ]],
-	}
-
-	if packer_bootstrap then
-		require("packer").sync()
-	end
-end)
+		config = function() require "plugin-configs.nvim-dap-gui" end,
+	},
+	"jay-babu/mason-nvim-dap.nvim"
+}
