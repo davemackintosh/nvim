@@ -1,47 +1,62 @@
 require("nvim-dap-virtual-text").setup()
 
+local xmake = require "helpers.xmake"
 local dap = require "dap"
-dap.configurations.lua = {
-	{
-		type = "nlua",
-		request = "attach",
-		name = "Attach to running Neovim instance",
-	},
-}
 
-dap.adapters.nlua = function(callback, config)
-	callback { type = "server", host = config.host or "127.0.0.1", port = config.port or 8088 }
-end
-
-dap.adapters.cppdbg = {
-	id = 'cppdbg',
+dap.adapters.lldb = {
 	type = 'executable',
-	command = '/home/dave/Downloads/extension/debugAdapters/bin/OpenDebugAD7',
+	-- absolute path is important here, otherwise the argument in the `runInTerminal` request will default to $CWD/lldb-vscode
+	command = '/usr/bin/lldb-vscode',
+	name = "lldb"
 }
-
 dap.configurations.cpp = {
-  {
-    name = "Launch file",
-    type = "cppdbg",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopAtEntry = true,
-  },
-  {
-    name = 'Attach to gdbserver :1234',
-    type = 'cppdbg',
-    request = 'launch',
-    MIMode = 'gdb',
-    miDebuggerServerAddress = 'localhost:1234',
-    miDebuggerPath = '/usr/bin/gdb',
-    cwd = '${workspaceFolder}',
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-  },
+	{
+		name = "Launch",
+		type = "lldb",
+		request = "launch",
+		program = function()
+			local buildPath = ""
+			-- See if there is an xmake.lua file in the current directory.
+			-- If there is, use the xmake helpers.
+			if vim.fn.filereadable("xmake.lua") == 1 then
+				if vim.fn.input("Build before debugging? (y/N)") == "y" then
+					-- Run xmake build and check for errors.
+					local output = vim.fn.system { "xmake", "build" }
+					if vim.api.nvim_get_vvar("shell_error") ~= 0 then
+						vim.notify(output, vim.log.levels.ERROR, {
+							title = "xmake build failed",
+							on_open = function(win)
+								local buf = vim.api.nvim_win_get_buf(win)
+								vim.api.nvim_buf_set_option(buf, "filetype", "cpp")
+							end,
+						})
+
+						-- Close the dapui window if it is open, waiting for
+						-- a couple of seconds to make sure the notification
+						-- is displayed.
+						vim.defer_fn(function()
+							require "dapui".close()
+						end, 1000)
+
+						return ""
+					end
+				end
+				local xmakeInfo, targets = xmake.getXMakeInfoAsTable()
+				buildPath = string.format("%s/%s/%s/%s/%s", xmakeInfo.workingdir, xmakeInfo.buildir, xmakeInfo.plat,
+					xmakeInfo.arch, xmakeInfo.mode)
+			else
+				-- Otherwise, use the default build path.
+				buildPath = vim.fn.input('Build path: ', vim.fn.getcwd() .. '/build/', 'file')
+			end
+
+			-- return the path to the executable.
+			return vim.fn.input('Path to executable: ', buildPath .. '/', 'file')
+		end,
+		cwd = '${workspaceFolder}',
+		stopOnEntry = false,
+		args = {},
+		runInTerminal = false,
+	},
 }
 
 vim.cmd [[

@@ -1,5 +1,3 @@
-require("mason").setup {}
-require("mason-lspconfig").setup {}
 require("mason-nvim-dap").setup {
 	ensure_installed = {
 		"delve",
@@ -7,4 +5,7 @@ require("mason-nvim-dap").setup {
 		"cppdbg",
 		"python",
 	},
+	automatic_setup = true,
 }
+
+require "plugin-configs.nvim-dap"

@@ -8,18 +8,9 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function() require "plugin-configs.lsp" end,
 	},
-	{
-		"ray-x/lsp_signature.nvim",
-		"onsails/lspkind.nvim",
-	},
-	--
-	-- Visualize lsp progress
-	{
-		"j-hui/fidget.nvim",
-		config = function()
-			require("fidget").setup()
-		end,
-	},
+	"ray-x/lsp_signature.nvim",
+	"onsails/lspkind.nvim",
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -66,7 +57,7 @@ return {
 		"folke/trouble.nvim",
 		config = function() require "plugin-configs.trouble" end,
 	},
-	{ "f-person/git-blame.nvim" },
+	"f-person/git-blame.nvim",
 	"lewis6991/gitsigns.nvim",
 	{
 		"folke/which-key.nvim",
@@ -81,7 +72,7 @@ return {
 	{
 		"kosayoda/nvim-lightbulb",
 		dependencies = "antoinemadec/FixCursorHold.nvim",
-		config = function() require("nvim-lightbulb").setup({autocmd = {enabled = true}}) end,
+		config = function() require("nvim-lightbulb").setup({ autocmd = { enabled = true } }) end,
 	},
 	-- Window management
 	{
@@ -109,6 +100,7 @@ return {
 		config = function()
 			vim.g.copilot_filetypes = {
 				["*"] = false,
+				["bash"] = true,
 				["go"] = true,
 				["typescript"] = true,
 				["javascript"] = true,
@@ -119,16 +111,6 @@ return {
 				["lua"] = true,
 				["c"] = true,
 				["cpp"] = true,
-				["java"] = true,
-				["scala"] = true,
-				["kotlin"] = true,
-				["dart"] = true,
-				["elixir"] = true,
-				["erlang"] = true,
-				["haskell"] = true,
-				["ocaml"] = true,
-				["php"] = true,
-				["ruby"] = true,
 				["swift"] = true,
 				["vim"] = true,
 			}
@@ -152,6 +134,15 @@ return {
 	{
 		"yamatsum/nvim-nonicons",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
+	},
+	{
+		"folke/noice.nvim",
+		config = function()
+			require "plugin-configs.noice"
+		end,
+		dependencies = {
+			"MunifTanjim/nui.nvim"
+		}
 	},
 	"ap/vim-css-color",
 	{
@@ -199,25 +190,14 @@ return {
 
 	-- Debugging
 	{
-		"mfussenegger/nvim-dap",
-		config = function() require "plugin-configs.nvim-dap" end,
-		module = "dap",
-		dependencies = {
-			"theHamsta/nvim-dap-virtual-text",
-			"jbyuki/one-small-step-for-vimkind",
-		},
-	},
-
-	{
-		"leoluz/nvim-dap-go",
-		after = "nvim-dap",
-		config = function() require "plugin-configs.nvim-dap-go" end,
-	},
-
-	{
 		"rcarriga/nvim-dap-ui",
-		after = "nvim-dap",
 		config = function() require "plugin-configs.nvim-dap-gui" end,
 	},
-	"jay-babu/mason-nvim-dap.nvim"
+	"mfussenegger/nvim-dap",
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		config = function() require "plugin-configs.mason" end,
+	},
+	"theHamsta/nvim-dap-virtual-text",
+	"jbyuki/one-small-step-for-vimkind",
 }
