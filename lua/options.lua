@@ -73,7 +73,7 @@ local autoCommands = {
 		-- Reload vim config automatically
 		{
 			"BufWritePost",
-			[[$VIM_PATH/*.lua nested source $MYVIMRC | PackerSync | PackerCompile ]],
+			[[$VIM_PATH/*.lua nested source $MYVIMRC | PackerSync ]],
 		},
 	},
 	--	packer = {
@@ -117,6 +117,13 @@ local autoCommands = {
 		{ "BufRead,BufNewFile", "*.mpp", "setlocal filetype=cpp" },
 		{ "BufRead,BufNewFile", "*.cppm", "setlocal filetype=cpp" },
 	},
+	compile_commands_generate = {
+		{
+			"BufWritePost",
+			"*.cpp,*.hpp,*.c,*.h,*.cc,*.hh,*.cxx,*.hxx,*.m,*.mm",
+			"silent! exec 'make compile_commands.json'",
+		}
+	}
 }
 
 AUGroups.CreateFrom(autoCommands)

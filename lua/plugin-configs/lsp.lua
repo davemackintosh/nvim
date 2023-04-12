@@ -35,11 +35,25 @@ local on_attach = function(_, bufnr)
 	vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
 end
 
-lsp_defaults.capabilities.offsetEncoding = "utf-32"
+local function cloneTable(t)
+	local t2 = {}
+	for k, v in pairs(t) do
+		t2[k] = v
+	end
+	return t2
+end
+
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
+		local capabilities = cloneTable(lsp_defaults.capabilities)
+		-- Don't set the offset encoding for rust-analyzer as it doesn't
+		-- support it.
+		if server_name ~= "rust_analyzer" then
+			capabilities.offsetEncoding = "utf-32"
+		end
+
 		lspconfig[server_name].setup {
-			capabilities = lsp_defaults.capabilities,
+			capabilities = capabilities,
 			on_attach = on_attach,
 		}
 	end,
