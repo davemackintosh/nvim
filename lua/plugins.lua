@@ -10,14 +10,7 @@ return {
 	},
 	"ray-x/lsp_signature.nvim",
 	"onsails/lspkind.nvim",
-	--
-	-- Visualize lsp progress
-	{
-		"j-hui/fidget.nvim",
-		config = function()
-			require("fidget").setup()
-		end,
-	},
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -141,6 +134,15 @@ return {
 	{
 		"yamatsum/nvim-nonicons",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
+	},
+	{
+		"folke/noice.nvim",
+		config = function()
+			require "plugin-configs.noice"
+		end,
+		dependencies = {
+			"MunifTanjim/nui.nvim"
+		}
 	},
 	"ap/vim-css-color",
 	{
