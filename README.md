@@ -27,11 +27,12 @@ A familiar editor that enables:
   - CSS
   - HTML
   
-![image](https://user-images.githubusercontent.com/1430657/189747251-6f0dfabc-771c-4aa5-823e-e8da43ca09ad.png)
+![image](https://user-images.githubusercontent.com/1430657/231530973-c179e506-c6e0-4fe7-ab03-1f65d79c45a9.png)
+
 
 ## Mappings
 
-There aren't many, I like to keep it simple but these are basically burned in muscle memory for me now.
+There aren't many, I like to keep it simple but these are basically burned in muscle memory for me after years of developing with different editors.
 
 `<leader>` is `,`
 
