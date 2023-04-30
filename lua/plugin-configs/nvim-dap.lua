@@ -9,6 +9,7 @@ dap.adapters.lldb = {
 	command = '/usr/bin/lldb-vscode',
 	name = "lldb"
 }
+
 dap.configurations.cpp = {
 	{
 		name = "Launch",
@@ -58,6 +59,10 @@ dap.configurations.cpp = {
 		runInTerminal = false,
 	},
 }
+
+dap.configurations.c = dap.configurations.cpp
+
+require("dap-go").setup {}
 
 vim.cmd [[
 	nnoremap <silent> <F5> :lua require"dap".continue()<CR>
