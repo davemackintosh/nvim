@@ -20,14 +20,14 @@ o.undofile = true                           -- enable/disable undo file creation
 o.undodir = fn.stdpath "data" .. "/undodir" -- set undo directory
 o.history = 500                             -- Use the 'history' option to set the number of lines from command mode that are remembered.
 o.clipboard = "unnamedplus"                 -- allows neovim to access the system clipboard
-o.fileencoding = "utf-8"                    -- the encoding written to a file
+-- o.fileencoding = "utf-8"                    -- the encoding written to a file
 o.conceallevel = 0                          -- so that `` is visible in markdown files
 o.cursorline = false                        -- hide the cursor line
 o.number = true
 o.relativenumber = true
 o.cmdheight = 1        -- space for displaying messages/commands
 o.showmode = false     -- we don't need to see things like -- INSERT -- anymore
-o.showtabline = 2      -- always show tabs
+o.showtabline = 0      -- always show tabs
 o.laststatus = 3
 o.smartcase = true     -- smart case
 o.smartindent = true   -- make indenting smarter again
@@ -41,7 +41,7 @@ o.scrolloff = 3        -- Minimal number of screen lines to keep above and below
 o.sidescrolloff = 5    -- The minimal number of columns to scroll horizontally
 o.hlsearch = true      -- highlight all matches on previous search pattern
 o.ignorecase = true    -- ignore case in search patterns
-o.foldenable = false   -- disable folding; enable with zi
+o.foldenable = true    -- disable folding; enable with zi
 o.foldmethod = "expr"
 o.foldexpr = "nvim_treesitter#foldexpr()"
 o.fillchars = {
@@ -69,34 +69,8 @@ o.wildignore = [[
 
 -- Register the AUGroups and autocommands
 local autoCommands = {
-	reload_vimrc = {
-		-- Reload vim config automatically
-		{
-			"BufWritePost",
-			[[$VIM_PATH/*.lua nested source $MYVIMRC | PackerSync ]],
-		},
-	},
-	--	packer = {
-	--		{ "BufWritePost", "plugins.lua", "PackerSync" },
-	--	},
-	colorizeMsgArea = {
-		{
-			"BufEnter",
-			"*",
-			[[lua require "plugin-configs.msg-area".colorize_msg_area()]],
-		},
-	},
-	folds = {
-		{
-			"BufReadPost",
-			"*",
-			[[
-		set foldmethod=expr
-		set foldexpr=nvim_treesitter#foldexpr()
-	]],
-		},
-		-- { "BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter", "*\(NvimTree\|Telescope\)\@<!", "normal zR" },
-		-- { "BufAdd,BufEnter,BufNew,BufNewFile,BufWinEnter", "*\(NvimTree\|Telescope\)\@<!", "normal zx" },
+	open_folds = {
+		{ "BufEnter", "*", "normal zx zR" }
 	},
 	-- format on write.
 	format_on_write = {
@@ -112,10 +86,6 @@ local autoCommands = {
 			"*.go",
 			'lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })',
 		},
-	},
-	cpp_modules = {
-		{ "BufRead,BufNewFile", "*.mpp",  "setlocal filetype=cpp" },
-		{ "BufRead,BufNewFile", "*.cppm", "setlocal filetype=cpp" },
 	},
 	compile_commands_generate = {
 		{
