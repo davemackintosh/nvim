@@ -2,7 +2,10 @@ return {
 	-- Editor support.
 	-- The next few plugins are really the IDE feel.
 	"wbthomason/packer.nvim",
-	"williamboman/mason.nvim",
+	{
+		"williamboman/mason.nvim",
+		build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+	},
 	"williamboman/mason-lspconfig.nvim",
 	{
 		"neovim/nvim-lspconfig",
@@ -31,7 +34,13 @@ return {
 		config = function() require "plugin-configs.refactoring" end,
 	},
 	"editorconfig/editorconfig-vim",
-	"L3MON4D3/LuaSnip",
+	{
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		version = "1.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+		-- install jsregexp (optional!).
+		build = "make install_jsregexp"
+	},
 	{
 		"hrsh7th/nvim-cmp",
 		config = function() require "plugin-configs.cmp" end,
@@ -79,11 +88,11 @@ return {
 		"aserowy/tmux.nvim",
 		config = function() require "plugin-configs.tmux" end,
 	},
-	{
-		"akinsho/bufferline.nvim",
-		dependencies = "kyazdani42/nvim-web-devicons",
-		config = function() require "plugin-configs.bufferline" end,
-	},
+	--	{
+	--		"akinsho/bufferline.nvim",
+	--		dependencies = "kyazdani42/nvim-web-devicons",
+	--		config = function() require "plugin-configs.bufferline" end,
+	--	},
 
 	-- File management.
 	{
@@ -191,6 +200,7 @@ return {
 	-- Debugging
 	{
 		"rcarriga/nvim-dap-ui",
+		"leoluz/nvim-dap-go",
 		config = function() require "plugin-configs.nvim-dap-gui" end,
 	},
 	"mfussenegger/nvim-dap",
