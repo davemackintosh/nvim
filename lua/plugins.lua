@@ -4,12 +4,14 @@ return {
 	"wbthomason/packer.nvim",
 	{
 		"williamboman/mason.nvim",
-		build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
 	},
 	"williamboman/mason-lspconfig.nvim",
 	{
 		"neovim/nvim-lspconfig",
-		config = function() require "plugin-configs.lsp" end,
+		config = function()
+			require "plugin-configs.lsp"
+		end,
 	},
 	"ray-x/lsp_signature.nvim",
 	"onsails/lspkind.nvim",
@@ -21,6 +23,7 @@ return {
 			require("nvim-treesitter.configs").setup {
 				highlight = {
 					enable = true,
+					auto_install = true,
 				},
 			}
 		end,
@@ -31,7 +34,9 @@ return {
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
-		config = function() require "plugin-configs.refactoring" end,
+		config = function()
+			require "plugin-configs.refactoring"
+		end,
 	},
 	"editorconfig/editorconfig-vim",
 	{
@@ -39,11 +44,14 @@ return {
 		-- follow latest release.
 		version = "1.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 		-- install jsregexp (optional!).
-		build = "make install_jsregexp"
+		build = "make install_jsregexp",
 	},
+	"luochen1990/rainbow",
 	{
 		"hrsh7th/nvim-cmp",
-		config = function() require "plugin-configs.cmp" end,
+		config = function()
+			require "plugin-configs.cmp"
+		end,
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"hrsh7th/cmp-nvim-lsp",
@@ -60,11 +68,15 @@ return {
 	"lbrayner/vim-rzip",
 	{
 		"b0o/mapx.nvim",
-		config = function() require "keyboard-mappings" end,
+		config = function()
+			require "keyboard-mappings"
+		end,
 	},
 	{
 		"folke/trouble.nvim",
-		config = function() require "plugin-configs.trouble" end,
+		config = function()
+			require "plugin-configs.trouble"
+		end,
 	},
 	"f-person/git-blame.nvim",
 	"lewis6991/gitsigns.nvim",
@@ -81,12 +93,16 @@ return {
 	{
 		"kosayoda/nvim-lightbulb",
 		dependencies = "antoinemadec/FixCursorHold.nvim",
-		config = function() require("nvim-lightbulb").setup({ autocmd = { enabled = true } }) end,
+		config = function()
+			require("nvim-lightbulb").setup { autocmd = { enabled = true } }
+		end,
 	},
 	-- Window management
 	{
 		"aserowy/tmux.nvim",
-		config = function() require "plugin-configs.tmux" end,
+		config = function()
+			require "plugin-configs.tmux"
+		end,
 	},
 	--	{
 	--		"akinsho/bufferline.nvim",
@@ -100,7 +116,9 @@ return {
 		dependencies = {
 			"kyazdani42/nvim-web-devicons",
 		},
-		config = function() require "plugin-configs.nvim-tree" end,
+		config = function()
+			require "plugin-configs.nvim-tree"
+		end,
 	},
 
 	-- Code helpers.
@@ -128,13 +146,17 @@ return {
 	"sebdah/vim-delve",
 	{
 		"windwp/nvim-autopairs",
-		config = function() require "plugin-configs.autopairs" end,
+		config = function()
+			require "plugin-configs.autopairs"
+		end,
 	},
 	"tpope/vim-endwise",
 	"tpope/vim-fugitive",
 	{
 		"simrat39/symbols-outline.nvim",
-		config = function() require("symbols-outline").setup() end,
+		config = function()
+			require("symbols-outline").setup()
+		end,
 	},
 	"tpope/vim-surround",
 	"vim-test/vim-test",
@@ -144,20 +166,13 @@ return {
 		"yamatsum/nvim-nonicons",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
 	},
-	{
-		"folke/noice.nvim",
-		config = function()
-			require "plugin-configs.noice"
-		end,
-		dependencies = {
-			"MunifTanjim/nui.nvim"
-		}
-	},
 	"ap/vim-css-color",
 	{
 		"glepnir/galaxyline.nvim",
 		branch = "main",
-		config = function() require "plugin-configs.galaxyline" end,
+		config = function()
+			require "plugin-configs.galaxyline"
+		end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -166,7 +181,9 @@ return {
 			"nvim-telescope/telescope-packer.nvim",
 			"nvim-telescope/telescope-dap.nvim",
 		},
-		config = function() require "plugin-configs.telescope" end,
+		config = function()
+			require "plugin-configs.telescope"
+		end,
 	},
 	{
 		"goolord/alpha-nvim",
@@ -196,17 +213,25 @@ return {
 			]]
 		end,
 	},
+	--	{
+	--		"marko-cerovac/material.nvim",
+	--		config = [[ require "plugin-configs.theme" ]],
+	--	},
 
 	-- Debugging
 	{
 		"rcarriga/nvim-dap-ui",
 		"leoluz/nvim-dap-go",
-		config = function() require "plugin-configs.nvim-dap-gui" end,
+		config = function()
+			require "plugin-configs.nvim-dap-gui"
+		end,
 	},
 	"mfussenegger/nvim-dap",
 	{
 		"jay-babu/mason-nvim-dap.nvim",
-		config = function() require "plugin-configs.mason" end,
+		config = function()
+			require "plugin-configs.mason"
+		end,
 	},
 	"theHamsta/nvim-dap-virtual-text",
 	"jbyuki/one-small-step-for-vimkind",

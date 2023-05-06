@@ -38,14 +38,7 @@ require("material").setup {
 		"trouble",
 		"which-key",
 	},
-	lualine_style = "default"
+	lualine_style = "default",
 }
-vim.g.material_style = "palenight"
-vim.cmd [[ colorscheme material ]]
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>mm",
-	[[<Cmd>lua require("material.functions").toggle_style()<CR>]],
-	{ noremap = true, silent = true }
-)
-
+vim.g.material_style = "deep ocean"
+vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
