@@ -14,19 +14,8 @@ mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")                          -- S
 mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")                                -- Show workspace issues.
 mapx.inoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" }) -- Run go tests in insert mode.
 mapx.nnoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" }) -- Run go tests in normal mode.
-mapx.inoremap(
-	"<C-t>",
-	"<cmd>:!yarn test %<Cr>",
-	"silent",
-	{ ft = "typescript" }
-)
-mapx.nnoremap(
-	"<C-t>",
-	"<cmd>:!yarn test %<Cr>",
-	"silent",
-	{ ft = "typescript" }
-)
-mapx.nnoremap("<C-wq>", "<cmd>:bd<CR>")
+mapx.nnoremap("<C-A>", "<cmd>LspRestart<CR>")
+mapx.nnoremap("<C-wq>", "<cmd>bd<CR>")
 mapx.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 mapx.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
 mapx.nnoremap(
