@@ -81,17 +81,6 @@ local autoCommands = {
 	format_on_write = {
 		{ "BufWritePre", "*", "lua vim.lsp.buf.format()" },
 	},
-	-- EslintFixAll on save typescript and javascript files.
-	eslint_fix_all = {
-		{ "BufWritePre", "*.ts,*.js,*.tsx", "EslintFixAll" },
-
-		-- Do go auto imports on save.
-		{
-			"BufWritePre",
-			"*.go",
-			'lua vim.lsp.buf.code_action({ context = { only = { "source.organizeImports" } }, apply = true })',
-		},
-	},
 	compile_commands_generate = {
 		{
 			"BufWritePost",
