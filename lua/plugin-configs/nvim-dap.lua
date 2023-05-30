@@ -9,6 +9,13 @@ dap.adapters.lldb = {
 	command = '/usr/bin/lldb-vscode',
 	name = "lldb"
 }
+dap.adapters.go = function(callback, config)
+	-- Wait for delve to start
+	vim.defer_fn(function()
+			callback({ type = "server", host = "127.0.0.1", port = "port" })
+		end,
+		100)
+end
 
 dap.configurations.cpp = {
 	{

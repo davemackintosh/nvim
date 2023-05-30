@@ -16,6 +16,8 @@ return {
 	"ray-x/lsp_signature.nvim",
 	"onsails/lspkind.nvim",
 
+	{ "folke/neodev.nvim", opts = {} },
+
 	{
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
@@ -204,29 +206,35 @@ return {
 			vim.notify = notify
 		end,
 	},
+	--	{
+	--		"catppuccin/vim",
+	--		config = function()
+	--			vim.cmd [[
+	--				colorscheme catppuccin_mocha
+	--				hi Normal guibg=NONE ctermbg=NONE
+	--			]]
+	--		end,
+	--	},
 	{
-		"catppuccin/vim",
+		"marko-cerovac/material.nvim",
 		config = function()
+			require "plugin-configs.theme"
 			vim.cmd [[
-				colorscheme catppuccin_mocha
+				colorscheme material
 				hi Normal guibg=NONE ctermbg=NONE
 			]]
-		end,
+		end
 	},
-	--	{
-	--		"marko-cerovac/material.nvim",
-	--		config = [[ require "plugin-configs.theme" ]],
-	--	},
 
 	-- Debugging
+	"mfussenegger/nvim-dap",
+	"leoluz/nvim-dap-go",
 	{
 		"rcarriga/nvim-dap-ui",
-		"leoluz/nvim-dap-go",
 		config = function()
 			require "plugin-configs.nvim-dap-gui"
 		end,
 	},
-	"mfussenegger/nvim-dap",
 	{
 		"jay-babu/mason-nvim-dap.nvim",
 		config = function()

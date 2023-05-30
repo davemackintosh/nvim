@@ -1,3 +1,6 @@
+require("neodev").setup({
+	-- add any options here, or leave empty to use the default settings
+})
 local lspconfig = require "lspconfig"
 local lsp_defaults = lspconfig.util.default_config
 
@@ -85,12 +88,12 @@ local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.etljson = {
 	install_info = {
 		url = "https://github.com/davemackintosh/tree-sitter-etljson.git", -- local path or git repo
-		files = { "src/parser.c" }, -- note that some parsers also require src/scanner.c or src/scanner.cc
+		files = { "src/parser.c" },                                  -- note that some parsers also require src/scanner.c or src/scanner.cc
 		branch = "main",
-		generate_requires_npm = true, -- if stand-alone parser without npm dependencies
-		requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+		generate_requires_npm = true,                                -- if stand-alone parser without npm dependencies
+		requires_generate_from_grammar = false,                      -- if folder contains pre-generated src/parser.c
 	},
-	filetype = "etljson", -- if filetype does not match the parser name
+	filetype = "etljson",                                            -- if filetype does not match the parser name
 }
 
 vim.filetype.add {
