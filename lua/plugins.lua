@@ -15,6 +15,16 @@ return {
 	},
 	"ray-x/lsp_signature.nvim",
 	"onsails/lspkind.nvim",
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			require "plugin-configs.noice"
+		end,
+	},
 
 	{ "folke/neodev.nvim", opts = {} },
 
@@ -223,7 +233,7 @@ return {
 				colorscheme material
 				hi Normal guibg=NONE ctermbg=NONE
 			]]
-		end
+		end,
 	},
 
 	-- Debugging
