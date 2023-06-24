@@ -40,16 +40,6 @@ return {
 			}
 		end,
 	},
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
-			{ "nvim-treesitter/nvim-treesitter" },
-		},
-		config = function()
-			require "plugin-configs.refactoring"
-		end,
-	},
 	"editorconfig/editorconfig-vim",
 	{
 		"L3MON4D3/LuaSnip",

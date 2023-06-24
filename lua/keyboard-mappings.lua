@@ -34,10 +34,7 @@ mapx.nnoremap("<C-A>", "<cmd>LspRestart<CR>")
 mapx.nnoremap("<C-wq>", "<cmd>bd<CR>")
 mapx.nnoremap("[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>")
 mapx.nnoremap("]d", "<cmd>lua vim.diagnostic.goto_next()<CR>")
-vim.api.nvim_set_keymap("v", "<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
-	{ noremap = true, silent = true, expr = false })
-vim.api.nvim_set_keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]],
-	{ noremap = true, silent = true, expr = false })
+mapx.nnoremap("<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 mapx.nnoremap(
 	"[c",
 	"<cmd>lua vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR})<CR>"

@@ -4,14 +4,14 @@ local has_words_before = function()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0
 		and vim.api
-				.nvim_buf_get_lines(0, line - 1, line, true)[1]
-				:sub(col, col)
-				:match "%s"
-			== nil
+		.nvim_buf_get_lines(0, line - 1, line, true)[1]
+		:sub(col, col)
+		:match "%s"
+		== nil
 end
 
 cmp.setup {
-	completion = { completeopt = "menu,menuone,noinsert", keyword_length = 3 },
+	completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
 	experimental = { native_menu = false, ghost_text = false },
 	snippet = {
 		expand = function(args)
