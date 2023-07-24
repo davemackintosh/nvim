@@ -40,6 +40,6 @@ require("material").setup {
 	},
 	lualine_style = "default",
 }
---vim.g.material_style = "deep ocean"
-vim.g.material_style = "lighter"
+vim.g.material_style = "deep ocean"
+--vim.g.material_style = "lighter"
 vim.cmd [[ hi Normal guibg=NONE ctermbg=NONE ]]
