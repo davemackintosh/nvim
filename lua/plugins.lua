@@ -158,7 +158,6 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-packer.nvim",
 			"nvim-telescope/telescope-dap.nvim",
 		},
 		config = function()
