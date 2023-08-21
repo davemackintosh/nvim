@@ -3,7 +3,7 @@ require("material").setup {
 		terminal = true, -- Enable contrast for the built-in terminal
 		sidebars = true, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
 		floating_windows = true, -- Enable contrast for floating windows
-		cursor_line = false, -- Enable darker background for the cursor line
+		cursor_line = true, -- Enable darker background for the cursor line
 		non_current_windows = false, -- Enable darker background for non-current windows
 		filetypes = {
 			"packer", -- Enable contrast for packer

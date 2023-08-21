@@ -1,7 +1,6 @@
 return {
 	-- Editor support.
 	-- The next few plugins are really the IDE feel.
-	"wbthomason/packer.nvim",
 	{
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
@@ -124,27 +123,6 @@ return {
 	},
 
 	-- Code helpers.
---	{
---		"github/copilot.vim",
---		config = function()
---			vim.g.copilot_filetypes = {
---				["*"] = false,
---				["bash"] = true,
---				["go"] = true,
---				["typescript"] = true,
---				["javascript"] = true,
---				["typescriptreact"] = true,
---				["javascriptreact"] = true,
---				["rust"] = true,
---				["python"] = true,
---				["lua"] = true,
---				["c"] = true,
---				["cpp"] = true,
---				["swift"] = true,
---				["vim"] = true,
---			}
---		end,
---	},
 	"sebdah/vim-delve",
 	{
 		"windwp/nvim-autopairs",
@@ -210,21 +188,21 @@ return {
 		"catppuccin/vim",
 		config = function()
 			vim.cmd [[
-				colorscheme catppuccin_mocha
-				hi Normal guibg=NONE ctermbg=NONE
-			]]
+					colorscheme catppuccin_mocha
+					hi Normal guibg=NONE ctermbg=NONE
+				]]
 		end,
 	},
---	{
---		"marko-cerovac/material.nvim",
---		config = function()
---			require "plugin-configs.theme"
---			vim.cmd [[
---				colorscheme material
---				hi Normal guibg=NONE ctermbg=NONE
---			]]
---		end,
---	},
+	--	{
+	--		"marko-cerovac/material.nvim",
+	--		config = function()
+	--			require "plugin-configs.theme"
+	--			vim.cmd [[
+	--				colorscheme material
+	--				hi Normal guibg=NONE ctermbg=NONE
+	--			]]
+	--		end,
+	--	},
 
 	-- Debugging
 	"mfussenegger/nvim-dap",
