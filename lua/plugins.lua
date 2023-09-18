@@ -140,6 +140,13 @@ return {
 	},
 	"tpope/vim-surround",
 	"vim-test/vim-test",
+	{
+		"davemackintosh/import-cost.nvim",
+		build = "sh install.sh yarn",
+		-- if on windows
+		-- build = 'pwsh install.ps1 yarn',
+		config = true,
+	},
 
 	-- Visual.
 	{
