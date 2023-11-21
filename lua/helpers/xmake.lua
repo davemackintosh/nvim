@@ -18,7 +18,7 @@ function M.getXMakeInfoAsTable()
 		packagedir_cache = "",
 	}
 
-	local xmakeInfo = vim.fn.system("xmake show")
+	local xmakeInfo = vim.fn.system "xmake show"
 	local xmakeInfoLines = vim.split(xmakeInfo, "\n")
 
 	for _, line in pairs(xmakeInfoLines) do
@@ -30,7 +30,7 @@ function M.getXMakeInfoAsTable()
 		end
 	end
 
-	local xmakeTargets = vim.fn.system("xmake show -l targets")
+	local xmakeTargets = vim.fn.system "xmake show -l targets"
 	local xmakeTargets = vim.split(xmakeTargets, " ")
 
 	return xmakeInfoTable, xmakeTargets

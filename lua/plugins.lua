@@ -3,7 +3,7 @@ return {
 	-- The next few plugins are really the IDE feel.
 	{
 		"williamboman/mason.nvim",
-		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+		run = ":MasonUpdate", -- :MasonUpdate updates registry contents
 	},
 	"williamboman/mason-lspconfig.nvim",
 	{
@@ -152,13 +152,21 @@ return {
 		"simrat39/rust-tools.nvim",
 		config = function()
 			require("rust-tools").setup()
-		end
+		end,
 	},
 	{
 		"pest-parser/pest.vim",
 		config = function()
 			require("pest-vim").setup {}
-		end
+		end,
+	},
+	{
+		"creativenull/efmls-configs-nvim",
+		version = "v1.x.x", -- version is optional, but recommended
+		dependencies = { "neovim/nvim-lspconfig" },
+		config = function()
+			require "plugin-configs.efmls"
+		end,
 	},
 
 	-- Visual.
