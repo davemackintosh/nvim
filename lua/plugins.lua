@@ -148,11 +148,16 @@ return {
 		-- build = 'pwsh install.ps1 yarn',
 		config = true,
 	},
-	'neovim/nvim-lspconfig',
 	{
 		"simrat39/rust-tools.nvim",
 		config = function()
 			require("rust-tools").setup()
+		end
+	},
+	{
+		"pest-parser/pest.vim",
+		config = function()
+			require("pest-vim").setup {}
 		end
 	},
 
