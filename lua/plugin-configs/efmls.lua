@@ -6,6 +6,8 @@ languages = vim.tbl_extend("force", languages, {
 	go = {
 		require "efmls-configs.linters.golangci_lint",
 		require "efmls-configs.formatters.goimports",
+		require "efmls-configs.formatters.gofumpt",
+		require "efmls-configs.formatters.golines",
 	},
 })
 
@@ -22,5 +24,5 @@ local efmls_config = {
 }
 
 require("lspconfig").efm.setup(vim.tbl_extend("force", efmls_config, {
-	capabilities = capabilities,
+	capabilities = lsp_defaults.capabilities,
 }))
