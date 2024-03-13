@@ -12,3 +12,5 @@ require("nvim-tree").setup {
 		exclude = { ".gitignore" },
 	},
 }
+
+vim.cmd([[:hi NvimTreeNormal guibg=#050515]])
