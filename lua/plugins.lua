@@ -25,7 +25,12 @@ return {
 		end,
 	},
 
-	"folke/neodev.nvim",
+	{
+		"folke/neodev.nvim",
+		config = function()
+			require("neodev").setup()
+		end
+	},
 
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -43,13 +48,20 @@ return {
 		end,
 	},
 	"editorconfig/editorconfig-vim",
-	{ 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
 	{
-		"L3MON4D3/LuaSnip",
-		-- follow latest release.
-		version = "1.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-		-- install jsregexp (optional!).
-		build = "make install_jsregexp",
+		'codota/tabnine-nvim',
+		build = "./dl_binaries.sh",
+		config = function()
+			require('tabnine').setup({
+				disable_auto_comment = true,
+				accept_keymap = "<Tab>",
+				dismiss_keymap = "<C-]>",
+				debounce_ms = 800,
+				suggestion_color = { gui = "#808080", cterm = 244 },
+				exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+				log_file_path = nil, -- absolute path to Tabnine log file
+			})
+		end
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -129,13 +141,6 @@ return {
 		end,
 	},
 	"tpope/vim-surround",
-	{
-		"creativenull/efmls-configs-nvim",
-		dependencies = { "neovim/nvim-lspconfig" },
-		config = function()
-			require "plugin-configs.efmls"
-		end,
-	},
 
 	-- Visual.
 	{
@@ -175,9 +180,11 @@ return {
 	{
 		"rcarriga/nvim-notify",
 		config = function()
-			vim.notify = require "notify".setup {
+			local notify = require "notify"
+			notify.setup {
 				background_colour = "#000000",
 			}
+			vim.notify = notify
 		end,
 	},
 	{
@@ -188,7 +195,12 @@ return {
 	},
 
 	-- Debugging
-	"mfussenegger/nvim-dap",
+	{
+		"mfussenegger/nvim-dap",
+		config = function()
+			require "plugin-configs.nvim-dap"
+		end
+	},
 	"leoluz/nvim-dap-go",
 	{
 		"rcarriga/nvim-dap-ui",

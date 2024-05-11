@@ -4,11 +4,10 @@ vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
-vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help)
 vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
+
 local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
@@ -23,11 +22,11 @@ mapx.nnoremap("<C-k>", "<C-w>k")
 mapx.nnoremap("<C-l>", "<C-w>l")
 
 -- Utils
-mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>") -- Toggle file explorer.
-mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>") -- Search for files.
-mapx.nnoremap("<C-s>", ":SymbolsOutline<Cr>") -- Show symbols outline.
-mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>") -- Search in files.
-mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>") -- Show workspace issues.
+mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")                               -- Toggle file explorer.
+mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>")                         -- Search for files.
+mapx.nnoremap("<C-s>", ":SymbolsOutline<Cr>")                               -- Show symbols outline.
+mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")                          -- Search in files.
+mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")                                -- Show workspace issues.
 mapx.inoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" }) -- Run go tests in insert mode.
 mapx.nnoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" }) -- Run go tests in normal mode.
 mapx.nnoremap("<C-A>", "<cmd>LspRestart<CR>")
