@@ -25,21 +25,25 @@ return {
 		end,
 	},
 
-	{ "folke/neodev.nvim", opts = {} },
+	"folke/neodev.nvim",
 
 	{
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup {
-				highlight = {
+				highlight = true,
+				enable = true,
+				auto_install = true,
+				rainbow = {
 					enable = true,
-					auto_install = true,
-				},
+					extended_mode = true,
+					max_file_lines = nil,
+				}
 			}
 		end,
 	},
 	"editorconfig/editorconfig-vim",
+	{ 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
 	{
 		"L3MON4D3/LuaSnip",
 		-- follow latest release.
@@ -47,7 +51,6 @@ return {
 		-- install jsregexp (optional!).
 		build = "make install_jsregexp",
 	},
-	"luochen1990/rainbow",
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
@@ -66,7 +69,6 @@ return {
 			"hrsh7th/cmp-nvim-lsp-document-symbol",
 		},
 	},
-	"lbrayner/vim-rzip",
 	{
 		"b0o/mapx.nvim",
 		config = function()
@@ -91,13 +93,6 @@ return {
 		"weilbith/nvim-code-action-menu",
 		cmd = "CodeActionMenu",
 	},
-	{
-		"kosayoda/nvim-lightbulb",
-		dependencies = "antoinemadec/FixCursorHold.nvim",
-		config = function()
-			require("nvim-lightbulb").setup { autocmd = { enabled = true } }
-		end,
-	},
 	-- Window management
 	{
 		"aserowy/tmux.nvim",
@@ -105,12 +100,6 @@ return {
 			require "plugin-configs.tmux"
 		end,
 	},
-	--	{
-
-	--		"akinsho/bufferline.nvim",
-	--		dependencies = "kyazdani42/nvim-web-devicons",
-	--		config = function() require "plugin-configs.bufferline" end,
-	--	},
 
 	-- File management.
 	{
@@ -140,41 +129,19 @@ return {
 		end,
 	},
 	"tpope/vim-surround",
-	"vim-test/vim-test",
 	{
-		"davemackintosh/import-cost.nvim",
-		build = "sh install.sh yarn",
-		-- if on windows
-		-- build = 'pwsh install.ps1 yarn',
-		config = true,
-	},
-	{
-		"simrat39/rust-tools.nvim",
+		"creativenull/efmls-configs-nvim",
+		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
-			require("rust-tools").setup()
+			require "plugin-configs.efmls"
 		end,
 	},
-	{
-		"pest-parser/pest.vim",
-		config = function()
-			require("pest-vim").setup {}
-		end,
-	},
-	--	{
-	--		"creativenull/efmls-configs-nvim",
-	--		version = "v1.x.x", -- version is optional, but recommended
-	--		dependencies = { "neovim/nvim-lspconfig" },
-	--		config = function()
-	--			require "plugin-configs.efmls"
-	--		end,
-	--	},
 
 	-- Visual.
 	{
 		"yamatsum/nvim-nonicons",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
 	},
-	"ap/vim-css-color",
 	{
 		"glepnir/galaxyline.nvim",
 		branch = "main",
@@ -193,6 +160,12 @@ return {
 		end,
 	},
 	{
+		"ldelossa/nvim-dap-projects",
+		config = function()
+			require("nvim-dap-projects").search_project_config()
+		end
+	},
+	{
 		"goolord/alpha-nvim",
 		alpha = false,
 		config = function()
@@ -202,48 +175,28 @@ return {
 	{
 		"rcarriga/nvim-notify",
 		config = function()
-			local notify = require "notify"
-
-			notify.setup {
+			vim.notify = require "notify".setup {
 				background_colour = "#000000",
 			}
-
-			vim.notify = notify
 		end,
 	},
 	{
 		"catppuccin/vim",
 		config = function()
-			vim.cmd [[
-					colorscheme catppuccin_mocha
-					hi Normal guibg=NONE ctermbg=NONE
-				]]
+			vim.cmd [[colorscheme catppuccin_mocha]]
 		end,
 	},
-	--	{
-	--		"marko-cerovac/material.nvim",
-	--		config = function()
-	--			require "plugin-configs.theme"
-	--			vim.cmd [[
-	--				colorscheme material
-	--				hi Normal guibg=NONE ctermbg=NONE
-	--			]]
-	--		end,
-	--	},
 
 	-- Debugging
 	"mfussenegger/nvim-dap",
 	"leoluz/nvim-dap-go",
 	{
 		"rcarriga/nvim-dap-ui",
+		dependencies = {
+			"nvim-neotest/nvim-nio"
+		},
 		config = function()
 			require "plugin-configs.nvim-dap-gui"
-		end,
-	},
-	{
-		"jay-babu/mason-nvim-dap.nvim",
-		config = function()
-			require "plugin-configs.mason"
 		end,
 	},
 	"theHamsta/nvim-dap-virtual-text",

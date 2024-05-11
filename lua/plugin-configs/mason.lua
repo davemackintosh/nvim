@@ -1,9 +1,6 @@
 require("mason-nvim-dap").setup {
-	ensure_installed = {
-		"delve",
-		"python",
-	},
-	automatic_setup = true,
+	ensure_installed = {},
+	automatic_installation = false,
 }
 
 require "plugin-configs.nvim-dap"
