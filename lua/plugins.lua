@@ -127,6 +127,11 @@ return {
 	-- Code helpers.
 	"sebdah/vim-delve",
 	{
+		'mrcjkb/rustaceanvim',
+		version = '^4', -- Recommended
+		lazy = false, -- This plugin is already lazy
+	},
+	{
 		"windwp/nvim-autopairs",
 		config = function()
 			require "plugin-configs.autopairs"
