@@ -1,23 +1,7 @@
-local luasnip = require "luasnip"
 local cmp = require "cmp"
-local has_words_before = function()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0
-		and vim.api
-				.nvim_buf_get_lines(0, line - 1, line, true)[1]
-				:sub(col, col)
-				:match "%s"
-			== nil
-end
-
 cmp.setup {
 	completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
 	experimental = { native_menu = false, ghost_text = false },
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
-	},
 	formatting = {
 		format = require("lspkind").cmp_format {
 			mode = "symbol_text",
@@ -40,7 +24,6 @@ cmp.setup {
 		{ name = "nvim_lsp" },
 		{ name = "treesitter" },
 		{ name = "buffer" },
-		{ name = "luasnip" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
 		{ name = "nvim_lsp_signature_help" },

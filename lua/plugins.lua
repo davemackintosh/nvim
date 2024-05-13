@@ -72,8 +72,6 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"hrsh7th/cmp-nvim-lsp",
 			"onsails/lspkind-nvim",
-			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lua",
@@ -192,11 +190,42 @@ return {
 			vim.notify = notify
 		end,
 	},
+	--	{
+	--		"catppuccin/vim",
+	--		config = function()
+	--			vim.cmd [[colorscheme catppuccin_mocha]]
+	--		end,
+	--	},
 	{
-		"catppuccin/vim",
+		"webhooked/norrsken.nvim",
 		config = function()
-			vim.cmd [[colorscheme catppuccin_mocha]]
-		end,
+			local norrsken = require("norrsken")
+			norrsken.setup({
+				-- show the '~' characters after the end of buffers
+				show_end_of_buffer = true, -- default false
+				-- use transparent background
+				transparent_bg = true, -- default false
+				-- set italics
+				italics = {
+					comments = true, -- default false
+					keywords = true, -- default false
+				},
+				-- You can use overrides as table like this
+				-- overrides = {
+				--   NonText = { fg = "white" }, -- set NonText fg to white
+				--   NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
+				--   Nothing = {} -- clear highlight of Nothing
+				-- },
+				-- Or you can also use it like a function to get color from theme
+				-- overrides = function (colors)
+				--   return {
+				--     NonText = { fg = colors.white }, -- set NonText fg to white of theme
+				--   }
+				-- end,
+			})
+
+			vim.cmd [[colorscheme norrsken]]
+		end
 	},
 
 	-- Debugging
