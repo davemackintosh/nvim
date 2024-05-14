@@ -11,7 +11,33 @@ require("neodev").setup {
 }
 local lspconfig = require "lspconfig"
 local lsp_defaults = lspconfig.util.default_config
-local pattern = require("lspconfig.util").root_pattern
+
+local _border = {
+	{ "🭽", "FloatBorder" },
+	{ "▔", "FloatBorder" },
+	{ "🭾", "FloatBorder" },
+	{ "▕", "FloatBorder" },
+	{ "🭿", "FloatBorder" },
+	{ "▁", "FloatBorder" },
+	{ "🭼", "FloatBorder" },
+	{ "▏", "FloatBorder" },
+}
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+	vim.lsp.handlers.hover, {
+		border = _border
+	}
+)
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+	vim.lsp.handlers.signature_help, {
+		border = _border
+	}
+)
+
+vim.diagnostic.config {
+	float = { border = _border }
+}
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
 	"force",
@@ -34,13 +60,8 @@ require("mason-lspconfig").setup_handlers {
 	function(server_name)
 		local capabilities = cloneTable(lsp_defaults.capabilities)
 
-		-- Don't set the offset encoding for rust-analyzer as it doesn't
-		-- support it.
-		--		if server_name ~= "rust_analyzer" then
-		--			capabilities.offsetEncoding = "utf-32"
-		--		end
-
 		lspconfig[server_name].setup {
+			handlers = vim.lsp.handlers,
 			capabilities = capabilities,
 			root_dir = function()
 				return vim.fn.getcwd()
