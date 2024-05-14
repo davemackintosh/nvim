@@ -36,9 +36,9 @@ require("mason-lspconfig").setup_handlers {
 
 		-- Don't set the offset encoding for rust-analyzer as it doesn't
 		-- support it.
-		if server_name ~= "rust_analyzer" then
-			capabilities.offsetEncoding = "utf-32"
-		end
+		--		if server_name ~= "rust_analyzer" then
+		--			capabilities.offsetEncoding = "utf-32"
+		--		end
 
 		lspconfig[server_name].setup {
 			capabilities = capabilities,
