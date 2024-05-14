@@ -12,16 +12,7 @@ require("neodev").setup {
 local lspconfig = require "lspconfig"
 local lsp_defaults = lspconfig.util.default_config
 
-local _border = {
-	{ "🭽", "FloatBorder" },
-	{ "▔", "FloatBorder" },
-	{ "🭾", "FloatBorder" },
-	{ "▕", "FloatBorder" },
-	{ "🭿", "FloatBorder" },
-	{ "▁", "FloatBorder" },
-	{ "🭼", "FloatBorder" },
-	{ "▏", "FloatBorder" },
-}
+local _border = "rounded"
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 	vim.lsp.handlers.hover, {
@@ -38,6 +29,23 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
 vim.diagnostic.config {
 	float = { border = _border }
 }
+
+vim.diagnostic.config({
+	virtual_text = {
+		source = "if_many",
+	},
+	float = {
+		source = "if_many",
+	},
+})
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics, {
+		underline    = false,
+		virtual_text = false,
+		float        = { border = "rounded" },
+	}
+)
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
 	"force",
