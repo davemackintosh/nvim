@@ -1,7 +1,14 @@
 local cmp = require "cmp"
+local snippy = require('snippy')
+
 cmp.setup {
 	completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
 	experimental = { native_menu = false, ghost_text = false },
+	snippet = {
+		expand = function(args)
+			snippy.expand_snippet(args.body)
+		end,
+	},
 	formatting = {
 		format = require("lspkind").cmp_format {
 			mode = "symbol_text",
@@ -22,11 +29,12 @@ cmp.setup {
 	},
 	sources = {
 		{ name = "nvim_lsp" },
-		{ name = "treesitter" },
+		{ name = "nvim_lsp_signature_help" },
 		{ name = "buffer" },
+		{ name = "dotenv" },
+		{ name = "treesitter" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
-		{ name = "nvim_lsp_signature_help" },
 	},
 	window = {
 		completion = cmp.config.window.bordered(),

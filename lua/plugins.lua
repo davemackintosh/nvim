@@ -31,7 +31,23 @@ return {
 			require("neodev").setup()
 		end
 	},
-
+	{
+		"dcampos/nvim-snippy",
+		dependencies = { "honza/vim-snippets" },
+		config = function()
+			require('snippy').setup({
+				mappings = {
+					is = {
+						['<Tab>'] = 'expand_or_advance',
+						['<S-Tab>'] = 'previous',
+					},
+					nx = {
+						['<leader>x'] = 'cut_text',
+					},
+				},
+			})
+		end
+	},
 	{
 		"nvim-treesitter/nvim-treesitter",
 		config = function()
@@ -72,6 +88,7 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 			"hrsh7th/cmp-nvim-lsp",
 			"onsails/lspkind-nvim",
+			"SergioRibera/cmp-dotenv",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lua",
@@ -92,7 +109,12 @@ return {
 		end,
 	},
 	"f-person/git-blame.nvim",
-	"lewis6991/gitsigns.nvim",
+	{
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require('gitsigns').setup {}
+		end
+	},
 	{
 		"folke/which-key.nvim",
 		config = function()
@@ -135,14 +157,14 @@ return {
 			require "plugin-configs.autopairs"
 		end,
 	},
-	"tpope/vim-endwise",
-	"tpope/vim-fugitive",
 	{
 		"simrat39/symbols-outline.nvim",
 		config = function()
 			require("symbols-outline").setup()
 		end,
 	},
+	"tpope/vim-endwise",
+	"tpope/vim-fugitive",
 	"tpope/vim-surround",
 
 	-- Visual.
@@ -201,27 +223,12 @@ return {
 		config = function()
 			local norrsken = require("norrsken")
 			norrsken.setup({
-				-- show the '~' characters after the end of buffers
-				show_end_of_buffer = true, -- default false
-				-- use transparent background
-				transparent_bg = true, -- default false
-				-- set italics
+				show_end_of_buffer = true,
+				transparent_bg = true,
 				italics = {
-					comments = true, -- default false
-					keywords = true, -- default false
+					comments = true,
+					keywords = true,
 				},
-				-- You can use overrides as table like this
-				-- overrides = {
-				--   NonText = { fg = "white" }, -- set NonText fg to white
-				--   NvimTreeIndentMarker = { link = "NonText" }, -- link to NonText highlight
-				--   Nothing = {} -- clear highlight of Nothing
-				-- },
-				-- Or you can also use it like a function to get color from theme
-				-- overrides = function (colors)
-				--   return {
-				--     NonText = { fg = colors.white }, -- set NonText fg to white of theme
-				--   }
-				-- end,
 			})
 
 			vim.cmd [[colorscheme norrsken]]
@@ -245,6 +252,6 @@ return {
 			require "plugin-configs.nvim-dap-gui"
 		end,
 	},
-	"theHamsta/nvim-dap-virtual-text",
-	"jbyuki/one-small-step-for-vimkind",
+	"theHamsta/nvim-dap-virtual-text", -- Add virtual text of values in code.
+	"jbyuki/one-small-step-for-vimkind", -- Lua debugging.
 }
