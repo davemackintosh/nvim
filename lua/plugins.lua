@@ -24,13 +24,7 @@ return {
 			require "plugin-configs.noice"
 		end,
 	},
-
-	{
-		"folke/neodev.nvim",
-		config = function()
-			require("neodev").setup()
-		end
-	},
+	"folke/neodev.nvim",
 	{
 		"dcampos/nvim-snippy",
 		dependencies = { "honza/vim-snippets" },
@@ -40,16 +34,15 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup {
-				highlight = true,
-				enable = true,
-				auto_install = true,
-				rainbow = {
+				highlight = {
 					enable = true,
-					extended_mode = true,
-					max_file_lines = nil,
-				}
+					additional_vim_regex_highlighting = true,
+				},
+				auto_install = true,
+				indent = { enable = true },
 			}
 		end,
 	},
@@ -75,7 +68,6 @@ return {
 			require "plugin-configs.cmp"
 		end,
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
 			"hrsh7th/cmp-nvim-lsp",
 			"onsails/lspkind-nvim",
 			"SergioRibera/cmp-dotenv",
@@ -202,19 +194,12 @@ return {
 			vim.notify = notify
 		end,
 	},
-	--	{
-	--		"catppuccin/vim",
-	--		config = function()
-	--			vim.cmd [[colorscheme catppuccin_mocha]]
-	--		end,
-	--	},
 	{
 		"webhooked/norrsken.nvim",
 		config = function()
 			local norrsken = require("norrsken")
 			norrsken.setup({
 				show_end_of_buffer = true,
-				transparent_bg = true,
 				italics = {
 					comments = true,
 					keywords = true,
