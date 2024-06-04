@@ -104,8 +104,14 @@ return {
 		end,
 	},
 	{
-		"weilbith/nvim-code-action-menu",
-		cmd = "CodeActionMenu",
+		'nvimdev/lspsaga.nvim',
+		config = function()
+			require('lspsaga').setup({})
+		end,
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter',
+			'nvim-tree/nvim-web-devicons',
+		}
 	},
 	-- Window management
 	{
@@ -128,11 +134,62 @@ return {
 
 	-- Code helpers.
 	"sebdah/vim-delve",
+	-- Rust
 	{
 		'mrcjkb/rustaceanvim',
-		version = '^4', -- Recommended
-		lazy = false, -- This plugin is already lazy
+		version = '^4',
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"mfussenegger/nvim-dap",
+			{
+				"lvimuser/lsp-inlayhints.nvim",
+				opts = {}
+			},
+		},
+		ft = { "rust" },
+		config = function()
+			vim.g.rustaceanvim = {
+				inlay_hints = {
+					highlight = "NonText",
+				},
+				tools = {
+					hover_actions = {
+						auto_focus = true,
+					},
+				},
+				server = {
+					on_attach = function(client, bufnr)
+						require("lsp-inlayhints").on_attach(client, bufnr)
+					end
+				}
+			}
+		end
 	},
+	{
+		"nvim-neotest/neotest",
+		dependencies = {
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter"
+		},
+		config = function()
+			require("neotest").setup {
+				adapters = {
+					require("rustaceanvim.neotest")
+				},
+			}
+		end,
+	},
+	{
+		"saecki/crates.nvim",
+		tag = "stable",
+		config = function()
+			require("crates").setup()
+		end,
+	},
+	-- </ Rust
 	{
 		"windwp/nvim-autopairs",
 		config = function()

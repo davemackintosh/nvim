@@ -3,8 +3,6 @@ require("neodev").setup {
 		enabled = true,
 		runtime = true,
 		types = true,
-		plugins = true,
-		-- you can also specify the list of plugins to make available as a workspace library
 		plugins = { "nvim-treesitter", "plenary.nvim", "telescope.nvim" },
 	},
 	setup_jsonls = true,
