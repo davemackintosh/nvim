@@ -110,7 +110,6 @@ return {
 		end,
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter',
-			'nvim-tree/nvim-web-devicons',
 		}
 	},
 	-- Window management
@@ -210,9 +209,9 @@ return {
 		end,
 	},
 	{
-		"simrat39/symbols-outline.nvim",
+		"hedyhli/outline.nvim",
 		config = function()
-			require("symbols-outline").setup()
+			require("outline").setup {}
 		end,
 	},
 	"tpope/vim-endwise",
@@ -225,10 +224,9 @@ return {
 		dependencies = { "kyazdani42/nvim-web-devicons" },
 	},
 	{
-		"glepnir/galaxyline.nvim",
-		branch = "main",
+		'nvim-lualine/lualine.nvim',
 		config = function()
-			require "plugin-configs.galaxyline"
+			require("lualine").setup {}
 		end,
 	},
 	{

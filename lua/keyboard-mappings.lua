@@ -25,7 +25,7 @@ mapx.nnoremap("<C-l>", "<C-w>l")
 -- Utils
 mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")                                     -- Toggle file explorer.
 mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>")                               -- Search for files.
-mapx.nnoremap("<C-s>", ":SymbolsOutline<Cr>")                                     -- Show symbols outline.
+mapx.nnoremap("<C-s>", ":Outline<Cr>")                                            -- Show symbols outline.
 mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")                                -- Search in files.
 mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")                                      -- Show workspace issues.
 
