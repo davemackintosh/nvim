@@ -29,6 +29,9 @@ mapx.nnoremap("<C-s>", ":Outline<Cr>")                                          
 mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")                                -- Search in files.
 mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")                                      -- Show workspace issues.
 
+mapx.inoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" }) -- Debug go tests in insert mode.
+mapx.nnoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" }) -- Debug go tests in normal mode.
+
 mapx.inoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })       -- Run go tests in insert mode.
 mapx.nnoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })       -- Run go tests in normal mode.
 
