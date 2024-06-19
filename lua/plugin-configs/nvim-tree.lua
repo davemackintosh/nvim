@@ -11,6 +11,16 @@ require("nvim-tree").setup {
 		custom = { ".git/" },
 		exclude = { ".gitignore" },
 	},
+	view = {
+		float = {
+			open_win_config = {
+				border = "rounded"
+			}
+		}
+	}
 }
 
-vim.cmd([[:hi NvimTreeNormal guibg=#050515]])
+vim.cmd([[
+hi NvimTreeNormal guibg=#050515
+hi NvimTreeWinSeparator guibg=#67F0AB
+]])
