@@ -49,7 +49,11 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 	require("cmp_nvim_lsp").default_capabilities()
 )
 
-require("mason").setup {}
+require("mason").setup {
+	ui = {
+		border = _border
+	}
+}
 require("mason-lspconfig").setup {}
 
 local function cloneTable(t)
