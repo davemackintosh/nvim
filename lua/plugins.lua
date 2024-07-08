@@ -265,20 +265,29 @@ return {
 		end,
 	},
 	{
-		"webhooked/norrsken.nvim",
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
 		config = function()
-			local norrsken = require("norrsken")
-			norrsken.setup({
-				show_end_of_buffer = true,
-				italics = {
-					comments = true,
-					keywords = true,
-				},
-			})
-
-			vim.cmd [[colorscheme norrsken]]
+			require("catppuccin").setup {}
+			vim.cmd [[colorscheme catppuccin-mocha]]
 		end
 	},
+--	{
+--		"webhooked/norrsken.nvim",
+--		config = function()
+--			local norrsken = require("norrsken")
+--			norrsken.setup({
+--				show_end_of_buffer = true,
+--				italics = {
+--					comments = true,
+--					keywords = true,
+--				},
+--			})
+--
+--			vim.cmd [[colorscheme norrsken]]
+--		end
+--	},
 
 	-- Debugging
 	{
