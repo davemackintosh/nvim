@@ -106,7 +106,7 @@ return {
 	{
 		'nvimdev/lspsaga.nvim',
 		config = function()
-			require('lspsaga').setup({})
+			require('lspsaga').setup {}
 		end,
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter',
@@ -188,9 +188,9 @@ return {
 		},
 		config = function()
 			require("neotest").setup {
---				adapters = {
---					require("rustaceanvim.neotest")
---				},
+				adapters = {
+					require("rustaceanvim.neotest")
+				},
 			}
 		end,
 	},
@@ -273,21 +273,6 @@ return {
 			vim.cmd [[colorscheme catppuccin-mocha]]
 		end
 	},
---	{
---		"webhooked/norrsken.nvim",
---		config = function()
---			local norrsken = require("norrsken")
---			norrsken.setup({
---				show_end_of_buffer = true,
---				italics = {
---					comments = true,
---					keywords = true,
---				},
---			})
---
---			vim.cmd [[colorscheme norrsken]]
---		end
---	},
 
 	-- Debugging
 	{
