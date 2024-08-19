@@ -1,7 +1,5 @@
 require("nvim-dap-virtual-text").setup {}
 
-require("dap-go").setup {}
-
 vim.cmd [[
 	nnoremap <silent> <F8> :lua require"dap".step_over()<CR>
 	nnoremap <silent> <F11> :lua require"dap".step_into()<CR>

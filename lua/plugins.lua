@@ -8,12 +8,15 @@ return {
 	"williamboman/mason-lspconfig.nvim",
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
 		config = function()
 			require "plugin-configs.lsp"
 		end,
 	},
 	"ray-x/lsp_signature.nvim",
-	"onsails/lspkind.nvim",
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
@@ -24,7 +27,6 @@ return {
 			require "plugin-configs.noice"
 		end,
 	},
-	"folke/neodev.nvim",
 	{
 		"dcampos/nvim-snippy",
 		dependencies = { "honza/vim-snippets" },
@@ -84,12 +86,6 @@ return {
 			require "keyboard-mappings"
 		end,
 	},
-	{
-		"folke/trouble.nvim",
-		config = function()
-			require "plugin-configs.trouble"
-		end,
-	},
 	"f-person/git-blame.nvim",
 	{
 		"lewis6991/gitsigns.nvim",
@@ -131,69 +127,6 @@ return {
 		end,
 	},
 
-	-- Code helpers.
-	"sebdah/vim-delve",
-	-- Rust
-	{
-		'mrcjkb/rustaceanvim',
-		version = '^4',
-		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"mfussenegger/nvim-dap",
-			{
-				"lvimuser/lsp-inlayhints.nvim",
-				opts = {}
-			},
-		},
-		ft = { "rust" },
-		config = function()
-			vim.g.rustaceanvim = {
-				inlay_hints = {
-					highlight = "NonText",
-				},
-				tools = {
-					hover_actions = {
-						auto_focus = true,
-					},
-				},
-				server = {
-					on_attach = function(client, bufnr)
-						require("lsp-inlayhints").on_attach(client, bufnr)
-					end
-				}
-			}
-		end
-	},
-	{
-		"ray-x/go.nvim",
-		dependencies = { -- optional packages
-			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("go").setup()
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", 'gomod' },
-	},
-	{
-		"nvim-neotest/neotest",
-		dependencies = {
-			"nvim-neotest/nvim-nio",
-			"nvim-lua/plenary.nvim",
-			"antoinemadec/FixCursorHold.nvim",
-			"nvim-treesitter/nvim-treesitter"
-		},
-		config = function()
-			require("neotest").setup {
-				adapters = {
-					require("rustaceanvim.neotest")
-				},
-			}
-		end,
-	},
 	{
 		"saecki/crates.nvim",
 		tag = "stable",
@@ -201,7 +134,6 @@ return {
 			require("crates").setup()
 		end,
 	},
-	-- </ Rust
 	{
 		"windwp/nvim-autopairs",
 		config = function()
@@ -224,14 +156,6 @@ return {
 		dependencies = { "kyazdani42/nvim-web-devicons" },
 	},
 	{
-		'nvim-lualine/lualine.nvim',
-		config = function()
-			require("lualine").setup {
-				options = { theme = "palenight" }
-			}
-		end,
-	},
-	{
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -249,9 +173,8 @@ return {
 	},
 	{
 		"goolord/alpha-nvim",
-		alpha = false,
 		config = function()
-			require("plugin-configs.dashboard").setup()
+			require("plugin-configs.dashboard").setup {}
 		end,
 	},
 	{
@@ -281,7 +204,6 @@ return {
 			require "plugin-configs.nvim-dap"
 		end
 	},
-	"leoluz/nvim-dap-go",
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = {
@@ -292,5 +214,4 @@ return {
 		end,
 	},
 	"theHamsta/nvim-dap-virtual-text", -- Add virtual text of values in code.
-	"jbyuki/one-small-step-for-vimkind", -- Lua debugging.
 }
