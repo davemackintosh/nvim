@@ -1,6 +1,6 @@
 require("nvim-dap-virtual-text").setup {}
 
-if vim.fn.has("macunix") then
+if vim.fn.has("macunix") == 1 then
 	require("dap-go").setup {}
 end
 

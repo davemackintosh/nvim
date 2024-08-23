@@ -201,7 +201,7 @@ local plugins = {
 	"theHamsta/nvim-dap-virtual-text", -- Add virtual text of values in code.
 }
 
-if not vim.fn.has("android") then
+if vim.fn.has("android") ~= 1 then
 	table.insert(plugins, {
 		'codota/tabnine-nvim',
 		build = "./dl_binaries.sh",
@@ -220,7 +220,7 @@ if not vim.fn.has("android") then
 end
 
 -- rust analyzer doesn't install on Android so use rustaceanvim
-if vim.fn.has("android") then
+if vim.fn.has("android") == 1 then
 	table.insert(plugins, {
 		'mrcjkb/rustaceanvim',
 		version = '^4',
@@ -254,7 +254,7 @@ if vim.fn.has("android") then
 	})
 end
 
-if vim.fn.has("macunix") then
+if vim.fn.has("macunix") == 1 then
 	table.insert(plugins, "sebdah/vim-delve")
 	table.insert(plugins, "leoluz/nvim-dap-go")
 	table.insert(plugins, {
