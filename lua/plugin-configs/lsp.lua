@@ -7,8 +7,12 @@ require("mason").setup {
 		border = _border
 	}
 }
+local ensure_installed = { "lua_ls" }
+if not vim.fn.has("android") then
+	table.insert(ensure_installed, "rust_analyzer")
+end
 require("mason-lspconfig").setup {
-	ensure_installed = { "rust_analyzer", "lua_ls" }
+	ensure_installed = ensure_installed
 }
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
@@ -18,9 +22,6 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 )
 
 require("mason-lspconfig").setup_handlers {
-	-- The first entry (without a key) will be the default handler
-	-- and will be called for each installed server that doesn't have
-	-- a dedicated handler.
 	function(server_name)
 		lspconfig[server_name].setup {}
 	end,

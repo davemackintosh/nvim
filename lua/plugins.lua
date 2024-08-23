@@ -219,6 +219,41 @@ if not vim.fn.has("android") then
 	})
 end
 
+-- rust analyzer doesn't install on Android so use rustaceanvim
+if vim.fn.has("android") then
+	table.insert(plugins, {
+		'mrcjkb/rustaceanvim',
+		version = '^4',
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"mfussenegger/nvim-dap",
+			{
+				"lvimuser/lsp-inlayhints.nvim",
+				opts = {}
+			},
+		},
+		ft = { "rust" },
+		config = function()
+			vim.g.rustaceanvim = {
+				inlay_hints = {
+					highlight = "NonText",
+				},
+				tools = {
+					hover_actions = {
+						auto_focus = true,
+					},
+				},
+				server = {
+					on_attach = function(client, bufnr)
+						require("lsp-inlayhints").on_attach(client, bufnr)
+					end
+				}
+			}
+		end
+	})
+end
+
 if vim.fn.has("macunix") then
 	table.insert(plugins, "sebdah/vim-delve")
 	table.insert(plugins, "leoluz/nvim-dap-go")
