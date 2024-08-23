@@ -1,4 +1,4 @@
-return {
+local plugins = {
 	-- Editor support.
 	-- The next few plugins are really the IDE feel.
 	{
@@ -49,21 +49,6 @@ return {
 		end,
 	},
 	"editorconfig/editorconfig-vim",
-	{
-		'codota/tabnine-nvim',
-		build = "./dl_binaries.sh",
-		config = function()
-			require('tabnine').setup({
-				disable_auto_comment = true,
-				accept_keymap = "<Tab>",
-				dismiss_keymap = "<C-]>",
-				debounce_ms = 800,
-				suggestion_color = { gui = "#808080", cterm = 244 },
-				exclude_filetypes = { "TelescopePrompt", "NvimTree" },
-				log_file_path = nil, -- absolute path to Tabnine log file
-			})
-		end
-	},
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
@@ -215,3 +200,41 @@ return {
 	},
 	"theHamsta/nvim-dap-virtual-text", -- Add virtual text of values in code.
 }
+
+if not vim.fn.has("android") then
+	table.insert(plugins, {
+		'codota/tabnine-nvim',
+		build = "./dl_binaries.sh",
+		config = function()
+			require('tabnine').setup({
+				disable_auto_comment = true,
+				accept_keymap = "<Tab>",
+				dismiss_keymap = "<C-]>",
+				debounce_ms = 800,
+				suggestion_color = { gui = "#808080", cterm = 244 },
+				exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+				log_file_path = nil, -- absolute path to Tabnine log file
+			})
+		end
+	})
+end
+
+if vim.fn.has("macunix") then
+	table.insert(plugins, "sebdah/vim-delve")
+	table.insert(plugins, "leoluz/nvim-dap-go")
+	table.insert(plugins, {
+		"ray-x/go.nvim",
+		dependencies = { -- optional packages
+			"ray-x/guihua.lua",
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("go").setup()
+		end,
+		event = { "CmdlineEnter" },
+		ft = { "go", 'gomod' },
+	})
+end
+
+return plugins

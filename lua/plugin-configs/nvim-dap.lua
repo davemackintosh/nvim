@@ -1,5 +1,9 @@
 require("nvim-dap-virtual-text").setup {}
 
+if vim.fn.has("macunix") then
+	require("dap-go").setup {}
+end
+
 vim.cmd [[
 	nnoremap <silent> <F8> :lua require"dap".step_over()<CR>
 	nnoremap <silent> <F11> :lua require"dap".step_into()<CR>

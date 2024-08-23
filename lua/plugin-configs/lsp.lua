@@ -8,7 +8,7 @@ require("mason").setup {
 	}
 }
 require("mason-lspconfig").setup {
-	ensure_installed = { "rust_analyzer" }
+	ensure_installed = { "rust_analyzer", "lua_ls" }
 }
 
 lsp_defaults.capabilities = vim.tbl_deep_extend(
