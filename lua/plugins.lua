@@ -38,14 +38,7 @@ local plugins = {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		config = function()
-			require("nvim-treesitter.configs").setup {
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = true,
-				},
-				auto_install = true,
-				indent = { enable = true },
-			}
+			require "plugin-configs.treesitter"
 		end,
 	},
 	"editorconfig/editorconfig-vim",
@@ -136,6 +129,7 @@ local plugins = {
 	"tpope/vim-surround",
 
 	-- Visual.
+	{ 'echasnovski/mini.icons', version = false },
 	{
 		"yamatsum/nvim-nonicons",
 		dependencies = { "kyazdani42/nvim-web-devicons" },
@@ -166,9 +160,7 @@ local plugins = {
 		"rcarriga/nvim-notify",
 		config = function()
 			local notify = require "notify"
-			notify.setup {
-				background_colour = "#000000",
-			}
+			notify.setup {}
 			vim.notify = notify
 		end,
 	},
@@ -183,6 +175,37 @@ local plugins = {
 	},
 
 	-- Debugging
+	{
+		'mrcjkb/rustaceanvim',
+		version = '^4',
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"mfussenegger/nvim-dap",
+			{
+				"lvimuser/lsp-inlayhints.nvim",
+				opts = {}
+			},
+		},
+		ft = { "rust" },
+		config = function()
+			vim.g.rustaceanvim = {
+				inlay_hints = {
+					highlight = "NonText",
+				},
+				tools = {
+					hover_actions = {
+						auto_focus = true,
+					},
+				},
+				server = {
+					on_attach = function(client, bufnr)
+						require("lsp-inlayhints").on_attach(client, bufnr)
+					end
+				}
+			}
+		end
+	},
 	{
 		"mfussenegger/nvim-dap",
 		config = function()
@@ -215,41 +238,6 @@ if vim.fn.has("android") ~= 1 then
 				exclude_filetypes = { "TelescopePrompt", "NvimTree" },
 				log_file_path = nil, -- absolute path to Tabnine log file
 			})
-		end
-	})
-end
-
--- rust analyzer doesn't install on Android so use rustaceanvim
-if vim.fn.has("android") == 1 then
-	table.insert(plugins, {
-		'mrcjkb/rustaceanvim',
-		version = '^4',
-		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"mfussenegger/nvim-dap",
-			{
-				"lvimuser/lsp-inlayhints.nvim",
-				opts = {}
-			},
-		},
-		ft = { "rust" },
-		config = function()
-			vim.g.rustaceanvim = {
-				inlay_hints = {
-					highlight = "NonText",
-				},
-				tools = {
-					hover_actions = {
-						auto_focus = true,
-					},
-				},
-				server = {
-					on_attach = function(client, bufnr)
-						require("lsp-inlayhints").on_attach(client, bufnr)
-					end
-				}
-			}
 		end
 	})
 end
