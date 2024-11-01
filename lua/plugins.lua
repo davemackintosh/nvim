@@ -175,8 +175,9 @@ local plugins = {
 	},
 
 	-- Debugging
+	"pest-parser/pest.vim",
 	{
-		'mrcjkb/rustaceanvim',
+		"mrcjkb/rustaceanvim",
 		version = '^4',
 		lazy = false,
 		dependencies = {
