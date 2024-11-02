@@ -23,6 +23,23 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 
 require("mason-lspconfig").setup_handlers {
 	function(server_name)
+		if server_name == "clangd" then
+			lspconfig[server_name].setup {
+				cmd = {
+					"clangd",
+					"--background-index",
+					"-j=12",
+					"--query-driver=/usr/bin/**/clang-*,/bin/clang,/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
+					"--clang-tidy",
+					"--all-scopes-completion",
+					"--cross-file-rename",
+					"--completion-style=detailed",
+					"--header-insertion-decorators",
+					"--header-insertion=iwyu",
+					"--pch-storage=memory",
+				}
+			}
+		end
 		lspconfig[server_name].setup {}
 	end,
 }
