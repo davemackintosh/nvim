@@ -183,10 +183,6 @@ local plugins = {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"mfussenegger/nvim-dap",
-			{
-				"lvimuser/lsp-inlayhints.nvim",
-				opts = {}
-			},
 		},
 		ft = { "rust" },
 		config = function()
@@ -199,11 +195,6 @@ local plugins = {
 						auto_focus = true,
 					},
 				},
-				server = {
-					on_attach = function(client, bufnr)
-						require("lsp-inlayhints").on_attach(client, bufnr)
-					end
-				}
 			}
 		end
 	},
