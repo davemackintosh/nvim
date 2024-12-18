@@ -66,12 +66,6 @@ local plugins = {
 	},
 	"f-person/git-blame.nvim",
 	{
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require('gitsigns').setup {}
-		end
-	},
-	{
 		"folke/which-key.nvim",
 		config = function()
 			require("which-key").setup {}
