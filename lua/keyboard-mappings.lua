@@ -25,12 +25,12 @@ mapx.nnoremap("<C-l>", "<C-w>l")
 -- Utils
 mapx.nnoremap("<C-o>", ":NvimTreeToggle<Cr>")                                     -- Toggle file explorer.
 mapx.nnoremap("<C-p>", ":Telescope find_files<Cr>")                               -- Search for files.
-mapx.nnoremap("<C-s>", ":Outline<Cr>")                                            -- Show symbols outline.
+mapx.nnoremap("<C-s>", ":Lspsaga outline<Cr>")                                    -- Show symbols outline.
 mapx.nnoremap("<C-f>", ":Telescope live_grep<Cr>")                                -- Search in files.
 mapx.nnoremap("<C-D>", ":TroubleToggle<Cr>")                                      -- Show workspace issues.
 
-mapx.inoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" }) -- Debug go tests in insert mode.
-mapx.nnoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" }) -- Debug go tests in normal mode.
+mapx.inoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" })           -- Debug go tests in insert mode.
+mapx.nnoremap("<F5>", "<cmd>:DapContinue<Cr>", "silent", { ft = "go" })           -- Debug go tests in normal mode.
 
 mapx.inoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })       -- Run go tests in insert mode.
 mapx.nnoremap("<C-t>", "<cmd>:DlvTestCurrent<Cr>", "silent", { ft = "go" })       -- Run go tests in normal mode.

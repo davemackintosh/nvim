@@ -112,12 +112,6 @@ local plugins = {
 			require "plugin-configs.autopairs"
 		end,
 	},
-	{
-		"hedyhli/outline.nvim",
-		config = function()
-			require("outline").setup {}
-		end,
-	},
 	"tpope/vim-endwise",
 	"tpope/vim-fugitive",
 	"tpope/vim-surround",
