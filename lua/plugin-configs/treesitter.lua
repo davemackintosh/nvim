@@ -13,11 +13,11 @@ require("nvim-treesitter.configs").setup {
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.elp = {
 	install_info = {
-		url = "/home/dave/www/rust/melodist/tree-sitter-elp/",
+		url = "/home/dave/www/cpp/treesitter/",
 		files = { "src/parser.c" },
 		branch = "main",
 		generate_requires_npm = true,
-		requires_generate_from_grammar = false,
+		requires_generate_from_grammar = true,
 	},
 	filetype = "elp",
 }
