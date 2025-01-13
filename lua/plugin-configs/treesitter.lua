@@ -21,3 +21,14 @@ parser_config.elp = {
 	},
 	filetype = "elp",
 }
+vim.treesitter.language.register('elp', 'elp')
+vim.treesitter.language.register('elp', 'velp')
+vim.treesitter.language.register('elp', 'selp')
+
+vim.filetype.add({
+	pattern = {
+		['.*.elp'] = 'elp',
+		['.*.velp'] = 'elp',
+		['.*.selp'] = 'elp',
+	},
+})
