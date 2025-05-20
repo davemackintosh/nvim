@@ -11,7 +11,6 @@ require("dapui").setup {
 	},
 	-- Expand lines larger than the window
 	-- Requires >= 0.7
-	expand_lines = vim.fn.has "nvim-0.7",
 	layouts = {
 		{
 			elements = {

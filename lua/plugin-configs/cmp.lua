@@ -1,5 +1,5 @@
 local cmp = require "cmp"
-local snippy = require('snippy')
+local snippy = require "snippy"
 
 cmp.setup {
 	completion = { completeopt = "menu,menuone,noinsert", keyword_length = 1 },
@@ -35,6 +35,7 @@ cmp.setup {
 		{ name = "nvim_lua" },
 		{ name = "dotenv" },
 		{ name = "treesitter" },
+		{ name = "codecompanion" }
 	},
 	window = {
 		completion = cmp.config.window.bordered(),

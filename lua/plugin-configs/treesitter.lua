@@ -5,9 +5,7 @@ require("nvim-treesitter.configs").setup {
 	},
 	auto_install = true,
 	indent = { enable = true },
-	ensure_installed = {
-		"rust",
-	}
+	ensure_installed = {}
 }
 
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()

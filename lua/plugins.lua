@@ -59,6 +59,51 @@ local plugins = {
 		},
 	},
 	{
+		"olimorris/codecompanion.nvim",
+		cmd = {
+			'CodeCompanion',
+			'CodeCompanionActions',
+			'CodeCompanionChat',
+			'CodeCompanionCmd',
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			{ 'echasnovski/mini.nvim', version = '*' },
+			{
+				"MeanderingProgrammer/render-markdown.nvim",
+				ft = { "codecompanion" }
+			},
+		},
+		opts = {
+			strategies = {
+				chat = {
+					adapter = "gemini",
+				},
+				inline = {
+					adapter = "gemini",
+				},
+			},
+			gemini = function()
+				return require("codecompanion.adapters").extend("gemini", {
+					schema = {
+						model = {
+							default = "gemini-2.5-pro-preview-03-25",
+						},
+					},
+					env = {
+						api_key = "GEMINI_API_KEY",
+					},
+				})
+			end,
+			display = {
+				diff = {
+					provider = "mini_diff",
+				},
+			},
+		},
+	},
+	{
 		"b0o/mapx.nvim",
 		config = function()
 			require "keyboard-mappings"
@@ -145,7 +190,7 @@ local plugins = {
 	{
 		"goolord/alpha-nvim",
 		config = function()
-			require("plugin-configs.dashboard").setup {}
+			require("plugin-configs.dashboard").setup()
 		end,
 	},
 	{
@@ -169,28 +214,6 @@ local plugins = {
 	-- Debugging
 	"pest-parser/pest.vim",
 	{
-		"mrcjkb/rustaceanvim",
-		version = '^4',
-		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"mfussenegger/nvim-dap",
-		},
-		ft = { "rust" },
-		config = function()
-			vim.g.rustaceanvim = {
-				inlay_hints = {
-					highlight = "NonText",
-				},
-				tools = {
-					hover_actions = {
-						auto_focus = true,
-					},
-				},
-			}
-		end
-	},
-	{
 		"mfussenegger/nvim-dap",
 		config = function()
 			require "plugin-configs.nvim-dap"
@@ -207,41 +230,5 @@ local plugins = {
 	},
 	"theHamsta/nvim-dap-virtual-text", -- Add virtual text of values in code.
 }
-
-if vim.fn.has("android") ~= 1 then
-	table.insert(plugins, {
-		'codota/tabnine-nvim',
-		build = "./dl_binaries.sh",
-		config = function()
-			require('tabnine').setup({
-				disable_auto_comment = true,
-				accept_keymap = "<Tab>",
-				dismiss_keymap = "<C-]>",
-				debounce_ms = 800,
-				suggestion_color = { gui = "#808080", cterm = 244 },
-				exclude_filetypes = { "TelescopePrompt", "NvimTree" },
-				log_file_path = nil, -- absolute path to Tabnine log file
-			})
-		end
-	})
-end
-
-if vim.fn.has("macunix") == 1 then
-	table.insert(plugins, "sebdah/vim-delve")
-	table.insert(plugins, "leoluz/nvim-dap-go")
-	table.insert(plugins, {
-		"ray-x/go.nvim",
-		dependencies = { -- optional packages
-			"ray-x/guihua.lua",
-			"neovim/nvim-lspconfig",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("go").setup()
-		end,
-		event = { "CmdlineEnter" },
-		ft = { "go", 'gomod' },
-	})
-end
 
 return plugins
