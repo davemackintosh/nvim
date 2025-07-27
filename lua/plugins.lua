@@ -59,6 +59,11 @@ local plugins = {
 		},
 	},
 	{
+		'mrcjkb/rustaceanvim',
+		version = '^6',
+		lazy = false,
+	},
+	{
 		"olimorris/codecompanion.nvim",
 		cmd = {
 			'CodeCompanion',
@@ -207,7 +212,7 @@ local plugins = {
 		priority = 1000,
 		config = function()
 			require("catppuccin").setup {}
-			vim.cmd [[colorscheme catppuccin-mocha]]
+			vim.cmd [[colorscheme catppuccin-macchiato]]
 		end
 	},
 
